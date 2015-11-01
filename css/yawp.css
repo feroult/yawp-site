@@ -2,10 +2,19 @@
     display: inline-block;
 }
 
+.intro img {
+    width: 180px;
+}
+
 @media (max-width: 600px) {
     .intro .intro-code {
         display: none !important;
     }
+
+    .intro img {
+        width: 140px;
+    }
+
 }
 
 .intro .intro-code {
