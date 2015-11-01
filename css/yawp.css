@@ -2,10 +2,16 @@
     display: inline-block;
 }
 
+@media (max-width: 600px) {
+    .intro .intro-code {
+        display: none !important;
+    }
+}
+
 .intro .intro-code {
     vertical-align: middle;
-    margin-left: 69px;
     text-align: left;
+    margin-left: 69px;
 }
 
 .intro .intro-code pre {
