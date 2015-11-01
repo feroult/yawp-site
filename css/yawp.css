@@ -1,0 +1,21 @@
+.intro div {
+    display: inline-block;
+}
+
+.intro .intro-code {
+    vertical-align: middle;
+    margin-left: 69px;
+    text-align: left;
+}
+
+.intro .intro-code pre {
+    padding: 0px;
+    border: 0px;
+}
+
+.intro .intro-code code {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

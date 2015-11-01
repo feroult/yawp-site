@@ -16,11 +16,17 @@
 
     <!-- Custom CSS -->
     <link href="css/freelancer.css" rel="stylesheet">
+    <link href="css/yawp.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- code formating -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/zenburn.min.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -83,7 +89,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <img class="img-responsive" src="img/profile.png" alt="">
+                    <div class="intro">
+                        <img class="img-responsive" src="img/yeti.png" alt="" style="display: inline-block;">
+                        <div class="intro-code" style="display: inline-block;">
+<pre><code class="shell">$ mvn archetype:generate \
+    -DarchetypeGroupId=io.yawp \
+    -DarchetypeArtifactId=yawp \
+    -DarchetypeVersion=LATEST
+</code></pre>
+                        </div>
+                    </div>
                     <div class="intro-text">
                         <span class="name">YAWP!</span>
                         <hr class="star-light">
@@ -544,6 +559,9 @@
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
 
+
 </body>
+<!-- code formatter -->
+<script>hljs.initHighlightingOnLoad();</script>
 
 </html>
