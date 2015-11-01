@@ -25,3 +25,14 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+.feature {
+    text-align: center;
+    font-size: 1.3em;
+    color: #444;
+}
+
+.feature span {
+    font-weight: bold;
+    font-size: 1.4em;
+}
