@@ -14,6 +14,16 @@ code {
     padding-bottom: 10px;
 }
 
+/* all */
+div.row.space {
+    margin-top: 30px;
+}
+
+/* hacks */
+div.main-navbar {
+    /*margin-right: 60px !important;*/
+}
+
 /* intro */
 
 .intro div {
@@ -66,10 +76,6 @@ code {
     }
 }
 
-div.row.space {
-    margin-top: 30px;
-}
-
 div.step-text {
     text-align: right;
     font-style: italic;
@@ -79,20 +85,15 @@ div.step-text {
     margin: auto 0;
 }
 
-.step-text p {
-    /*margin: 0;*/
+/* community */
+
+#community .type p {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.8em !important;
 }
 
-.step-number {
-    margin: 0 auto;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
+#community .link {
     text-align: center;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    border-radius: 25px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: white;
+    font-size: 1.4em;
 }
