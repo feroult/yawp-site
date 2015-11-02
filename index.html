@@ -178,6 +178,23 @@
                 </div>
                 <div class="col-sm-6"><pre class="code"><code class="shell">$ mvn yawp:devserver</code></pre></div>
             </div>
+            <div class="row space">
+                <div class="col-sm-6 col-sm-offset-0 step-text">
+                    <p>Annotate your models</p>
+                </div>
+                <div class="col-sm-6"><pre class="code"><code class="java">@Endpoint(path = "/people")
+public class Person {
+
+}</code></pre></div>
+            </div>
+            <div class="row space">
+                <div class="col-sm-6 col-sm-offset-0 step-text">
+                    <p>Access your APIs</p>
+                </div>
+                <div class="col-sm-6"><pre class="code"><code class="java">yawp('/people')
+    .create({ name : 'Janes' })
+    .done( function(person) { } )</code></pre></div>
+            </div>
             <!--div class="row space">
                 <div class="col-lg-8 col-lg-offset-2">
                     <p>From a single class annotation, <strong>YAWP!</strong> provides a full REST url schema with a fluent progamatic API for Java and Javascript:</p>
@@ -202,14 +219,14 @@ public class Person {
 }
 </code></pre>
                 </div>
-            </div>
-            <div class="row">
+            </div-->
+            <div class="row space">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <a href="#" class="btn btn-lg btn-outline">
-                        <i class="fa fa-download"></i> Download Theme
+                        <i class="fa fa-book"></i>&nbsp;&nbsp;Complete Guides
                     </a>
                 </div>
-            </div-->
+            </div>
         </div>
     </section>
 

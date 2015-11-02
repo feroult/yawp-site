@@ -4,6 +4,7 @@ pre.code {
     padding: 0px;
     margin: 0px;
     border: 0px;
+    width: 300px;
 }
 
 code {
@@ -53,10 +54,6 @@ code {
 }
 
 /* kickstart */
-
-#kickstart pre.code {
-    width: 300px;
-}
 
 @media (max-width: 768px) {
     #kickstart p {
