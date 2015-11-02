@@ -1,3 +1,20 @@
+/* code */
+
+pre.code {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+}
+
+code {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* intro */
+
 .intro div {
     display: inline-block;
 }
@@ -14,7 +31,6 @@
     .intro img {
         width: 140px;
     }
-
 }
 
 .intro .intro-code {
@@ -23,17 +39,7 @@
     margin-left: 69px;
 }
 
-.intro .intro-code pre {
-    padding: 0px;
-    border: 0px;
-}
-
-.intro .intro-code code {
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
+/* features */
 
 .feature {
     text-align: center;
@@ -44,4 +50,62 @@
 .feature span {
     font-weight: bold;
     font-size: 1.4em;
+}
+
+/* kickstart */
+
+#kickstart p {
+    /*margin: 0;*/
+}
+
+#kickstart .row {
+    /*display: flex;*/
+}
+
+#kickstart .step-text {
+    text-align: center;
+    /*align-self: center;*/
+}
+
+#kickstart pre.code {
+    max-width: 300px;
+    margin: auto;
+}
+
+/*@media (max-width: 900) {*/
+    /*#kickstart pre.code {
+        margin-left: auto;
+        margin-right: auto;
+    }*/
+/*}*/
+
+div.row.space {
+    margin-top: 30px;
+}
+
+div.step-text {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.step-text div {
+    margin: auto 0;
+}
+
+.step-text p {
+    /*margin: 0;*/
+}
+
+.step-number {
+    margin: 0 auto;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: white;
 }
