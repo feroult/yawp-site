@@ -54,38 +54,28 @@ code {
 
 /* kickstart */
 
-#kickstart p {
-    /*margin: 0;*/
-}
-
-#kickstart .row {
-    /*display: flex;*/
-}
-
-#kickstart .step-text {
-    text-align: center;
-    /*align-self: center;*/
-}
-
 #kickstart pre.code {
-    max-width: 300px;
-    margin: auto;
+    width: 300px;
 }
 
-/*@media (max-width: 900) {*/
-    /*#kickstart pre.code {
+@media (max-width: 768px) {
+    #kickstart p {
+        text-align: center;
+    }
+
+    #kickstart pre.code {
         margin-left: auto;
         margin-right: auto;
-    }*/
-/*}*/
+    }
+}
 
 div.row.space {
     margin-top: 30px;
 }
 
 div.step-text {
-    text-align: justify;
-    text-justify: inter-word;
+    text-align: right;
+    font-style: italic;
 }
 
 .step-text div {
