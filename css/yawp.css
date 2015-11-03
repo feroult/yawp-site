@@ -20,8 +20,9 @@ div.row.space {
 }
 
 /* hacks */
-div.main-navbar {
-    /*margin-right: 60px !important;*/
+
+#portfolio .portfolio-item .portfolio-link .caption {
+    /*opacity: 0.1;*/
 }
 
 /* intro */
@@ -96,4 +97,9 @@ div.step-text {
 #community .link {
     text-align: center;
     font-size: 1.4em;
+}
+
+/* modal */
+img.img-modal {
+    width: 50%;
 }
