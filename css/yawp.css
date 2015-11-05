@@ -25,6 +25,55 @@ div.row.space {
     /*opacity: 0.1;*/
 }
 
+header {
+    background: white;
+    background-image: url('../img/patterns/skulls.png');
+    color: black;
+}
+
+header hr.star-light {
+    background: white;
+    border-color: black;
+}
+
+header hr.star-light:after {
+    color: black;
+    background: #F7F7DF;
+}
+
+header div.star {
+    margin-left: auto;
+    margin-right: auto;
+    height: 15px;
+    line-height: 52px;
+    width: 250px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+header div.star:after {
+    content: "\f005";
+    display: inline-block;
+    position: relative;
+    top: -.8em;
+    padding: 0 .25em;
+    font-family: FontAwesome;
+    font-size: 2em;
+}
+
+header div.star-left {
+    border-top: 5px solid black;
+    width: 40.5%;
+    float: left;
+}
+
+header div.star-right {
+    border-top: 5px solid black;
+    width: 40.5%;
+    float: right;
+}
+
+
 /* intro */
 
 .intro div {
