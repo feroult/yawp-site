@@ -27,17 +27,17 @@ div.row.space {
 
 header {
     background: white;
-    background-image: url('../img/patterns/skulls.png');
-    color: black;
+    background-image: url('../img/patterns/skulls_green.png');
+    /*color: black;*/
 }
 
 header hr.star-light {
     background: white;
-    border-color: black;
+    /*border-color: black;*/
 }
 
 header hr.star-light:after {
-    color: black;
+    /*color: black;*/
     background: #F7F7DF;
 }
 
@@ -62,13 +62,13 @@ header div.star:after {
 }
 
 header div.star-left {
-    border-top: 5px solid black;
+    border-top: 5px solid white;
     width: 40.5%;
     float: left;
 }
 
 header div.star-right {
-    border-top: 5px solid black;
+    border-top: 5px solid white;
     width: 40.5%;
     float: right;
 }
