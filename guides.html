@@ -3,12 +3,13 @@ layout: default
 ---
 <div class="container">
 <div id="accordion" class="panel-group" >
+    <div class="sidebar">
     <div class="panel panel-default">
         <a data-toggle="collapse" href="#tutorials">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <i class="fa fa-graduation-cap"></i>
-                    &nbsp;Tutorials
+                    <!-- <i class="fa fa-graduation-cap"></i> -->
+                    Getting Started
                 </h4>
             </div>
         </a>
@@ -17,117 +18,83 @@ layout: default
             <div class="panel-body">
                 <ul>
                     <li>
-                        Teste 1
+                        <a href="kickstart">Installing YAWP!</a>
                     </li>
                     <li>
-                        Teste 2
+                        <a href="todolist">Your first API</a>
+                    </li>
+                    <li>
+                        <a href="todolist">Core concepts</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" href="#collapseTwo"><span class="glyphicon glyphicon-th">
-                </span>Modules</a>
-            </h4>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse">
+        <a data-toggle="collapse" href="#tutorials2">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    Tutorials
+                </h4>
+            </div>
+        </a>
+
+        <div id="tutorials2" class="panel-collapse collapse in">
             <div class="panel-body">
-                <table class="table">
-                    <tr>
-                        <td>
-                            <a href="http://www.jquery2dotnet.com">Orders</a> <span class="label label-success">$ 320</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.jquery2dotnet.com">Invoices</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.jquery2dotnet.com">Shipments</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.jquery2dotnet.com">Tex</a>
-                        </td>
-                    </tr>
-                </table>
+                <ul>
+                    <li>
+                        <a href="todolist">To-Do List App</a>
+                    </li>
+                    <li>
+                        <a href="todolist">The Javascript Client</a>
+                    </li>
+                    <li>
+                        <a href="todolist">Testing with fixtures</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" href="#collapseThree"><span class="glyphicon glyphicon-user">
-                </span>Account</a>
-            </h4>
-        </div>
-        <div id="collapseThree" class="panel-collapse collapse">
+        <a data-toggle="collapse" href="#tutorials3">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    API
+                </h4>
+            </div>
+        </a>
+
+        <div id="tutorials3" class="panel-collapse collapse in">
             <div class="panel-body">
-                <table class="table">
-                    <tr>
-                        <td>
-                            <a href="http://www.jquery2dotnet.com">Change Password</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.jquery2dotnet.com">Notifications</a> <span class="label label-info">5</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <a href="http://www.jquery2dotnet.com">Import/Export</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-trash text-danger"></span><a href="http://www.jquery2dotnet.com" class="text-danger">
-                                Delete Account</a>
-                        </td>
-                    </tr>
-                </table>
+                <ul>
+                    <li>
+                        <a href="kickstart">Models</a>
+                    </li>
+                    <li>
+                        <a href="kickstart">Rest Actions</a>
+                    </li>
+                    <li>
+                        <a href="todolist">Custom Actions</a>
+                    </li>
+                    <li>
+                        <a href="todolist">Query</a>
+                    </li>
+                    <li>
+                        <a href="todolist">Id References</a>
+                    </li>
+                    <li>
+                        <a href="todolist">Transformers</a>
+                    </li>
+                    <li>
+                        <a href="todolist">Shields</a>
+                    </li>
+                    <li>
+                        <a href="todolist">Hooks</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" href="#collapseFour"><span class="glyphicon glyphicon-file">
-                </span>Reports</a>
-            </h4>
-        </div>
-        <div id="collapseFour" class="panel-collapse collapse">
-            <div class="panel-body">
-                <table class="table">
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-usd"></span><a href="http://www.jquery2dotnet.com">Sales</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-user"></span><a href="http://www.jquery2dotnet.com">Customers</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-tasks"></span><a href="http://www.jquery2dotnet.com">Products</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span class="glyphicon glyphicon-shopping-cart"></span><a href="http://www.jquery2dotnet.com">Shopping Cart</a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
     </div>
 </div>
 </div>

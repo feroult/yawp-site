@@ -1,23 +1,94 @@
 #accordion {
     margin-top: 135px;
     margin-bottom: 100px;
-    width: 250px;
+    width: 220px;
+    margin-left: 10px;
 }
 
 #accordion a:hover, #accordion a:focus {
     text-decoration: none;
 }
 
-.panel-heading {
+#accordion ul {
+    padding: 0;
+    margin: 0;
+}
+
+#accordion li {
+    list-style: none;
+    cursor: pointer;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 20px;
+}
+
+#accordion li a {
     color: #2c3e50;
-    background-color: #ecf0f1;
-    border-color: #ecf0f1;
+    /*font-weight: bold;*/
+}
+
+#accordion h4 {
+    font-weight: normal;
+    /*color: #888;*/
+}
+
+#accordion li:hover {
+    background-color: #E0ECFF;
+}
+
+#accordion li:hover a {
+    /*color: #18bc9c;*/
 }
 
 .panel-heading:hover {
-    color: #18bc9c;
+    /*color: #18bc9c;*/
+    background-color: #E0ECFF;
 }
 
-.panel-body { padding:0px; }
-.panel-body table tr td { padding-left: 15px }
-.panel-body .table {margin-bottom: 0px; }
+.sidebar {
+    border: 1px solid #aaa;
+    border-bottom: 0;
+}
+.panel-collapse.collapse.in .panel-body, .panel-collapse.collapsing .panel-body  {
+    border-bottom: 1px solid #aaa;
+}
+
+.panel-heading {
+    color: #2c3e50;
+    background-color: #eee;
+    border-radius: 0px;
+}
+
+.panel-group .panel-heading {
+    border: 0;
+
+    border-bottom: 1px solid #aaa;
+}
+
+.panel-default {
+    border: 0;
+}
+
+.panel-group .panel+.panel {
+    margin-top: 0px;
+}
+
+.panel-body {
+    padding:0px;
+    background-color: #FBF9FF;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.panel {
+    margin: 0;
+    pading: 0;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.panel-group .panel {
+    margin-bottom: 0;
+    border-radius: 0px;
+}
