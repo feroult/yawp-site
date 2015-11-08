@@ -3,8 +3,11 @@ layout: guides
 ---
 # Installing YAWP!
 
-To install __YAWP!__ you need to have Java ~> 1.7 Maven ~> 3. 
+The easiest way to install YAWP! is using our maven archetype:
 
 ~~~
-$ mvn appengine:devserver
+$ mvn archetype:generate \
+    -DarchetypeGroupId=io.yawp \
+    -DarchetypeArtifactId=yawp \
+    -DarchetypeVersion=LATEST
 ~~~
