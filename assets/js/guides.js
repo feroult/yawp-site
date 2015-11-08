@@ -5,7 +5,13 @@
         var url = window.location.href;
         var indexOf = url.indexOf(base);
         if (indexOf == -1) {
-            return;
+            return null;
+        }
+
+        var subInit = indexOf + base.length + 1;
+
+        if (url.length <= subInit) {
+            return null;
         }
 
         var path = url.substring(indexOf + base.length + 1);
@@ -14,6 +20,9 @@
 
     $(document).ready(function () {
         var path = getPath();
+        if (!path) {
+            return;
+        }
         $('.' + path).addClass('active');
     });
 
