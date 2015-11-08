@@ -3,9 +3,39 @@
     margin-bottom: 100px;
     width: 220px;
     margin-left: 10px;
+    float: left;
 }
 
-#accordion a:hover, #accordion a:focus {
+.guide {
+    margin-top: 140px;
+    margin-left: 260px;
+}
+
+.guide h1,
+.guide h2,
+.guide h3,
+.guide h4,
+.guide h5,
+.guide h6 {
+    text-transform: none;
+}
+
+.guide h1 {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+    #accordion {
+        margin-top: 85px;
+    }
+    .guide {
+        margin-top: 80px;
+    }
+}
+
+#accordion a:hover,
+#accordion a:focus {
     text-decoration: none;
 }
 
@@ -42,6 +72,7 @@
 
 .panel-heading:hover {
     /*color: #18bc9c;*/
+    
     background-color: #E0ECFF;
 }
 
@@ -49,7 +80,9 @@
     border: 1px solid #aaa;
     border-bottom: 0;
 }
-.panel-collapse.collapse.in .panel-body, .panel-collapse.collapsing .panel-body  {
+
+.panel-collapse.collapse.in .panel-body,
+.panel-collapse.collapsing .panel-body {
     border-bottom: 1px solid #aaa;
 }
 
@@ -61,7 +94,6 @@
 
 .panel-group .panel-heading {
     border: 0;
-
     border-bottom: 1px solid #aaa;
 }
 
@@ -74,7 +106,7 @@
 }
 
 .panel-body {
-    padding:0px;
+    padding: 0px;
     background-color: #FBF9FF;
     padding-top: 6px;
     padding-bottom: 6px;
@@ -82,7 +114,7 @@
 
 .panel {
     margin: 0;
-    pading: 0;
+    padding: 0;
     border-radius: 0px;
     -webkit-box-shadow: none;
     box-shadow: none;
