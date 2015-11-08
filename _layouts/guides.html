@@ -1,0 +1,102 @@
+---
+layout: default
+sections:
+    header: |
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/atelier-cave.light.min.css">
+    scripts: |
+        <script src="/assets/js/guides.js"></script>
+        
+---
+<div class="container">
+    <div id="accordion" class="panel-group">
+        <div class="sidebar">
+            <div class="panel panel-default">
+                <a data-toggle="collapse" href="#getting-started">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Getting Started</h4>
+                    </div>
+                </a>
+
+                <div id="getting-started" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul>
+                            <li class="getting-started_installing-yawp">
+                                <a href="/guides/getting-started/installing-yawp">Installing YAWP!</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Your first API</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Core concepts</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <a data-toggle="collapse" href="#tutorials2">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Tutorials</h4>
+                    </div>
+                </a>
+
+                <div id="tutorials2" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul>
+                            <li>
+                                <a href="todolist">To-Do List App</a>
+                            </li>
+                            <li>
+                                <a href="todolist">The Javascript Client</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Testing with fixtures</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <a data-toggle="collapse" href="#tutorials3">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">API</h4>
+                    </div>
+                </a>
+
+                <div id="tutorials3" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul>
+                            <li>
+                                <a href="kickstart">Models</a>
+                            </li>
+                            <li>
+                                <a href="kickstart">Rest Actions</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Custom Actions</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Query</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Id References</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Transformers</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Shields</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Hooks</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="guide">
+        {{ content }}
+    </div>
+</div>

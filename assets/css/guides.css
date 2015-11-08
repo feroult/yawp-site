@@ -87,6 +87,10 @@
     background-color: #E0ECFF;
 }
 
+#accordion li.active {
+     background-color: #E0ECFF;   
+}
+
 #accordion li:hover a {
     /*color: #18bc9c;*/
 }
