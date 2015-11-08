@@ -27,7 +27,7 @@ div.row.space {
 
 header {
     background: white;
-    background-image: url('../img/patterns/skulls_green.png');
+    background-image: url('/assets/img/patterns/skulls_green.png');
     /*color: black;*/
 }
 
