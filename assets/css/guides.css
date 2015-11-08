@@ -149,3 +149,21 @@
     margin-bottom: 0;
     border-radius: 0px;
 }
+
+.guide table {
+    background-color: #FBF9FF;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.guide table th {
+    background-color: #eee;
+}
+
+.guide table th, .guide table td {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 1px solid #aaa;
+}
