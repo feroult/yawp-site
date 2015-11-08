@@ -11,7 +11,7 @@ The prerequisites to install __YAWP__ are:
 The easiest way to install it is using its maven archetype.
 You may change the values of the __groupId__, __artifactId__ and __version__ variables:
 
-~~~ bash
+~~~ ruby
 mvn archetype:generate \
    -DarchetypeGroupId=io.yawp \
    -DarchetypeArtifactId=yawp \
@@ -23,7 +23,7 @@ mvn archetype:generate \
 
 After that, you can cd into the __yawp-app__ folder and start the development server:
 
-~~~ bash
+~~~ shell
 cd yawp-app
 mvn yawp:devserver
 ~~~

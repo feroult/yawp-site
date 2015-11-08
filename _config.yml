@@ -1,6 +1,0 @@
-markdown: kramdown
-kramdown:
-  enable_coderay: true
-  coderay:
-    coderay_line_numbers: nil
-    coderay_css: class
