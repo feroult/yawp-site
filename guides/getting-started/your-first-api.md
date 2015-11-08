@@ -55,5 +55,17 @@ for the Person endpoint, which are:
 | PUT/PATCH   | /people/{id}   | Update a person       |
 | DELETE      | /people/{id}   | Destroy a person      |
 
+You can play with those APIs with cURL, to create a person with name Janes, run:
+
+~~~ bash
+curl -H "Content-type: application/json" -X POST \
+     -d "{'name': 'Janes'}" http://localhost:8080/api/people
+~~~
+
+To retrieve the created document, run:
+
+~~~ bash
+curl http://localhost:8080/api/people
+~~~
 
 
