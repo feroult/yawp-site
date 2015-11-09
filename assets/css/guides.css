@@ -27,8 +27,11 @@
 }
 
 .guide .hljs {
-/*    background-color: #FFFEF6;*/
     background-color: #FBF9FF;
+}
+
+.guide {
+    padding-bottom: 45px;
 }
 
 .guide ul {
@@ -73,7 +76,7 @@
     padding-left: 20px;
 }
 
-#accordion li a {
+#accordion a {
     color: #2c3e50;
     /*font-weight: bold;*/
 }

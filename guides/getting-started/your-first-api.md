@@ -68,4 +68,6 @@ To retrieve the created document, run:
 curl http://localhost:8080/api/people
 ~~~
 
-
+You may have noticed that we've annotated the __name__ attribute of the Person endpoint with __@Index__. 
+That means we can query this endpoint using the attribute as a filter. We will cover this and other features
+after we have introduced the javascript client.
