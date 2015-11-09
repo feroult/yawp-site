@@ -1,0 +1,5 @@
+---
+layout: guides
+---
+# Core concepts
+
