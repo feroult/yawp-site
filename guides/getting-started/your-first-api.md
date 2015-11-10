@@ -44,22 +44,12 @@ If it is not already running, start the development server:
 mvn yawp:devserver
 ~~~
 
-After the development server starts, __YAWP!__ will load your endpoint configuration and will create the default rest routes
-for the Person endpoint, which are:
-
-| Verb        | Path           | Action                |
-| ----------- |--------------- | --------------------- |
-| GET         | /people        | List people           |
-| POST        | /people        | Create a person       |
-| GET         | /people/{id}   | Show a person         |
-| PUT/PATCH   | /people/{id}   | Update a person       |
-| DELETE      | /people/{id}   | Destroy a person      |
-
-You can play with those APIs with cURL, to create a person with name Janes, run:
+After the development server starts you can play with the __Person__ endpoint APIs with cURL, to create a person,
+execute in a shell:
 
 ~~~ bash
 curl -H "Content-type: application/json" -X POST \
-     -d "{'name': 'Janes'}" http://localhost:8080/api/people
+     -d "{'name': 'John'}" http://localhost:8080/api/people
 ~~~
 
 To retrieve the created document, run:
@@ -69,5 +59,5 @@ curl http://localhost:8080/api/people
 ~~~
 
 You may have noticed that we've annotated the __name__ attribute of the Person endpoint with __@Index__. 
-That means we can query this endpoint using the attribute as a filter. We will cover this and other features
-after we have introduced the javascript client.
+That means we can query this endpoint using the attribute as a filter. In the next sections we will cover this 
+and other important features.
