@@ -18,7 +18,7 @@
         return path.replace(/\//g, '_');
     }
 
-    $(document).ready(function () {
+    $(document).ready(function () {                
         var path = getPath();
         if (!path) {
             return;
