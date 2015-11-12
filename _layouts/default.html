@@ -51,8 +51,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#page-top">YAWP!</a>
+                </button>                
+                {% if page.url == '/' %}
+                    <a class="navbar-brand" href="#page-top">YAWP!</a>
+                {% else  %}
+                    <a class="navbar-brand" href="/">YAWP!</a>
+                {% endif %}
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
