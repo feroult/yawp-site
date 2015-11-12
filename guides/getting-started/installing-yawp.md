@@ -16,8 +16,8 @@ mvn archetype:generate \
    -DarchetypeGroupId=io.yawp \
    -DarchetypeArtifactId=yawp \
    -DarchetypeVersion=LATEST \
-   -DgroupdId=yawp-app \
-   -DartifactId=yawp-app \
+   -DgroupId=yawpapp \
+   -DartifactId=yawpapp \
    -Dversion=1.0-SNAPSHOT
 ~~~
 

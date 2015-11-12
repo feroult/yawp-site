@@ -3,11 +3,13 @@ layout: guides
 ---
 # Supported platforms
 
-__YAWP!__ supports two platforms as persistence layers: Google Appengine Datatore and PostgreSQL with JSONB.
+__YAWP!__ supports two platforms as persistence layers: [Google Appengine Datatore](https://cloud.google.com) and [PostgreSQL](http://www.postgresql.org).
 
-_TODO: links and images of platforms_
 
-<!--![An image; this is the alt text](/assets/img/platforms/appengine.png)-->
+<div class="platforms">
+    <img src="/assets/img/platforms/appengine.png" />
+    <img src="/assets/img/platforms/postgres.png" />
+</div>
 
 The objective is to increase this list in the future, but we think that this is really a good base to start with.
 The idea is that you can bootstrap your application really fast using the Appengine auto-scaling PaS 
