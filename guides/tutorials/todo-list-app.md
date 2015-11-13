@@ -39,7 +39,7 @@ mvn clean install
 
 Inside your favorite IDE, open the test package __models__ and rename the class __PersonTest__ to __TaskTest__.
 
-Change to content of the test class to add our first store test:
+Change the content of the test class to add our first store test:
 
 ~~~ java
 
