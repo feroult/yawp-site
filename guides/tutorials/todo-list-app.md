@@ -18,7 +18,7 @@ Before we start to code our to-do list api, lets take a look at the wishes of ou
 | 4 | Privacy       | That my tasks are only visible to me
 | 5 | Notification  | To be notified before the deadline of my tasks
 
-### 1 - Create Project
+### 1 - Create the app project
 
 To bootstrap our api, lets use the __YAWP!__ maven archetype:
 
@@ -28,3 +28,19 @@ mvn archetype:generate \
    -DgroupId=todoapp -DartifactId=todoapp -Dversion=1.0-SNAPSHOT
 ~~~
 
+Inside the app folder, compile the project to verify the installation:
+
+~~~ bash
+cd todoapp
+mvn clean install
+~~~
+
+### 2 - Create the first story test
+
+Inside your favorite IDE, open the test package __models__ and rename the class __PersonTest__ to __TaskTest__.
+
+Change to content of the test class to add our first store test:
+
+~~~ java
+
+~~~
