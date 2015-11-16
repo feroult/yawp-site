@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>javascript sandbox console</title>
+
+    <link href="/assets/sandbox/css/sandbox.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/highlight.js/8.9.1/styles/atelier-cave.light.min.css">
+</head>
+
+<body>
+
+    <div id="console">
+        <h1>YAWP! Sandbox</h1>
+        <div id="sandbox">sandbox console loading...</div>
+        <div id="log"><pre><code class="javascript"></code></pre>
+        </div>
+    </div>
+
+    <script type="text/template" id="tplSandbox">
+        <pre class="output"></pre>
+        <div class="input">
+            <textarea id="prompt" rows="1" placeholder=""></textarea>
+        </div>
+    </script>
+
+    <script type="text/template" id="tplCommand"><% if (! _hidden) { %><span class="command"><%= command %></span>
+<span class="prefix"><%= this.resultPrefix %></span><span class="<%= _class %>"><%= result %></span>
+<% } %></script>
+
+    <script src="/assets/sandbox/libs/underscore.min.js"></script>
+    <script src="/assets/sandbox/libs/backbone.min.js"></script>
+    <script src="/assets/sandbox/libs/backbone-localStorage.min.js"></script>
+    <script src="/assets/sandbox/libs/jquery.min.js"></script>
+    <script src="/assets/sandbox/libs/yawp.js"></script>
+    <script src="http://cdn.jsdelivr.net/highlight.js/8.9.1/highlight.min.js"></script>
+    <script src="/assets/sandbox/libs/sandbox-console.js"></script>
+
+    <script src="/assets/sandbox/js/yawp-sandbox.js"></script>
+</body>
+
+</html>
