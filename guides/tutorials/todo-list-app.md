@@ -143,7 +143,7 @@ curl -H "Content-type: application/json" -X POST \
      -d "{'title': 'test task'}" http://localhost:8080/api/tasks
 ~~~
 
-We can also try the __YAWP!__ javascript client.
+We can also try the __YAWP!__ javascript client. Open a browser tab, 
 
 ### #2 User Story: Add Notes
 

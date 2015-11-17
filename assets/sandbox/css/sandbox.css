@@ -23,18 +23,18 @@ h1 span {
 }
 
 #main {
-    width: 740px;
+    width: 840px;
     margin: 0px auto;
     display: block;
     
 }
 
 #console {
-    height: 239px;
+    height: 259px;
 }
 
 #log {
-    width: 218px;
+    width: 288px;
     top: 0px;
     padding-top: 10px;
     background-color: #FBF9FF;
@@ -65,7 +65,7 @@ h1 span {
 #log pre {
     display:block;
     white-space:pre;
-    height: 192px;
+    height: 237px;
     overflow-y:auto;
     overflow-x:auto;
     position:relative;
@@ -87,7 +87,7 @@ h1 span {
 }
 
 #log hr {
-    border: 1px solid #eee;
+    border: 1px dashed #efefef;
 }
 
 
@@ -138,7 +138,7 @@ h1 span {
     -webkit-border-bottom-left-radius: 10px;
        -moz-border-bottom-left-radius: 10px;
             border-bottom-left-radius: 10px;
-    width:461px;
+    width:491px;
     float: left;
     /*display:inline-block;*/
     /*margin:30px auto;*/
@@ -154,7 +154,7 @@ h1 span {
     display:block;
     white-space:pre;
     width:100%;
-    height:175px;
+    height:195px;
     overflow-y:auto;
     position:relative;
     padding:0;
