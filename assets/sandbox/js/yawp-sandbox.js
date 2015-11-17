@@ -43,7 +43,7 @@
     }
 
     function sandboxInit() {
-        window.sandbox = new Sandbox.View({
+        var sanbox = new Sandbox.View({
             el: $('#sandbox'),
             model: new Sandbox.Model({
                 iframe: false,
@@ -64,4 +64,5 @@
         hookLog();
         hljs.initHighlightingOnLoad();
     });
+
 })(jQuery);

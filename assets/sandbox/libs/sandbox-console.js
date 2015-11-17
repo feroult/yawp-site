@@ -367,8 +367,24 @@ var Sandbox = {
         // Checks for special commands. If any are found, performs their action and returns true
         specialCommands: function(command) {
             if (command === "/clear") {
-                sandboxInit();
+                $('#sandbox .output').empty();
                 $('#log code').empty();
+
+                var history = this.model.get('history');
+                for(var i = 0, l = history.length; i < l; i++) {
+                    var command = history[i];
+                    command._hidden = true;
+                    if ( command.result ) delete command.result;
+                    if ( command._class ) delete command._class;
+                }    
+                
+                return this.model.addHistory({
+                    command : '/clear',
+                    _hidden : true                    
+                });
+                
+                this.currentHistory = '';
+                
                 return true;
             }
             if (command === "/reset") {
