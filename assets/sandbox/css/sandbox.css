@@ -18,7 +18,7 @@ h1 {
 }
 
 #log {
-    width: 297px;
+    width: 298px;
     top: 0px;
     background-color: #FBF9FF;
     float: right;
@@ -32,10 +32,9 @@ h1 {
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
     padding: 10px;
     font-size: 12px;
-    border-left: 1px solid #aaa;
-    border-right: 1px solid #aaa;
-    border-top: 1px solid #aaa;
-    border-bottom: 1px solid #aaa;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 #log .hljs {
@@ -71,7 +70,7 @@ h1 {
 #sandbox pre.output,
 #sandbox textarea,
 #sandbox textarea:focus {
-    font-size:14px;
+    font-size:12px;
     line-height:1.3;
     font-weight: normal;
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
@@ -97,13 +96,15 @@ h1 {
     -webkit-border-bottom-left-radius: 10px;
        -moz-border-bottom-left-radius: 10px;
             border-bottom-left-radius: 10px;
-    width:540px;
+    width:541px;
     float: left;
     /*display:inline-block;*/
     /*margin:30px auto;*/
+/*
     border-left: 1px solid #aaa;
     border-top: 1px solid #aaa;
     border-bottom: 1px solid #aaa;
+*/
 
 }
 
@@ -111,7 +112,7 @@ h1 {
     display:block;
     white-space:pre;
     width:100%;
-    height:230px;
+    height:235px;
     overflow-y:auto;
     position:relative;
     padding:0;
