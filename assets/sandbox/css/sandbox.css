@@ -4,22 +4,39 @@
  * http://openexchangerates.github.io/javascript-sandbox-console/
  */
 
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
 h1 {
     text-align: left;
     margin-top: 40px;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+h1 span {
+    color: #5C28AB;
+}
+
+#main {
+    width: 740px;
+    margin: 0px auto;
+    display: block;
+    
 }
 
 #console {
-    width: 900px;
-    margin: 0px auto;
-    /*height: 400px;*/
-    display: block;
+    height: 239px;
 }
 
 #log {
-    width: 298px;
+    width: 218px;
     top: 0px;
+    padding-top: 10px;
     background-color: #FBF9FF;
     float: right;
     /*display:inline-block;*/
@@ -48,7 +65,7 @@ h1 {
 #log pre {
     display:block;
     white-space:pre;
-    height: 277px;
+    height: 192px;
     overflow-y:auto;
     overflow-x:auto;
     position:relative;
@@ -62,8 +79,33 @@ h1 {
     padding: 0;
 }
 
-#log code hr {
+#log h2 {
+    font-size: 10px;
+    font-weight: normal;
+    color: #ccc;
+    margin: 0;
+}
+
+#log hr {
     border: 1px solid #eee;
+}
+
+
+#help h3 {
+    font-weight: bold;
+    font-style: italic;
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+#help pre code {
+  padding: 15px !important;
+  white-space: pre-wrap;
+  background-color: #FBF9FF;
+  border-radius: 10px;
+  font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+  font-size: 0.8em;
 }
 
 #sandbox,
@@ -96,7 +138,7 @@ h1 {
     -webkit-border-bottom-left-radius: 10px;
        -moz-border-bottom-left-radius: 10px;
             border-bottom-left-radius: 10px;
-    width:541px;
+    width:461px;
     float: left;
     /*display:inline-block;*/
     /*margin:30px auto;*/
@@ -112,7 +154,7 @@ h1 {
     display:block;
     white-space:pre;
     width:100%;
-    height:235px;
+    height:175px;
     overflow-y:auto;
     position:relative;
     padding:0;
