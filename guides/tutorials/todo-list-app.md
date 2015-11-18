@@ -3,10 +3,17 @@ layout: guides
 ---
 # To-Do List App
 
-This is a simple yet comprehensive tutorial that shows how to use the most of the important features
+This is a simple yet comprehensive tutorial that shows how to use the fundamental features
 of the __YAWP!__ framework in practice.
 
-### App Backlog
+### Contents
+
+- [The App Backlog](#the-app-backlog)
+- [Create the App Project](#create-the-app-project)
+- [#1 User Story: Create Tasks](#user-story-create-tasks)
+- [#2 User Story: Add Notes](#user-story-add-notes)
+
+### The App Backlog
 
 Before we start to code our to-do list api, lets take a look at the wishes of our user:
 
@@ -18,7 +25,7 @@ Before we start to code our to-do list api, lets take a look at the wishes of ou
 | 4 | Privacy       | That my tasks are only visible to me
 | 5 | Notification  | To be notified before the deadline of my tasks
 
-### Create the app project
+### Create the App Project
 
 To bootstrap our api, lets use the __YAWP!__ maven archetype:
 
@@ -35,7 +42,7 @@ cd todoapp
 mvn clean install
 ~~~
 
-Start the development server.
+Start the development server:
 
 ~~~ bash
 mvn yawp:devserver
@@ -51,7 +58,7 @@ __hot deployed__ by the yawp's maven plugin.
 To get the first user story done we're going to need a place to store our tasks information. 
 To do this, we will create a __Task__ endpoint running the yawp scaffolding plugin. 
 
-Open another shell window/tab and run the following command:
+Open another shell window/tab and run the following command, inside the app root folder:
 
 ~~~ bash
 mvn yawp:endpoint -Dmodel=task
@@ -81,8 +88,7 @@ public class TaskTest extends EndpointTestCase {
 }
 ~~~
 
-As you can see it creates a stub to bootstrap our first test. Lets make the test more realistic by 
-adding some information to the task model:
+Now, lets make the test more realistic by adding some information to the task model:
 
 ~~~ java
 public class TaskTest extends EndpointTestCase {
@@ -97,7 +103,7 @@ public class TaskTest extends EndpointTestCase {
 }
 ~~~
 
-Just remember to static import __assertEquals__.
+Just remember to import static __assertEquals__.
 
 Now, our test class is not compiling because the title field does not exist in the __Task__ endpoint model.
 Lets add it. Open the __Task__ endpoint class to add the title attribute:
