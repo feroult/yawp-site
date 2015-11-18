@@ -53,7 +53,7 @@ To do this, we will create a __Task__ endpoint running the yawp scaffolding plug
 
 Open another shell window/tab and run the following command:
 
-~~~ java
+~~~ bash
 mvn yawp:endpoint -Dmodel=task
 ~~~
 
@@ -70,14 +70,14 @@ Lets take a look at the __TaskTesk__ class:
 ~~~ java
 public class TaskTest extends EndpointTestCase {
 
-	@Test
-	public void testCreate() {
-		// TODO Auto-generated method stub
-		String json = post("/tasks", "{}");
-		Task task = from(json, Task.class);
+    @Test
+    public void testCreate() {
+        // TODO Auto-generated method stub
+        String json = post("/tasks", "{}");
+        Task task = from(json, Task.class);
 
-		assertNotNull(task);
-	}
+        assertNotNull(task);
+    }
 }
 ~~~
 
@@ -87,55 +87,49 @@ adding some information to the task model:
 ~~~ java
 public class TaskTest extends EndpointTestCase {
 
-	@Test
-	public void testCreate() {
-		String json = post("/tasks", "{ 'title': 'wash dishes' }");
-		Task task = from(json, Task.class);
-
-		assertEquals("wash dishes", task.getTitle());
-	}
-
+    @Test
+    public void testCreate() {
+        String json = post("/tasks", "{ 'title': 'wash dishes' }");
+        Task task = from(json, Task.class);
+		
+        assertEquals("wash dishes", task.getTitle());
+    }
 }
 ~~~
 
-Don't forget to static import assertEquals:
+Just remember to static import __assertEquals__.
 
-~~~ java
-import static org.junit.Assert.assertEquals;
-~~~
-
-Our test class is not compiling because the title field does not exist in the __Task__ endpoint model.
+Now, our test class is not compiling because the title field does not exist in the __Task__ endpoint model.
 Lets add it. Open the __Task__ endpoint class to add the title attribute:
 
 ~~~ java
 @Endpoint(path = "/tasks")
 public class Task {
 
-	@Id
-	private IdRef<Task> id;
+    @Id
+    private IdRef<Task> id;
 
-	private String title;
+    private String title;
 
-	public IdRef<Task> getId() {
-		return id;
-	}
+    public IdRef<Task> getId() {
+        return id;
+    }
 
-	public void setId(IdRef<Task> id) {
-		this.id = id;
-	}
+    public void setId(IdRef<Task> id) {
+        this.id = id;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
 ~~~
 
-If you run the unit test again, everything should be ok. With this, we already have and API to create
+If we run the unit test again, everything should be ok. With this, we already have an API to create
 tasks. We can verify it with cURL:
 
 ~~~ bash
@@ -143,7 +137,15 @@ curl -H "Content-type: application/json" -X POST \
      -d "{'title': 'test task'}" http://localhost:8080/api/tasks
 ~~~
 
-We can also try the __YAWP!__ javascript client. Open a browser tab, 
+You also should try the javascript client. Open the javascript console of your browser and type:
+ 
+~~~ javascript
+// create a task
+yawp('/tasks').create({ title: 'js task' });
+
+// list the tasks
+yawp('/tasks').list(function(tasks) { console.log(tasks); });
+~~~
 
 ### #2 User Story: Add Notes
 

@@ -13,29 +13,28 @@ within the archetype:
 @Endpoint(path = "/people")
 public class Person {
 
-	@Id
-	private IdRef<Person> id;
+    private IdRef<Person> id;
 
-	@Index
-	private String name;
+    @Index
+    private String name;
 
-	public IdRef<Person> getId() {
-		return id;
-	}
+    public IdRef<Person> getId() {
+        return id;
+    }
 
-	public void setId(IdRef<Person> id) {
-		this.id = id;
-	}
+    public void setId(IdRef<Person> id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
+    public void setName(String name) {
+        this.name = name;
+    }
 }
+
 ~~~
 
 If it is not already running, start the development server:

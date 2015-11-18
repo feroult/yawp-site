@@ -14,7 +14,7 @@
         }
         return message;
     }
-
+    
     function writeLog(message) {
         var code = $('#log pre code');
         code.append(message + '\n');
