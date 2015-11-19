@@ -198,4 +198,65 @@ yawp('/tasks').create({ title: 'task1',
 
 ### #2 User Story: Mark as Done
 
-To mark a task as 
+To mark a task as done, we're going to create a custom action. Lets first add a test:
+
+~~~ java
+@Test
+public void testMarkAsDone() {
+    post("/tasks/1", "{}");
+    assertFalse(yawp(Task.class).fetch(1l).isDone());
+
+    put("/tasks/1/done");
+    assertTrue(yawp(Task.class).fetch(1l).isDone());
+}
+~~~
+
+Create the missing task method and then run the test above. As you can see, we get an error 
+saying that there is no endpoint called done. This is because __YAWP!__ cannot find a route 
+for that uri. 
+
+Lets create an action for the given route using a scaffold:
+
+~~~ bash
+mvn yawp:action -Dmodel=task -Dname=MarkAsDone
+~~~
+
+Open the created class __TaskMarkAsDoneAction__ and make the following changes:
+
+~~~ java
+public class TaskMarkAsDoneAction extends Action<Task> {
+
+    @PUT("done")
+    public void done(IdRef<Task> id) {
+        Task task = id.fetch();
+        task.markAsDone();
+        yawp.save(task);
+    }
+	
+}
+~~~
+
+Finally, change the __Task__ endpoint to add the done flag:
+
+~~~ java
+private boolean done;
+
+public void markAsDone() {
+    this.done = true;
+}
+
+public boolean isDone() {
+    return done;
+}
+~~~
+
+Run the tests again, they should pass.
+
+Again, to access the API with javascript we can do it very easily:
+
+~~~ javascript
+yawp('/tasks').create({}).done(function (task) {
+    yawp(task).put('done');
+});
+~~~
+
