@@ -24,6 +24,10 @@ public class Person {
 The beginning of everything is the __@Endpoint__ annotation. It defines a new endpoint and the base route
 of its APIs to be __/people__.
 
+### Primitive Attributes
+
+_TODO_
+
 ### @Id
 
 All models should to have one, and only one, __IdRef__ attribute annotaded with __@Id__. This is

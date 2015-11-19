@@ -12,6 +12,7 @@ of the __YAWP!__ framework in practice.
 - [Create the App Project](#create-the-app-project)
 - [#1 User Story: Create Tasks](#user-story-create-tasks)
 - [#2 User Story: Add Notes](#user-story-add-notes)
+- [#3 User Story: Mark as Done](#user-story-mark-as-done)
 
 ### The App Backlog
 
@@ -85,6 +86,7 @@ public class TaskTest extends EndpointTestCase {
 
         assertNotNull(task);
     }
+    
 }
 ~~~
 
@@ -100,6 +102,7 @@ public class TaskTest extends EndpointTestCase {
 		
         assertEquals("wash dishes", task.getTitle());
     }
+    
 }
 ~~~
 
@@ -116,24 +119,15 @@ public class Task {
     private IdRef<Task> id;
 
     private String title;
-
-    public IdRef<Task> getId() {
-        return id;
-    }
-
-    public void setId(IdRef<Task> id) {
-        this.id = id;
-    }
-
+    
     public String getTitle() {
         return title;
     }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
 }
 ~~~
+
+All endpoints must have one @Id attribute. It also has to be of type IfRef<T>, where T is the class 
+endpoint POJO class.
 
 If we run the unit test again, everything should be ok. With this, we already have an API to create
 tasks. We can verify it with cURL:
@@ -155,5 +149,53 @@ yawp('/tasks').list(function(tasks) { console.log(tasks); });
 
 ### #2 User Story: Add Notes
 
+Picking the next item in our backlog, we are going to make it possible to add text notes to each task.
 
+Lets increment our unit test to deal with this new requirement:
 
+~~~ java
+@Test
+public void testCreateWithNotes() {
+    String json = post("/tasks", "{ notes: ['note 1', 'note 2'] }");
+    Task task = from(json, Task.class);
+
+    assertEquals(2, task.getNotes().size());
+    assertEquals("note 1", task.getNotes().get(0));
+    assertEquals("note 2", task.getNotes().get(1));
+}
+~~~
+
+Open the __Task__ class and add the following attribute:
+
+~~~ java
+@Json
+private List<String> notes;
+
+public List<String> getNotes() {
+    return notes;
+}
+~~~
+
+If we run our tests, they should pass.
+
+You may have noticed that you'll only need to add getters and setters to the endpoint attributes 
+if you're going to access them from your server side (java) code. Also, notice that the __@Json__ 
+annotation is used to tell __YAWP!__ that the attribute will be serialized as a json object when 
+the model is read from or writen to the persistency layer. 
+
+We can test our new API with javascript:
+
+~~~ javascript
+// to create a task with notes
+yawp('/tasks').create({ title: 'task1', 
+                        notes: ['note 1', 'note 2'] }).done(function (task)) {
+                        
+    // to change the notes of an already created task 
+    yawp(task).patch({ notes: ['note 3'] });
+    
+});
+~~~
+
+### #2 User Story: Mark as Done
+
+To mark a task as 
