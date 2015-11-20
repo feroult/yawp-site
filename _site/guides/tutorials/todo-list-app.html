@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>YAWP! Framework</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/assets/css/freelancer.css" rel="stylesheet">
+    <link href="/assets/css/yawp.css" rel="stylesheet">
+    <link href="/assets/css/github-ribbon.css" rel="stylesheet">
+    <link href="/assets/css/guides.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- code formating -->
+    <script src="http://cdn.jsdelivr.net/highlight.js/8.9.1/highlight.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/highlight.js/8.9.1/styles/atelier-cave.light.min.css">
+
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>                
+                
+                    <a class="navbar-brand" href="/">YAWP!</a>
+                
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="main-navbar collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li class="page-scroll">
+                        <a href="#page-top">Home</a>
+                    </li> -->
+                
+                    <li class="page-scroll">
+                        <a href="/#portfolio">Features</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/#kickstart">Kickstart</a>
+                    </li>
+                    <li class="page-scroll active">
+                        <a href="/guides">Guides</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/#community">Community</a>
+                    </li>                
+                
+                   
+                    <li class="page-scroll">
+                        <a href="http://github.com/feroult/yawp" target="_blank">GITHUB&nbsp;&nbsp;<i class="fa fa-github" style="font-size: 1.2em;"></i></a>
+                    </li>                    
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+    <div id="accordion" class="panel-group">
+        <div class="sidebar">
+            <div class="panel panel-default">
+                <a data-toggle="collapse" href="#getting-started">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Getting Started</h4>
+                    </div>
+                </a>
+
+                <div id="getting-started" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul>
+                            <a href="/guides/getting-started/installing-yawp">
+                                <li class="getting-started_installing-yawp">
+                                    Installing YAWP!
+                                </li>
+                            </a>
+                            <a href="/guides/getting-started/your-first-api">
+                                <li class="getting-started_your-first-api">
+                                    Your first API
+                                </li>
+                            </a>
+                            <a href="/guides/getting-started/core-concepts">
+                                <li class="getting-started_core-concepts">
+                                    Core concepts
+                                </li>
+                            </a>
+                            <a href="/guides/getting-started/supported-platforms">
+                                <li class="getting-started_supported-platforms">
+                                    Supported platforms
+                                </li>
+                            </a>                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <a data-toggle="collapse" href="#tutorials">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Tutorials</h4>
+                    </div>
+                </a>
+
+                <div id="tutorials" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul>
+                            <a href="/guides/tutorials/todo-list-app">
+                                <li class="tutorials_todo-list-app">
+                                    To-Do List App
+                                </li>
+                            </a>                               
+                            <li>
+                                <a href="todolist">Scaffolding</a>
+                            </li>                                                        
+                            <li>
+                                <a href="todolist">The Javascript client</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Testing your APIs</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Relationships</a>
+                            </li>                            
+                            <li>
+                                <a href="todolist">Working with ancestors</a>
+                            </li>                              
+                            <li>
+                                <a href="todolist">How to use transactions</a>
+                            </li>                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <a data-toggle="collapse" href="#api">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">API</h4>
+                    </div>
+                </a>
+
+                <div id="api" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul>
+                            <a href="/guides/api/models">
+                                <li class="api_models">
+                                    Models
+                                </li>
+                            </a>      
+                            <li>
+                                <a href="kickstart">Repository Actions</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Custom Actions</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Query</a>
+                            </li>
+                            <li>
+                                <a href="todolist">Transformers</a>
+                            </li>
+                            <a href="/guides/api/shields">
+                                <li class="api_shields">
+                                    Shields
+                                </li>
+                            </a>    
+                            <li>
+                                <a href="todolist">Hooks</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="guide">
+        <h1 id="to-do-list-app">To-Do List App</h1>
+
+<p>This is a simple yet comprehensive tutorial that shows how to use the fundamental features
+of the <strong>YAWP!</strong> framework in practice.</p>
+
+<h3 id="contents">Contents</h3>
+
+<ul>
+  <li><a href="#the-app-backlog">The App Backlog</a></li>
+  <li><a href="#source-code">Source Code</a></li>
+  <li><a href="#create-the-app-project">Create the App Project</a></li>
+  <li><a href="#user-story-create-tasks">#1 User Story: Create Tasks</a></li>
+  <li><a href="#user-story-add-notes">#2 User Story: Add Notes</a></li>
+  <li><a href="#user-story-mark-as-done">#3 User Story: Mark as Done</a></li>
+  <li><a href="#user-story-privacy">#4 User Story: Privacy</a></li>
+</ul>
+
+<h3 id="the-app-backlog">The App Backlog</h3>
+
+<p>Before we start to code our to-do list api, lets take a look at the wishes of our user:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Story</th>
+      <th>As a user I want…</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Create Tasks</td>
+      <td>To create tasks so I can remember to do things</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Add Notes</td>
+      <td>To add notes to a task before it is complete</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Mark as Done</td>
+      <td>To mark my tasks as done so I can see only unfinished tasks</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Privacy</td>
+      <td>That my tasks are only visible to me</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="source-code">Source Code</h3>
+
+<p>For reference, the complete source code of this tutorial can be found <a href="http://github.com/feroult/yawp-todoapp">here</a>.</p>
+
+<h3 id="create-the-app-project">Create the App Project</h3>
+
+<p>To bootstrap our api, lets use the <strong>YAWP!</strong> maven archetype:</p>
+
+<pre><code class="language-bash">mvn archetype:generate \
+   -DarchetypeGroupId=io.yawp -DarchetypeArtifactId=yawp -DarchetypeVersion=LATEST \
+   -DgroupId=todoapp -DartifactId=todoapp -Dversion=1.0-SNAPSHOT
+</code></pre>
+
+<p>Inside the app folder, compile the project to verify the installation:</p>
+
+<pre><code class="language-bash">cd todoapp
+mvn clean install
+</code></pre>
+
+<p>Start the development server:</p>
+
+<pre><code class="language-bash">mvn yawp:devserver
+</code></pre>
+
+<p><strong>Note:</strong> If you are using an IDE that automatically compiles to the project’s
+target folder, you won’t need to restart the development server again, your changes will get
+<strong>hot deployed</strong> by the yawp’s maven plugin.</p>
+
+<h3 id="user-story-create-tasks">#1 User Story: Create Tasks</h3>
+
+<p>To get the first user story done we’re going to need a place to store our tasks information. 
+To do this, we will create a <strong>Task</strong> endpoint running the yawp scaffolding plugin.</p>
+
+<p>Open another shell window/tab and run the following command, inside the app root folder:</p>
+
+<pre><code class="language-bash">mvn yawp:endpoint -Dmodel=task
+</code></pre>
+
+<p>The scaffold will create three files:</p>
+
+<pre><code class="language-java">[INFO] Scaffold src/main/java/todoapp/models/task/Task.java created.
+[INFO] Scaffold src/test/java/todoapp/models/task/TaskTest.java created.
+[INFO] Scaffold src/main/java/todoapp/models/task/TaskShield.java created.
+</code></pre>
+
+<p>Lets take a look at the <strong>TaskTesk</strong> class:</p>
+
+<pre><code class="language-java">public class TaskTest extends EndpointTestCase {
+
+    @Test
+    public void testCreate() {
+        // TODO Auto-generated method stub
+        String json = post("/tasks", "{}");
+        Task task = from(json, Task.class);
+
+        assertNotNull(task);
+    }
+    
+}
+</code></pre>
+
+<p>Now, lets make the test more realistic by adding some information to the task model:</p>
+
+<pre><code class="language-java">public class TaskTest extends EndpointTestCase {
+
+    @Test
+    public void testCreate() {
+        String json = post("/tasks", "{ 'title': 'wash dishes' }");
+        Task task = from(json, Task.class);
+        
+        assertEquals("wash dishes", task.getTitle());
+    }
+    
+}
+</code></pre>
+
+<p>Just remember to import static <strong>assertEquals</strong>.</p>
+
+<p>Now, our test class is not compiling because the title field does not exist in the <strong>Task</strong> endpoint model.
+Lets add it. Open the <strong>Task</strong> endpoint class to add the title attribute:</p>
+
+<pre><code class="language-java">@Endpoint(path = "/tasks")
+public class Task {
+
+    @Id
+    private IdRef&lt;Task&gt; id;
+
+    private String title;
+    
+    public String getTitle() {
+        return title;
+    }
+}
+</code></pre>
+
+<p>All endpoints must have one @Id attribute. It also has to be of type IfRef<t>, where T is the class 
+endpoint POJO class.</t></p>
+
+<p>If we run the unit test again, everything should be ok. With this, we already have an API to create
+tasks. We can verify it with cURL:</p>
+
+<pre><code class="language-bash">curl -H "Content-type: application/json" -X POST \
+     -d "{'title': 'test task'}" http://localhost:8080/api/tasks
+</code></pre>
+
+<p>You also should try the javascript client. Open the javascript console of your browser and type:</p>
+
+<pre><code class="language-javascript">// create a task
+yawp('/tasks').create({ title: 'js task' });
+
+// list the tasks
+yawp('/tasks').list(function(tasks) { console.log(tasks); });
+</code></pre>
+
+<h3 id="user-story-add-notes">#2 User Story: Add Notes</h3>
+
+<p>Picking the next item in our backlog, we are going to make it possible to add text notes to each task.</p>
+
+<p>Lets increment our unit test to deal with this new requirement:</p>
+
+<pre><code class="language-java">@Test
+public void testCreateWithNotes() {
+    String json = post("/tasks", "{ notes: ['note 1', 'note 2'] }");
+    Task task = from(json, Task.class);
+
+    assertEquals(2, task.getNotes().size());
+    assertEquals("note 1", task.getNotes().get(0));
+    assertEquals("note 2", task.getNotes().get(1));
+}
+</code></pre>
+
+<p>Open the <strong>Task</strong> class and add the following attribute:</p>
+
+<pre><code class="language-java">@Json
+private List&lt;String&gt; notes;
+
+public List&lt;String&gt; getNotes() {
+    return notes;
+}
+</code></pre>
+
+<p>If we run our tests, they should pass.</p>
+
+<p>You may have noticed that you’ll only need to add getters and setters to the endpoint attributes 
+if you’re going to access them from your server side (java) code. Also, notice that the <strong>@Json</strong> 
+annotation is used to tell <strong>YAWP!</strong> that the attribute will be serialized as a json object when 
+the model is read from or writen to the persistency layer.</p>
+
+<p>We can test our new API with javascript:</p>
+
+<pre><code class="language-javascript">// to create a task with notes
+yawp('/tasks').create({ title: 'task1', 
+                        notes: ['note 1', 'note 2'] }).done(function (task)) {
+                        
+    // to change the notes of an already created task 
+    yawp(task).patch({ notes: ['note 3'] });
+    
+});
+</code></pre>
+
+<h3 id="user-story-mark-as-done">#3 User Story: Mark as Done</h3>
+
+<p>To mark a task as done, we’re going to create a custom action. Lets first add a test:</p>
+
+<pre><code class="language-java">@Test
+public void testMarkAsDone() {
+    post("/tasks/1", "{}");
+    assertFalse(yawp(Task.class).fetch(1l).isDone());
+
+    put("/tasks/1/done");
+    assertTrue(yawp(Task.class).fetch(1l).isDone());
+}
+</code></pre>
+
+<p>Create the missing task method and then run the test above. As you can see, we get an error 
+saying that there is no endpoint called done. This is because <strong>YAWP!</strong> cannot find a route 
+for that uri.</p>
+
+<p>Lets create an action for the given route using a scaffold:</p>
+
+<pre><code class="language-bash">mvn yawp:action -Dmodel=task -Dname=MarkAsDone
+</code></pre>
+
+<p>Open the created class <strong>TaskMarkAsDoneAction</strong> and make the following changes:</p>
+
+<pre><code class="language-java">public class TaskMarkAsDoneAction extends Action&lt;Task&gt; {
+
+    @PUT("done")
+    public void done(IdRef&lt;Task&gt; id) {
+        Task task = id.fetch();
+        task.markAsDone();
+        yawp.save(task);
+    }
+    
+}
+</code></pre>
+
+<p>Finally, change the <strong>Task</strong> endpoint to add the done flag:</p>
+
+<pre><code class="language-java">private boolean done;
+
+public void markAsDone() {
+    this.done = true;
+}
+
+public boolean isDone() {
+    return done;
+}
+</code></pre>
+
+<p>Run the tests again, they should pass. Again, to access the API with javascript we can do it very easily:</p>
+
+<pre><code class="language-javascript">yawp('/tasks').create({}).done(function (task) {
+    yawp(task).put('done');
+});
+</code></pre>
+
+<h3 id="user-story-privacy">#4 User Story: Privacy</h3>
+
+<p>The last item in our MVP backlog tells that the user doesn’t want that other users have access to its
+tasks information. To do that we need to assign tasks to users, lets change our <strong>Task</strong> class to add
+this association:</p>
+
+<pre><code class="language-java">@Index
+private String user;
+</code></pre>
+
+<p>First lets add a failing test:</p>
+
+<pre><code class="language-java">@Test
+public void testPrivacy() {
+    helper().login("janes", "rock.com");
+    post("/tasks", "{ title: 'janes task' }");
+
+    List&lt;Task&gt; tasks1 = fromList(get("/tasks"), Task.class);
+    assertEquals(1, tasks1.size());
+    assertEquals("janes task", tasks1.get(0).getTitle());
+
+    helper().login("jim", "rock.com");
+    List&lt;Task&gt; tasks2 = fromList(get("/tasks"), Task.class);
+    assertEquals(0, tasks2.size());
+}
+
+private AppengineTestHelper helper() {
+    return (AppengineTestHelper) helper;
+}
+</code></pre>
+
+<p>Note that we using the specific <strong>AppengineTestHelper</strong> because the environment already has a default
+support for users authentication. If we run it, the test should fail because the user Jim has access
+to the Janes task.</p>
+
+<p>To assign users to tasks, lets add a endpoint Hook to set the user attribute before the security 
+shield kicks in. Again, using a scaffold, run in the command line shell:</p>
+
+<pre><code class="language-bash">mvn yawp:hook -Dmodel=task -Dname=SetUser
+</code></pre>
+
+<p>Change the generated scaffold file to look like the following snippet:</p>
+
+<pre><code class="language-java">public class TaskSetUserHook extends Hook&lt;Task&gt; {
+
+    @Override
+    public void beforeShield(Task task) {
+        if(!userService().isUserLoggedIn()) {
+            return;
+        }
+        task.setUser(userService().getCurrentUser().getEmail());
+    }
+
+    private UserService userService() {
+        return UserServiceFactory.getUserService();
+    }
+
+}
+</code></pre>
+
+<p>The privacy test should still be failing. Now it is time to add logic to our security shield that
+will handle the privacy requirement. Open the class <strong>TaskShield</strong> and change its contents to the
+following:</p>
+
+<pre><code class="language-java">public class TaskShield extends Shield&lt;Task&gt; {
+
+    @Override
+    public void defaults() {
+        allow().where("user", "=", currentUserEmail());
+    }
+
+    private String currentUserEmail() {
+        return UserServiceFactory.getUserService().getCurrentUser().getEmail();
+    }
+}
+</code></pre>
+
+<p>Run the <strong>TaskTest</strong> suite again. Oooops, now only the <strong>testPrivacy</strong> method is passing. This is
+because the other tests do not login the user before they create tasks. Lets fix this by adding a 
+default user to all tests. Just add the following before section to the <em>_TaskTest</em> class:</p>
+
+<pre><code class="language-java">@Before
+public void defaultLogin() {
+    helper().login("default", "rock.com");
+}
+</code></pre>
+
+<p>Run the tests again, they should pass.</p>
+
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4 col-md-offset-4">
+                        <ul class="list-inline">
+                            <li>
+                                <a href="http://github.com/feroult/yawp" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/yawpio" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <strong>YAWP!</strong> is released under the <a href="http://opensource.org/licenses/mit-license.php" target="_blank">MIT license</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/assets/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdn.jsdelivr.net/jquery.easing/1.3/jquery.easing.1.3.min.js"></script>
+    <script src="/assets/js/classie.js"></script>
+    <script src="/assets/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="/assets/js/jqBootstrapValidation.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/assets/js/freelancer.js"></script>
+
+    <!-- code formatter -->
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <script src="/assets/js/guides.js"></script>
+
+
+</body>
+
+
+</html>

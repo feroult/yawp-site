@@ -1,0 +1,154 @@
+/* code */
+
+pre.code {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    width: 300px;
+}
+
+code {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* all */
+div.row.space {
+    margin-top: 30px;
+}
+
+/* hacks */
+
+#portfolio .portfolio-item .portfolio-link .caption {
+    /*opacity: 0.1;*/
+}
+
+header {
+    background: white;
+    background-image: url('/assets/img/patterns/skulls_green.png');
+    /*color: black;*/
+}
+
+header hr.star-light {
+    background: white;
+    /*border-color: black;*/
+}
+
+header hr.star-light:after {
+    /*color: black;*/
+    background: #F7F7DF;
+}
+
+header div.star {
+    margin-left: auto;
+    margin-right: auto;
+    height: 15px;
+    line-height: 52px;
+    width: 250px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+header div.star:after {
+    content: "\f005";
+    display: inline-block;
+    position: relative;
+    top: -.8em;
+    padding: 0 .25em;
+    font-family: FontAwesome;
+    font-size: 2em;
+}
+
+header div.star-left {
+    border-top: 5px solid white;
+    width: 40.5%;
+    float: left;
+}
+
+header div.star-right {
+    border-top: 5px solid white;
+    width: 40.5%;
+    float: right;
+}
+
+
+/* intro */
+
+.intro div {
+    display: inline-block;
+}
+
+.intro img {
+    width: 180px;
+}
+
+@media (max-width: 600px) {
+    .intro .intro-code {
+        display: none !important;
+    }
+
+    .intro img {
+        width: 140px;
+    }
+}
+
+.intro .intro-code {
+    vertical-align: middle;
+    text-align: left;
+    margin-left: 69px;
+}
+
+/* features */
+
+.feature {
+    text-align: center;
+    font-size: 1.3em;
+    color: #444;
+}
+
+.feature span {
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
+/* kickstart */
+
+@media (max-width: 768px) {
+    #kickstart p {
+        text-align: center;
+    }
+
+    #kickstart pre.code {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+div.step-text {
+    text-align: right;
+    font-style: italic;
+}
+
+.step-text div {
+    margin: auto 0;
+}
+
+/* community */
+
+#community .type p {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.8em !important;
+}
+
+#community .link {
+    text-align: center;
+    font-size: 1.4em;
+}
+
+/* modal */
+img.img-modal {
+    width: 50%;
+}
