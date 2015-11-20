@@ -1,3 +1,4 @@
+
 h3:before { 
   display: block; 
   content: " "; 
@@ -78,6 +79,20 @@ h3:before {
     }
     .guide {
         margin-top: 80px;
+    }
+}
+
+@media (max-width: 600px) {
+    #accordion {
+        float: none;
+        width: 90%;
+        margin-bottom: 40px;
+        margin-left: auto;
+        margin-right: auto;        
+    }    
+    .guide {
+        margin-left: 0;
+        margin-top: 0;
     }
 }
 
