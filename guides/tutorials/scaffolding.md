@@ -3,7 +3,8 @@ layout: guides
 ---
 # Scaffolding
 
-Before you get used to the __YAWP!__ features API, the scaffold plugin can make it easier to create them.
+Before you get used to the __YAWP!__ features API, the scaffold plugin can make your life a 
+little bit easier =)
 
 ### Endpoint
 
