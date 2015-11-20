@@ -207,103 +207,46 @@
         </div>
     </div>
     <div class="guide">
-        <h1 id="models">Models</h1>
+        <h1 id="scaffolding">Scaffolding</h1>
 
-<p>Endpoit Models represent the schema of your API resources. Lets take look at some important points
-of our Person endpoint example:</p>
+<p>Before you get used to the <strong>YAWP!</strong> features API, the scaffold plugin can make it easier to create them.</p>
 
-<pre><code class="language-java">@Endpoint(path = "/people")
-public class Person {
+<h3 id="endpoint">Endpoint</h3>
 
-    @Id
-    private IdRef&lt;Person&gt; id;
-
-    @Index
-    private String name;
-
-}
+<pre><code class="language-bash">mvn yawp:endpoint -Dmodel=person
 </code></pre>
 
-<h3 id="endpoint">@Endpoint</h3>
+<p>This will create the endpoint model <strong>Person</strong>. It also will create placeholders for its test suite and
+the security Shield.</p>
 
-<p>The beginning of everything is the <strong>@Endpoint</strong> annotation. It defines a new endpoint and the base route
-of its APIs to be <strong>/people</strong>.</p>
+<h3 id="shield">Shield</h3>
 
-<h3 id="primitive-properties">Primitive Properties</h3>
-
-<p>The primitive types that can be used as models attributes are describe in the following table. More complex
-types can be persisted using the <strong>@Json</strong> annotation.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Java type(s)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Integer</td>
-      <td>short, int, long, java.lang.Short, java.lang.Integer, java.lang.Long</td>
-    </tr>
-    <tr>
-      <td>Floating-point number</td>
-      <td>float, double, java.lang.Float, java.lang.Double</td>
-    </tr>
-    <tr>
-      <td>Boolean</td>
-      <td>boolean, java.lang.Boolean</td>
-    </tr>
-    <tr>
-      <td>Text</td>
-      <td>String</td>
-    </tr>
-    <tr>
-      <td>Date</td>
-      <td>java.util.Date</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="id">@Id</h3>
-
-<p>All models should to have one, and only one, <strong>IdRef</strong> attribute annotaded with <strong>@Id</strong>. This is
-the id of your model and it will be used to access your its information or to create a relationship
-with another model.</p>
-
-<h3 id="index">@Index</h3>
-
-<p>Then you have the <strong>string name</strong> attribute. It is self explanatory, this attribute is used to store the name
-of a given person. The <strong>@Index</strong> annotation tells yawp to create indexes to allow queries using this
-attribute as a filter or order clause.</p>
-
-<h3 id="json">@Json</h3>
-
-<p>Lets say you want store a more complex information inside your model. You serialize the attribute as
-a json string, all you need to do is to mark it, for example:</p>
-
-<pre><code class="language-java">@Json
-private Address address;
+<pre><code class="language-bash">mvn yawp:shield -Dmodel=person
 </code></pre>
 
-<h3 id="text">@Text</h3>
+<p>Create a <em>_PersonShield</em> if the endpoint model is not already shielded.</p>
 
-<p>It is used to mark a string attribute as a large text value. When you use this annotation you can store
-larger texts but you can’t create indexes over this attribute anymore.</p>
+<h3 id="action">Action</h3>
 
-<pre><code class="language-java">@Text
-private String comment;
+<pre><code class="language-bash">mvn yawp:action -Dmodel=person -Dname=activate
 </code></pre>
 
-<h3 id="parentid">@ParentId</h3>
+<p>Create a <strong>PersonActivateAction</strong> custom action for the endpoint model.</p>
 
-<p>It is possible to create entity groups based on ancestor keys. In Appengine Datastore this is used
-to obtain strong consistency queries where it is necessary. To do so, you add an IdRef to the ancestor
-model of your model, annotate it with <strong>@ParentId</strong>:</p>
+<h3 id="transformer">Transformer</h3>
 
-<pre><code class="language-java">@ParentId
-private IdRef&lt;Company&gt; companyId;
+<pre><code class="language-bash">mvn yawp:transformer -Dmodel=person -Dname=upperCase
 </code></pre>
+
+<p>Create a <strong>PersonUpperCaseTransformer</strong> transformer for the endpoint model.</p>
+
+<h4 id="hook">Hook</h4>
+
+<pre><code class="language-bash">mvn yawp:hook -Dmodel=person -Dname=setUser
+</code></pre>
+
+<p>Create a <strong>PersonSetUserHook</strong> hook for the endpoint model.</p>
+
 
     </div>
 </div>
