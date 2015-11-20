@@ -1,4 +1,5 @@
 #!/bin/bash
-
-jekyll b -d /tmp/yawp-site
-git checkout gh-pages
+jekyll b
+git commit -am "publishing"
+git push
+git subtree push --prefix _site origin gh-pages
