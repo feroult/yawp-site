@@ -209,15 +209,58 @@
         </div>
     </div>
     <div class="guide">
-        <h1 id="guides">Guides</h1>
+        <h1 id="javascript-client">Javascript Client</h1>
 
-<p>Welcome to the <strong>YAWP!</strong> Guides!</p>
+<p>To access <strong>YAWP!</strong> APIs from you web apps, you can use its javascript client library.</p>
 
-<p>This documentation is organized in sections that can be accessed from the left sidebar menu. 
-The <strong>Getting Started</strong> section takes you from the basic setup of the framework to an overview 
-of its core concepts and motivations. The <strong>Tutorials</strong> section shows how <strong>YAWP!</strong> works in practice.
-Finally, the <strong>API</strong> section describes in deeper detail more advaced aspects of each of the framework’s 
-features.</p>
+<h3 id="installation">Installation</h3>
+
+<pre><code class="language-html">&lt;script src="https://rawgit.com/feroult/yawp/master/yawp-core/src/main/js/yawp.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p><em>Consider adding yawp.js to your own static files folder.</em></p>
+
+<h3 id="setup">Setup</h3>
+
+<p>By default the client routes all API calls to the path <strong>/api</strong> of the current app’s host.
+You can override this setting as following:</p>
+
+<pre><code class="language-javascript">yawp.config(function (c) {
+    c.baseUrl('http://your-cors-host.com/api');
+});
+</code></pre>
+
+<h3 id="repository-actions">Repository Actions</h3>
+<pre><code class="language-javascript">// create
+yawp('/people').create({ name: 'janes' }).done(function (person) {
+    console.log(person)
+});
+
+// update
+yawp('/people/1').update({ name: 'janes' }).done(function (person) {
+    console.log(person)
+});
+
+// patch
+yawp('/people/1').patch({ name: 'janes' }).done(function (person) {
+    console.log(person)
+});
+
+// destroy
+yawp('/people/1').destroy().done(function (id) {
+    console.log(id)
+});
+
+// fetch
+yawp('/people/1').fetch(function (person) {
+    console.log(person)
+});
+
+// list
+yawp('/people').list(function (person) {
+    console.log(person)
+});
+</code></pre>
 
 
     </div>
