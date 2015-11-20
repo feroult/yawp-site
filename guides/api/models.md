@@ -16,7 +16,7 @@ public class Person {
     @Index
     private String name;
 
-    (...)
+}
 ~~~
 
 ### @Endpoint
@@ -24,9 +24,18 @@ public class Person {
 The beginning of everything is the __@Endpoint__ annotation. It defines a new endpoint and the base route
 of its APIs to be __/people__.
 
-### Primitive Attributes
+### Primitive Properties
 
-_TODO_
+The primitive types that can be used as models attributes are describe in the following table. More complex
+types can be persisted using the __@Json__ annotation.
+
+| Type                  | Java type(s)    
+| --------------------- |---------------------------------------------------------------------------
+| Integer               | short, int, long, java.lang.Short, java.lang.Integer, java.lang.Long       
+| Floating-point number | float, double, java.lang.Float, java.lang.Double
+| Boolean               | boolean, java.lang.Boolean
+| Text                  | String
+| Date                  | java.util.Date
 
 ### @Id
 
@@ -50,6 +59,17 @@ a json string, all you need to do is to mark it, for example:
 @Json
 private Address address;
 ~~~
+
+### @Text
+
+It is used to mark a string attribute as a large text value. When you use this annotation you can store
+larger texts but you can't create indexes over this attribute anymore.
+
+~~~ java
+@Text
+private String comment;
+~~~
+
 
 ### @ParentId
 

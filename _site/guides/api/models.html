@@ -219,7 +219,7 @@ public class Person {
     @Index
     private String name;
 
-    (...)
+}
 </code></pre>
 
 <h3 id="endpoint">@Endpoint</h3>
@@ -227,9 +227,41 @@ public class Person {
 <p>The beginning of everything is the <strong>@Endpoint</strong> annotation. It defines a new endpoint and the base route
 of its APIs to be <strong>/people</strong>.</p>
 
-<h3 id="primitive-attributes">Primitive Attributes</h3>
+<h3 id="primitive-properties">Primitive Properties</h3>
 
-<p><em>TODO</em></p>
+<p>The primitive types that can be used as models attributes are describe in the following table. More complex
+types can be persisted using the <strong>@Json</strong> annotation.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Java type(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Integer</td>
+      <td>short, int, long, java.lang.Short, java.lang.Integer, java.lang.Long</td>
+    </tr>
+    <tr>
+      <td>Floating-point number</td>
+      <td>float, double, java.lang.Float, java.lang.Double</td>
+    </tr>
+    <tr>
+      <td>Boolean</td>
+      <td>boolean, java.lang.Boolean</td>
+    </tr>
+    <tr>
+      <td>Text</td>
+      <td>String</td>
+    </tr>
+    <tr>
+      <td>Date</td>
+      <td>java.util.Date</td>
+    </tr>
+  </tbody>
+</table>
 
 <h3 id="id">@Id</h3>
 
@@ -250,6 +282,15 @@ a json string, all you need to do is to mark it, for example:</p>
 
 <pre><code class="language-java">@Json
 private Address address;
+</code></pre>
+
+<h3 id="text">@Text</h3>
+
+<p>It is used to mark a string attribute as a large text value. When you use this annotation you can store
+larger texts but you can’t create indexes over this attribute anymore.</p>
+
+<pre><code class="language-java">@Text
+private String comment;
 </code></pre>
 
 <h3 id="parentid">@ParentId</h3>
