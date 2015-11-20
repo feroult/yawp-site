@@ -9,6 +9,7 @@ of the __YAWP!__ framework in practice.
 ### Contents
 
 - [The App Backlog](#the-app-backlog)
+- [Source Code](#source-code)
 - [Create the App Project](#create-the-app-project)
 - [#1 User Story: Create Tasks](#user-story-create-tasks)
 - [#2 User Story: Add Notes](#user-story-add-notes)
@@ -25,6 +26,10 @@ Before we start to code our to-do list api, lets take a look at the wishes of ou
 | 2 | Add Notes     | To add notes to a task before it is complete
 | 3 | Mark as Done  | To mark my tasks as done so I can see only unfinished tasks
 | 4 | Privacy       | That my tasks are only visible to me
+
+### Source Code
+
+For reference, the complete source code of this tutorial can be found [here](http://github.com/feroult/yawp-todoapp).
 
 ### Create the App Project
 
@@ -99,7 +104,7 @@ public class TaskTest extends EndpointTestCase {
     public void testCreate() {
         String json = post("/tasks", "{ 'title': 'wash dishes' }");
         Task task = from(json, Task.class);
-		
+        
         assertEquals("wash dishes", task.getTitle());
     }
     
@@ -196,7 +201,7 @@ yawp('/tasks').create({ title: 'task1',
 });
 ~~~
 
-### #2 User Story: Mark as Done
+### #3 User Story: Mark as Done
 
 To mark a task as done, we're going to create a custom action. Lets first add a test:
 
@@ -232,7 +237,7 @@ public class TaskMarkAsDoneAction extends Action<Task> {
         task.markAsDone();
         yawp.save(task);
     }
-	
+    
 }
 ~~~
 
@@ -250,9 +255,7 @@ public boolean isDone() {
 }
 ~~~
 
-Run the tests again, they should pass.
-
-Again, to access the API with javascript we can do it very easily:
+Run the tests again, they should pass. Again, to access the API with javascript we can do it very easily:
 
 ~~~ javascript
 yawp('/tasks').create({}).done(function (task) {
@@ -309,17 +312,17 @@ Change the generated scaffold file to look like the following snippet:
 ~~~ java 
 public class TaskSetUserHook extends Hook<Task> {
 
-	@Override
-	public void beforeShield(Task task) {
-		if(!userService().isUserLoggedIn()) {
-			return;
-		}
-		task.setUser(userService().getCurrentUser().getEmail());
-	}
+    @Override
+    public void beforeShield(Task task) {
+        if(!userService().isUserLoggedIn()) {
+            return;
+        }
+        task.setUser(userService().getCurrentUser().getEmail());
+    }
 
-	private UserService userService() {
-		return UserServiceFactory.getUserService();
-	}
+    private UserService userService() {
+        return UserServiceFactory.getUserService();
+    }
 
 }
 ~~~
@@ -331,14 +334,14 @@ following:
 ~~~ java
 public class TaskShield extends Shield<Task> {
 
-	@Override
-	public void defaults() {
-		allow().where("user", "=", currentUserEmail());
-	}
+    @Override
+    public void defaults() {
+        allow().where("user", "=", currentUserEmail());
+    }
 
-	private String currentUserEmail() {
-		return UserServiceFactory.getUserService().getCurrentUser().getEmail();
-	}
+    private String currentUserEmail() {
+        return UserServiceFactory.getUserService().getCurrentUser().getEmail();
+    }
 }
 ~~~
 

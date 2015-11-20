@@ -14,27 +14,10 @@ within the archetype:
 public class Person {
 
     private IdRef<Person> id;
-
-    @Index
+    
     private String name;
-
-    public IdRef<Person> getId() {
-        return id;
-    }
-
-    public void setId(IdRef<Person> id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    
 }
-
 ~~~
 
 If it is not already running, start the development server:
