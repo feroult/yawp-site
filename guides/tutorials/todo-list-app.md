@@ -13,6 +13,7 @@ of the __YAWP!__ framework in practice.
 - [#1 User Story: Create Tasks](#user-story-create-tasks)
 - [#2 User Story: Add Notes](#user-story-add-notes)
 - [#3 User Story: Mark as Done](#user-story-mark-as-done)
+- [#4 User Story: Privacy](#user-story-privacy)
 
 ### The App Backlog
 
@@ -24,7 +25,6 @@ Before we start to code our to-do list api, lets take a look at the wishes of ou
 | 2 | Add Notes     | To add notes to a task before it is complete
 | 3 | Mark as Done  | To mark my tasks as done so I can see only unfinished tasks
 | 4 | Privacy       | That my tasks are only visible to me
-| 5 | Notification  | To be notified before the deadline of my tasks
 
 ### Create the App Project
 
@@ -260,3 +260,97 @@ yawp('/tasks').create({}).done(function (task) {
 });
 ~~~
 
+### #4 User Story: Privacy
+
+The last item in our MVP backlog tells that the user doesn't want that other users have access to its
+tasks information. To do that we need to assign tasks to users, lets change our __Task__ class to add
+this association:
+
+~~~ java
+@Index
+private String user;
+~~~
+
+First lets add a failing test:
+
+~~~ java
+@Test
+public void testPrivacy() {
+    helper().login("janes", "rock.com");
+    post("/tasks", "{ title: 'janes task' }");
+
+    List<Task> tasks1 = fromList(get("/tasks"), Task.class);
+    assertEquals(1, tasks1.size());
+    assertEquals("janes task", tasks1.get(0).getTitle());
+
+    helper().login("jim", "rock.com");
+    List<Task> tasks2 = fromList(get("/tasks"), Task.class);
+    assertEquals(0, tasks2.size());
+}
+
+private AppengineTestHelper helper() {
+    return (AppengineTestHelper) helper;
+}
+~~~
+
+Note that we using the specific __AppengineTestHelper__ because the environment already has a default
+support for users authentication. If we run it, the test should fail because the user Jim has access
+to the Janes task.
+
+To assign users to tasks, lets add a endpoint Hook to set the user attribute before the security 
+shield kicks in. Again, using a scaffold, run in the command line shell:
+
+~~~ bash
+mvn yawp:hook -Dmodel=task -Dname=SetUser
+~~~
+
+Change the generated scaffold file to look like the following snippet:
+
+~~~ java 
+public class TaskSetUserHook extends Hook<Task> {
+
+	@Override
+	public void beforeShield(Task task) {
+		if(!userService().isUserLoggedIn()) {
+			return;
+		}
+		task.setUser(userService().getCurrentUser().getEmail());
+	}
+
+	private UserService userService() {
+		return UserServiceFactory.getUserService();
+	}
+
+}
+~~~
+
+The privacy test should still be failing. Now it is time to add logic to our security shield that
+will handle the privacy requirement. Open the class __TaskShield__ and change its contents to the
+following:
+
+~~~ java
+public class TaskShield extends Shield<Task> {
+
+	@Override
+	public void defaults() {
+		allow().where("user", "=", currentUserEmail());
+	}
+
+	private String currentUserEmail() {
+		return UserServiceFactory.getUserService().getCurrentUser().getEmail();
+	}
+}
+~~~
+
+Run the __TaskTest__ suite again. Oooops, now only the __testPrivacy__ method is passing. This is
+because the other tests do not login the user before they create tasks. Lets fix this by adding a 
+default user to all tests. Just add the following before section to the __TaskTest_ class:
+
+~~~ java
+@Before
+public void defaultLogin() {
+    helper().login("default", "rock.com");
+}
+~~~
+
+Run the tests again, they should pass.
