@@ -150,7 +150,12 @@
                                 <li class="tutorials_the-javascript-client">
                                     The Javascript Client
                                 </li>
-                            </a>                                                                                    
+                            </a>      
+                            <a href="/guides/tutorials/the-java-client">
+                                <li class="tutorials_the-java-client">
+                                    The Java Client
+                                </li>
+                            </a>                                                                                                                
                             <li>
                                 <a href="todolist">Testing your APIs</a>
                             </li>
@@ -187,9 +192,11 @@
                                     Repository Actions
                                 </li>
                             </a>                             
-                            <li>
-                                <a href="todolist">Custom Actions</a>
-                            </li>
+                            <a href="/guides/api/actions">
+                                <li class="api_actions">
+                                    Actions
+                                </li>
+                            </a>                             
                             <li>
                                 <a href="todolist">Query</a>
                             </li>
@@ -226,87 +233,51 @@ you need  use its java client API. The method/attribute <strong>yawp</strong> is
 </ul>
 
 <h3 id="repository-actions">Repository Actions</h3>
-<pre><code class="language-javascript">// create
-yawp('/people').create({ name: 'janes' }).done(function (person) {
-    console.log(person);
-});
-
-// update
-yawp('/people/1').update({ name: 'janes' }).done(function (person) {
-    console.log(person);
-});
-
-// patch
-yawp('/people/1').patch({ name: 'janes' }).done(function (person) {
-    console.log(person);
-});
+<pre><code class="language-java">// create / update
+yawp.save(person);
 
 // destroy
-yawp('/people/1').destroy().done(function (id) {
-    console.log(id);
-});
+yawp.destroy(id);
 
 // fetch
-yawp('/people/1').fetch(function (person) {
-    console.log(person);
-});
+yawp(Person.class).fetch(id);
 
 // list
-yawp('/people').list(function (people) {
-    console.log(people);
-});
+yawp(Person.class).list();
 </code></pre>
 
 <h3 id="custom-actions">Custom Actions</h3>
 
-<pre><code class="language-javascript">// @GET("me") over collection action 
-yawp('/people').get('me').done(function (person) {
-    console.log(person);
-});
+<pre><code class="language-java">// @GET("me") over collection action 
+feature(PersonMeAction.class).me();
 
 // @PUT("reverse-name") single entity action
-yawp('/people/1').put('reverse-name').done(function (person) {
-    console.log(person);
-});
+feature(PersonReverseNameAction.class).reverseName(id);
 </code></pre>
 
 <h3 id="query">Query</h3>
 
-<pre><code class="language-javascript">// where + list
-yawp('/people').where(['name', '=', 'janes']).list(function (people) {
-    console.log(people);
-});
+<pre><code class="language-java">// where + list
+yawp(Person.class).where("name", "=", "janes").list();
 
 // where + first
-yawp('/people').where(['name', '=', 'janes']).first(function (person) {
-    console.log(person);
-});
+yawp(Person.class).where("name", "=", "janes").first();
 
 // limit
-yawp('/people').where(['name', '=', 'janes']).limit(10).list(function (people) {
-    console.log(people);
-});
+yawp(Person.class).where("name", "=", "janes").limit(10).list();
 
 // order
-yawp('/people').where(['name', '=', 'janes']).order([{ p: 'name', d: 'asc'}])
-               .list(function (people) {
-    console.log(people);
-});
+yawp(Person.class).where("name", "=", "janes").order("name", "asc").list();
 </code></pre>
 
 <h3 id="transfomers">Transfomers</h3>
 
-<pre><code class="language-javascript">// transform + where + list
-yawp('/people').transform('upperCase').where(['name', '=', 'janes']).list(function (people) {
-    console.log(people);
-});
+<pre><code class="language-java">// transform + where + list
+yawp(Person.class).transform("upperCase").where("name", "=", "janes").list();
 
 // transform + first
-yawp('/people').transform('upperCase').first(function (person) {
-    console.log(person);
-});
+yawp(Person.class).transform("upperCase").where("name", "=", "janes").first();
 </code></pre>
-
 
     </div>
 </div>

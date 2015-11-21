@@ -14,88 +14,52 @@ you need  use its java client API. The method/attribute __yawp__ is avaiable ins
 - [Transformers](#transformers)
 
 ### Repository Actions
-~~~ javascript
-// create
-yawp('/people').create({ name: 'janes' }).done(function (person) {
-    console.log(person);
-});
-
-// update
-yawp('/people/1').update({ name: 'janes' }).done(function (person) {
-    console.log(person);
-});
-
-// patch
-yawp('/people/1').patch({ name: 'janes' }).done(function (person) {
-    console.log(person);
-});
+~~~ java
+// create / update
+yawp.save(person);
 
 // destroy
-yawp('/people/1').destroy().done(function (id) {
-    console.log(id);
-});
+yawp.destroy(id);
 
 // fetch
-yawp('/people/1').fetch(function (person) {
-    console.log(person);
-});
+yawp(Person.class).fetch(id);
 
 // list
-yawp('/people').list(function (people) {
-    console.log(people);
-});
+yawp(Person.class).list();
 ~~~
 
 ### Custom Actions
 
-~~~ javascript
+~~~ java
 // @GET("me") over collection action 
-yawp('/people').get('me').done(function (person) {
-    console.log(person);
-});
+feature(PersonMeAction.class).me();
 
 // @PUT("reverse-name") single entity action
-yawp('/people/1').put('reverse-name').done(function (person) {
-    console.log(person);
-});
+feature(PersonReverseNameAction.class).reverseName(id);
 ~~~
 
 ### Query 
 
-~~~ javascript
+~~~ java
 // where + list
-yawp('/people').where(['name', '=', 'janes']).list(function (people) {
-    console.log(people);
-});
+yawp(Person.class).where("name", "=", "janes").list();
 
 // where + first
-yawp('/people').where(['name', '=', 'janes']).first(function (person) {
-    console.log(person);
-});
+yawp(Person.class).where("name", "=", "janes").first();
 
 // limit
-yawp('/people').where(['name', '=', 'janes']).limit(10).list(function (people) {
-    console.log(people);
-});
+yawp(Person.class).where("name", "=", "janes").limit(10).list();
 
 // order
-yawp('/people').where(['name', '=', 'janes']).order([{ p: 'name', d: 'asc'}])
-               .list(function (people) {
-    console.log(people);
-});
+yawp(Person.class).where("name", "=", "janes").order("name", "asc").list();
 ~~~
 
 ### Transfomers
 
-~~~ javascript
+~~~ java
 // transform + where + list
-yawp('/people').transform('upperCase').where(['name', '=', 'janes']).list(function (people) {
-    console.log(people);
-});
+yawp(Person.class).transform("upperCase").where("name", "=", "janes").list();
 
 // transform + first
-yawp('/people').transform('upperCase').first(function (person) {
-    console.log(person);
-});
+yawp(Person.class).transform("upperCase").where("name", "=", "janes").first();
 ~~~
-

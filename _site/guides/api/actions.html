@@ -218,364 +218,90 @@
         </div>
     </div>
     <div class="guide">
-        <h1 id="to-do-list-app">To-Do List App</h1>
+        <h1 id="actions">Actions</h1>
 
-<p>This is a simple yet comprehensive tutorial that shows how to use the fundamental features
-of the <strong>YAWP!</strong> framework in practice.</p>
+<p>To add custom behavior to your domain object you can use the Action API. Imagine you need to 
+activate a given person. To do this you can create an Action class:</p>
 
-<h3 id="contents">Contents</h3>
+<h3 id="single-entity">Single Entity</h3>
+
+<pre><code class="language-java">public class ActivatePersonAction extends Action&lt;Person&gt; {
+
+    @PUT("active")
+    public void activate(IdRef&lt;Person&gt; id) {
+        Person person = id.fetch();
+        person.setActive(true);
+        yawp.save(person);
+    }
+
+}
+</code></pre>
+
+<p>Now, to activate a given person, let’s say with id 123, we can run:</p>
+
+<pre><code class="language-bash">curl -X PUT http://localhost:8080/api/people/123/active
+</code></pre>
+
+<p>Now, to do the samething in <strong>Javascript</strong>:</p>
+
+<pre><code class="language-javascript">yawp('/people/123').put('active').done( function(status) {} );
+</code></pre>
+
+<h3 id="over-collection">Over Collection</h3>
+
+<p>Also, an action be called over a single entity or over a collection. For an action over a collection, 
+don’t specify an IdRef argument in the method signature.</p>
+
+<p>Note that you can specify an IdRef only if you are targeting a <strong>@ParentId IdRef</strong>. In that case, it will
+be an action over collection for all children of that <strong>@ParentId</strong>.</p>
+
+<pre><code class="language-java">public class PersonAction extends Action&lt;Person&gt; {
+    // over collection without IdRef
+    @GET("me")
+    public Person me() {
+        return SessionManager.getLoggedPerson(yawp);
+    }
+
+    // over collection with parent IdRef
+    @GET("first")
+    public Person first(IdRef&lt;Company&gt; companyId) {
+      return yawp(Person.class).from(companyId).first();
+    }
+}
+</code></pre>
+
+<p>The following routes will be created and mapped to your methods:</p>
 
 <ul>
-  <li><a href="#the-app-backlog">The App Backlog</a></li>
-  <li><a href="#source-code">Source Code</a></li>
-  <li><a href="#create-the-app-project">Create the App Project</a></li>
-  <li><a href="#user-story-create-tasks">#1 User Story: Create Tasks</a></li>
-  <li><a href="#user-story-add-notes">#2 User Story: Add Notes</a></li>
-  <li><a href="#user-story-mark-as-done">#3 User Story: Mark as Done</a></li>
-  <li><a href="#user-story-privacy">#4 User Story: Privacy</a></li>
+  <li>GET /users/me -&gt; call the action me()</li>
+  <li>GET /company/{companyId}/users/firstChild -&gt; call the action firstUser()</li>
 </ul>
 
-<h3 id="the-app-backlog">The App Backlog</h3>
+<h3 id="request-parameters">Request Parameters</h3>
 
-<p>Before we start to code our to-do list api, lets take a look at the wishes of our user:</p>
+<p>If you want to access the request parameters inside your actions, just add, as the last argument 
+in the method signature, a <strong>Map&lt;String, String&gt;</strong>:</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Story</th>
-      <th>As a user I want…</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Create Tasks</td>
-      <td>To create tasks so I can remember to do things</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Add Notes</td>
-      <td>To add notes to a task before it is complete</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Mark as Done</td>
-      <td>To mark my tasks as done so I can see only unfinished tasks</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Privacy</td>
-      <td>That my tasks are only visible to me</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="source-code">Source Code</h3>
-
-<p>For reference, the complete source code of this tutorial can be found <a href="http://github.com/feroult/yawp-todoapp">here</a>.</p>
-
-<h3 id="create-the-app-project">Create the App Project</h3>
-
-<p>To bootstrap our api, lets use the <strong>YAWP!</strong> maven archetype:</p>
-
-<pre><code class="language-bash">mvn archetype:generate \
-   -DarchetypeGroupId=io.yawp -DarchetypeArtifactId=yawp -DarchetypeVersion=LATEST \
-   -DgroupId=todoapp -DartifactId=todoapp -Dversion=1.0-SNAPSHOT
-</code></pre>
-
-<p>Inside the app folder, compile the project to verify the installation:</p>
-
-<pre><code class="language-bash">cd todoapp
-mvn clean install
-</code></pre>
-
-<p>Start the development server:</p>
-
-<pre><code class="language-bash">mvn yawp:devserver
-</code></pre>
-
-<p><strong>Note:</strong> If you are using an IDE that automatically compiles to the project’s
-target folder, you won’t need to restart the development server again, your changes will get
-<strong>hot deployed</strong> by the yawp’s maven plugin.</p>
-
-<h3 id="user-story-create-tasks">#1 User Story: Create Tasks</h3>
-
-<p>To get the first user story done we’re going to need a place to store our tasks information. 
-To do this, we will create a <strong>Task</strong> endpoint running the yawp scaffolding plugin.</p>
-
-<p>Open another shell window/tab and run the following command, inside the app root folder:</p>
-
-<pre><code class="language-bash">mvn yawp:endpoint -Dmodel=task
-</code></pre>
-
-<p>The scaffold will create three files:</p>
-
-<pre><code class="language-java">[INFO] Scaffold src/main/java/todoapp/models/task/Task.java created.
-[INFO] Scaffold src/test/java/todoapp/models/task/TaskTest.java created.
-[INFO] Scaffold src/main/java/todoapp/models/task/TaskShield.java created.
-</code></pre>
-
-<p>Lets take a look at the <strong>TaskTesk</strong> class:</p>
-
-<pre><code class="language-java">public class TaskTest extends EndpointTestCase {
-
-    @Test
-    public void testCreate() {
-        // TODO Auto-generated method stub
-        String json = post("/tasks", "{}");
-        Task task = from(json, Task.class);
-
-        assertNotNull(task);
+<pre><code class="language-java">public class PersonAction extends Action&lt;Person&gt; {
+    // single entity
+    @GET("params1")
+    public Person me(IdRef&lt;Person&gt; id, Map&lt;String, String&gt; params) {
+        // ...
     }
-    
-}
-</code></pre>
 
-<p>Now, lets make the test more realistic by adding some information to the task model:</p>
-
-<pre><code class="language-java">public class TaskTest extends EndpointTestCase {
-
-    @Test
-    public void testCreate() {
-        String json = post("/tasks", "{ 'title': 'wash dishes' }");
-        Task task = from(json, Task.class);
-        
-        assertEquals("wash dishes", task.getTitle());
+    // over collection
+    @GET("params2")
+    public Person me(Map&lt;String, String&gt; params) {
+        // ...
     }
-    
-}
-</code></pre>
 
-<p>Just remember to import static <strong>assertEquals</strong>.</p>
-
-<p>Now, our test class is not compiling because the title field does not exist in the <strong>Task</strong> endpoint model.
-Lets add it. Open the <strong>Task</strong> endpoint class to add the title attribute:</p>
-
-<pre><code class="language-java">@Endpoint(path = "/tasks")
-public class Task {
-
-    @Id
-    private IdRef&lt;Task&gt; id;
-
-    private String title;
-    
-    public String getTitle() {
-        return title;
+    // over collection with parent IdRef
+    @GET("params3")
+    public Person first(IdRef&lt;Company&gt; companyId  Map&lt;String, String&gt; params) {
+        // ...
     }
 }
 </code></pre>
-
-<p>All endpoints must have one @Id attribute. It also has to be of type IfRef<t>, where T is the class 
-endpoint POJO class.</t></p>
-
-<p>If we run the unit test again, everything should be ok. With this, we already have an API to create
-tasks. We can verify it with cURL:</p>
-
-<pre><code class="language-bash">curl -H "Content-type: application/json" -X POST \
-     -d "{'title': 'test task'}" http://localhost:8080/api/tasks
-</code></pre>
-
-<p>You also should try the javascript client. Open the javascript console of your browser and type:</p>
-
-<pre><code class="language-javascript">// create a task
-yawp('/tasks').create({ title: 'js task' });
-
-// list the tasks
-yawp('/tasks').list(function(tasks) { console.log(tasks); });
-</code></pre>
-
-<h3 id="user-story-add-notes">#2 User Story: Add Notes</h3>
-
-<p>Picking the next item in our backlog, we are going to make it possible to add text notes to each task.</p>
-
-<p>Lets increment our unit test to deal with this new requirement:</p>
-
-<pre><code class="language-java">@Test
-public void testCreateWithNotes() {
-    String json = post("/tasks", "{ notes: ['note 1', 'note 2'] }");
-    Task task = from(json, Task.class);
-
-    assertEquals(2, task.getNotes().size());
-    assertEquals("note 1", task.getNotes().get(0));
-    assertEquals("note 2", task.getNotes().get(1));
-}
-</code></pre>
-
-<p>Open the <strong>Task</strong> class and add the following attribute:</p>
-
-<pre><code class="language-java">@Json
-private List&lt;String&gt; notes;
-
-public List&lt;String&gt; getNotes() {
-    return notes;
-}
-</code></pre>
-
-<p>If we run our tests, they should pass.</p>
-
-<p>You may have noticed that you’ll only need to add getters and setters to the endpoint attributes 
-if you’re going to access them from your server side (java) code. Also, notice that the <strong>@Json</strong> 
-annotation is used to tell <strong>YAWP!</strong> that the attribute will be serialized as a json object when 
-the model is read from or writen to the persistency layer.</p>
-
-<p>We can test our new API with javascript:</p>
-
-<pre><code class="language-javascript">// to create a task with notes
-yawp('/tasks').create({ title: 'task1', 
-                        notes: ['note 1', 'note 2'] }).done(function (task)) {
-                        
-    // to change the notes of an already created task 
-    yawp(task).patch({ notes: ['note 3'] });
-    
-});
-</code></pre>
-
-<h3 id="user-story-mark-as-done">#3 User Story: Mark as Done</h3>
-
-<p>To mark a task as done, we’re going to create a custom action. Lets first add a test:</p>
-
-<pre><code class="language-java">@Test
-public void testMarkAsDone() {
-    post("/tasks/1", "{}");
-    assertFalse(yawp(Task.class).fetch(1l).isDone());
-
-    put("/tasks/1/done");
-    assertTrue(yawp(Task.class).fetch(1l).isDone());
-}
-</code></pre>
-
-<p>Create the missing task method and then run the test above. As you can see, we get an error 
-saying that there is no endpoint called done. This is because <strong>YAWP!</strong> cannot find a route 
-for that uri.</p>
-
-<p>Lets create an action for the given route using a scaffold:</p>
-
-<pre><code class="language-bash">mvn yawp:action -Dmodel=task -Dname=MarkAsDone
-</code></pre>
-
-<p>Open the created class <strong>TaskMarkAsDoneAction</strong> and make the following changes:</p>
-
-<pre><code class="language-java">public class TaskMarkAsDoneAction extends Action&lt;Task&gt; {
-
-    @PUT("done")
-    public void done(IdRef&lt;Task&gt; id) {
-        Task task = id.fetch();
-        task.markAsDone();
-        yawp.save(task);
-    }
-    
-}
-</code></pre>
-
-<p>Finally, change the <strong>Task</strong> endpoint to add the done flag:</p>
-
-<pre><code class="language-java">private boolean done;
-
-public void markAsDone() {
-    this.done = true;
-}
-
-public boolean isDone() {
-    return done;
-}
-</code></pre>
-
-<p>Run the tests again, they should pass. Again, to access the API with javascript we can do it very easily:</p>
-
-<pre><code class="language-javascript">yawp('/tasks').create({}).done(function (task) {
-    yawp(task).put('done');
-});
-</code></pre>
-
-<h3 id="user-story-privacy">#4 User Story: Privacy</h3>
-
-<p>The last item in our MVP backlog tells that the user doesn’t want that other users have access to its
-tasks information. To do that we need to assign tasks to users, lets change our <strong>Task</strong> class to add
-this association:</p>
-
-<pre><code class="language-java">@Index
-private String user;
-</code></pre>
-
-<p>First lets add a failing test:</p>
-
-<pre><code class="language-java">@Test
-public void testPrivacy() {
-    helper().login("janes", "rock.com");
-    post("/tasks", "{ title: 'janes task' }");
-
-    List&lt;Task&gt; tasks1 = fromList(get("/tasks"), Task.class);
-    assertEquals(1, tasks1.size());
-    assertEquals("janes task", tasks1.get(0).getTitle());
-
-    helper().login("jim", "rock.com");
-    List&lt;Task&gt; tasks2 = fromList(get("/tasks"), Task.class);
-    assertEquals(0, tasks2.size());
-}
-
-private AppengineTestHelper helper() {
-    return (AppengineTestHelper) helper;
-}
-</code></pre>
-
-<p>Note that we using the specific <strong>AppengineTestHelper</strong> because the environment already has a default
-support for users authentication. If we run it, the test should fail because the user Jim has access
-to the Janes task.</p>
-
-<p>To assign users to tasks, lets add a endpoint Hook to set the user attribute before the security 
-shield kicks in. Again, using a scaffold, run in the command line shell:</p>
-
-<pre><code class="language-bash">mvn yawp:hook -Dmodel=task -Dname=SetUser
-</code></pre>
-
-<p>Change the generated scaffold file to look like the following snippet:</p>
-
-<pre><code class="language-java">public class TaskSetUserHook extends Hook&lt;Task&gt; {
-
-    @Override
-    public void beforeShield(Task task) {
-        if(!userService().isUserLoggedIn()) {
-            return;
-        }
-        task.setUser(userService().getCurrentUser().getEmail());
-    }
-
-    private UserService userService() {
-        return UserServiceFactory.getUserService();
-    }
-
-}
-</code></pre>
-
-<p>The privacy test should still be failing. Now it is time to add logic to our security shield that
-will handle the privacy requirement. Open the class <strong>TaskShield</strong> and change its contents to the
-following:</p>
-
-<pre><code class="language-java">public class TaskShield extends Shield&lt;Task&gt; {
-
-    @Override
-    public void defaults() {
-        allow().where("user", "=", currentUserEmail());
-    }
-
-    private String currentUserEmail() {
-        return UserServiceFactory.getUserService().getCurrentUser().getEmail();
-    }
-}
-</code></pre>
-
-<p>Run the <strong>TaskTest</strong> suite again. Oooops, now only the <strong>testPrivacy</strong> method is passing. This is
-because the other tests do not login the user before they create tasks. Lets fix this by adding a 
-default user to all tests. Just add the following before section to the <em>_TaskTest</em> class:</p>
-
-<pre><code class="language-java">@Before
-public void defaultLogin() {
-    helper().login("default", "rock.com");
-}
-</code></pre>
-
-<p>Run the tests again, they should pass.</p>
 
     </div>
 </div>
