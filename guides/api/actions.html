@@ -197,9 +197,11 @@
                                     Actions
                                 </li>
                             </a>
-                            <li>
-                                <a href="todolist">Query</a>
-                            </li>
+                            <a href="/guides/api/query">
+                                <li class="api_query">
+                                    Query
+                                </li>
+                            </a>
                             <a href="/guides/api/transformers">
                                 <li class="api_transformers">
                                     Transformers
@@ -246,7 +248,7 @@ activate a given person. To do this you can create an Action class:</p>
 <pre><code class="language-bash">curl -X PUT http://localhost:8080/api/people/123/active
 </code></pre>
 
-<p>Now, to do the samething in <strong>Javascript</strong>:</p>
+<p>Now, to do the same thing in <strong>Javascript</strong>:</p>
 
 <pre><code class="language-javascript">yawp('/people/123').put('active').done( function(status) {} );
 </code></pre>
@@ -283,7 +285,7 @@ be an action over collection for all children of that <strong>@ParentId</strong>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
-<p>If you want to access the request parameters inside your actions, just add, as the last argument 
+<p>If you want to access the request parameters inside your actions, just add,     as the last argument 
 in the method signature, a <strong>Map&lt;String, String&gt;</strong>:</p>
 
 <pre><code class="language-java">public class PersonAction extends Action&lt;Person&gt; {
