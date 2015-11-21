@@ -211,15 +211,101 @@
         </div>
     </div>
     <div class="guide">
-        <h1 id="guides">Guides</h1>
+        <h1 id="the-java-client">The Java Client</h1>
 
-<p>Welcome to the <strong>YAWP!</strong> Guides!</p>
+<p>To access <strong>YAWP!</strong> APIs from your server side endpoint features (shields, actions, transformers, hooks), 
+you need  use its java client API. The method/attribute <strong>yawp</strong> is avaiable inside all of them.</p>
 
-<p>This documentation is organized in sections that can be accessed from the left sidebar menu. 
-The <strong>Getting Started</strong> section takes you from the basic setup of the framework to an overview 
-of its core concepts and motivations. The <strong>Tutorials</strong> section shows how <strong>YAWP!</strong> works in practice.
-Finally, the <strong>API</strong> section describes in deeper detail more advaced aspects of each of the framework’s 
-features.</p>
+<h3 id="contents">Contents</h3>
+
+<ul>
+  <li><a href="#repository-actions">Repository Actions</a></li>
+  <li><a href="#custom-actions">Custom Actions</a></li>
+  <li><a href="#query">Query</a></li>
+  <li><a href="#transformers">Transformers</a></li>
+</ul>
+
+<h3 id="repository-actions">Repository Actions</h3>
+<pre><code class="language-javascript">// create
+yawp('/people').create({ name: 'janes' }).done(function (person) {
+    console.log(person);
+});
+
+// update
+yawp('/people/1').update({ name: 'janes' }).done(function (person) {
+    console.log(person);
+});
+
+// patch
+yawp('/people/1').patch({ name: 'janes' }).done(function (person) {
+    console.log(person);
+});
+
+// destroy
+yawp('/people/1').destroy().done(function (id) {
+    console.log(id);
+});
+
+// fetch
+yawp('/people/1').fetch(function (person) {
+    console.log(person);
+});
+
+// list
+yawp('/people').list(function (people) {
+    console.log(people);
+});
+</code></pre>
+
+<h3 id="custom-actions">Custom Actions</h3>
+
+<pre><code class="language-javascript">// @GET("me") over collection action 
+yawp('/people').get('me').done(function (person) {
+    console.log(person);
+});
+
+// @PUT("reverse-name") single entity action
+yawp('/people/1').put('reverse-name').done(function (person) {
+    console.log(person);
+});
+</code></pre>
+
+<h3 id="query">Query</h3>
+
+<pre><code class="language-javascript">// where + list
+yawp('/people').where(['name', '=', 'janes']).list(function (people) {
+    console.log(people);
+});
+
+// where + first
+yawp('/people').where(['name', '=', 'janes']).first(function (person) {
+    console.log(person);
+});
+
+// limit
+yawp('/people').where(['name', '=', 'janes']).limit(10).list(function (people) {
+    console.log(people);
+});
+
+// order
+yawp('/people').where(['name', '=', 'janes']).order([{ p: 'name', d: 'asc'}])
+               .list(function (people) {
+    console.log(people);
+});
+</code></pre>
+
+<h3 id="transfomers">Transfomers</h3>
+
+<pre><code class="language-javascript">// transform + where + list
+yawp('/people').transform('upperCase').where(['name', '=', 'janes']).list(function (people) {
+    console.log(people);
+});
+
+// transform + first
+yawp('/people').transform('upperCase').first(function (person) {
+    console.log(person);
+});
+</code></pre>
 
 
     </div>

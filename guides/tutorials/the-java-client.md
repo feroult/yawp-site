@@ -1,38 +1,17 @@
 ---
 layout: guides
 ---
-# The Javascript Client
+# The Java Client
 
-To access __YAWP!__ APIs from your web apps, you can use its javascript client library.
+To access __YAWP!__ APIs from your server side endpoint features (shields, actions, transformers, hooks), 
+you need  use its java client API. The method/attribute __yawp__ is avaiable inside all of them.
 
 ### Contents
 
-- [Installation](#installation)
-- [Setup](#setup)
 - [Repository Actions](#repository-actions)
 - [Custom Actions](#custom-actions)
 - [Query](#query)
 - [Transformers](#transformers)
-
-### Installation
-
-~~~ html
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://rawgit.com/feroult/yawp/master/yawp-core/src/main/js/yawp.js"></script>
-~~~ 
-
-_Consider adding yawp.js to your own static files folder._
-
-### Setup
-
-By default the client routes all API calls to the path __/api__ of the current app's host.
-You can override this setting as following:
-
-~~~ javascript
-yawp.config(function (c) {
-    c.baseUrl('http://your-cors-host.com/api');
-});
-~~~
 
 ### Repository Actions
 ~~~ javascript
