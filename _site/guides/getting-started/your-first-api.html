@@ -89,7 +89,13 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <div class="container">
+    
+
+
+
+
+
+<div class="container">
     <div id="accordion" class="panel-group">
         <div class="sidebar">
             <div class="panel panel-default">
@@ -133,7 +139,7 @@
                     </div>
                 </a>
 
-                <div id="tutorials" class="panel-collapse collapse in">
+                <div id="tutorials" class="panel-collapse collapse ">
                     <div class="panel-body">
                         <ul>
                             <a href="/guides/tutorials/todo-list-app">
@@ -179,7 +185,7 @@
                     </div>
                 </a>
 
-                <div id="api" class="panel-collapse collapse in">
+                <div id="api" class="panel-collapse collapse ">
                     <div class="panel-body">
                         <ul>
                             <a href="/guides/api/models">
@@ -229,8 +235,13 @@
 <p>Good news are that if you’ve installed <strong>YAWP!</strong> from the maven archetype, you already have
 your first API running.</p>
 
-<p>To create a new API you just need to create an <a href="todo link">Endpoint</a>, like the one that ships 
-within the archetype:</p>
+<p>To create a new API you just need to create an <a href="/guides/api/models">Endpoint</a>. It is done very
+easily with a scaffold:</p>
+
+<pre><code class="language-bash">mvn yawp:endpoint -Dmodel=person
+</code></pre>
+
+<p>If you prefer, you can create it manually wich is also very simple:</p>
 
 <pre><code class="language-java">@Endpoint(path = "/people")
 public class Person {
@@ -242,7 +253,7 @@ public class Person {
 }
 </code></pre>
 
-<p>If it is not already running, start the development server:</p>
+<p>Now, start the development server:</p>
 
 <pre><code class="language-bash">mvn yawp:devserver
 </code></pre>
@@ -258,10 +269,6 @@ execute in a shell:</p>
 
 <pre><code class="language-bash">curl http://localhost:8080/api/people
 </code></pre>
-
-<p>You may have noticed that we’ve annotated the <strong>name</strong> attribute of the Person endpoint with <strong>@Index</strong>. 
-That means we can query this endpoint using the attribute as a filter. In the next sections we will cover this 
-and other important features.</p>
 
     </div>
 </div>

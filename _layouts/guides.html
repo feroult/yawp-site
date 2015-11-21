@@ -6,6 +6,18 @@ sections:
     scripts: |
         <script src="/assets/js/guides.js"></script>
 ---
+{% if page.path contains 'guides/getting-started' or page.path contains 'guides/index' %}
+  {% assign gettingStarted = 'in' %}
+{% endif %}
+
+{% if page.path contains 'guides/tutorials' %}
+  {% assign tutorials = 'in' %}
+{% endif %}
+
+{% if page.path contains 'guides/api' %}
+  {% assign api = 'in' %}
+{% endif %}
+
 <div class="container">
     <div id="accordion" class="panel-group">
         <div class="sidebar">
@@ -16,7 +28,7 @@ sections:
                     </div>
                 </a>
 
-                <div id="getting-started" class="panel-collapse collapse in">
+                <div id="getting-started" class="panel-collapse collapse {{ gettingStarted }}">
                     <div class="panel-body">
                         <ul>
                             <a href="/guides/getting-started/installing-yawp">
@@ -50,7 +62,7 @@ sections:
                     </div>
                 </a>
 
-                <div id="tutorials" class="panel-collapse collapse in">
+                <div id="tutorials" class="panel-collapse collapse {{ tutorials }}">
                     <div class="panel-body">
                         <ul>
                             <a href="/guides/tutorials/todo-list-app">
@@ -96,7 +108,7 @@ sections:
                     </div>
                 </a>
 
-                <div id="api" class="panel-collapse collapse in">
+                <div id="api" class="panel-collapse collapse {{ api }}">
                     <div class="panel-body">
                         <ul>
                             <a href="/guides/api/models">

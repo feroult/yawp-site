@@ -6,8 +6,14 @@ layout: guides
 Good news are that if you've installed __YAWP!__ from the maven archetype, you already have
 your first API running.
 
-To create a new API you just need to create an [Endpoint](todo link), like the one that ships 
-within the archetype:
+To create a new API you just need to create an [Endpoint](/guides/api/models). It is done very
+easily with a scaffold:
+
+~~~ bash
+mvn yawp:endpoint -Dmodel=person
+~~~
+
+If you prefer, you can create it manually wich is also very simple:
 
 ~~~ java
 @Endpoint(path = "/people")
@@ -20,7 +26,7 @@ public class Person {
 }
 ~~~
 
-If it is not already running, start the development server:
+Now, start the development server:
 
 ~~~ bash
 mvn yawp:devserver
@@ -39,7 +45,3 @@ To retrieve the created document, run:
 ~~~ bash
 curl http://localhost:8080/api/people
 ~~~
-
-You may have noticed that we've annotated the __name__ attribute of the Person endpoint with __@Index__. 
-That means we can query this endpoint using the attribute as a filter. In the next sections we will cover this 
-and other important features.
