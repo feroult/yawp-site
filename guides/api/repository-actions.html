@@ -211,15 +211,52 @@
         </div>
     </div>
     <div class="guide">
-        <h1 id="guides">Guides</h1>
+        <h1 id="repository-actions">Repository Actions</h1>
 
-<p>Welcome to the <strong>YAWP!</strong> Guides!</p>
+<p>All endpoint models have default repository actions. That means that you can create, fetch, update/pache, 
+destroy and query.</p>
 
-<p>This documentation is organized in sections that can be accessed from the left sidebar menu. 
-The <strong>Getting Started</strong> section takes you from the basic setup of the framework to an overview 
-of its core concepts and motivations. The <strong>Tutorials</strong> section shows how <strong>YAWP!</strong> works in practice.
-Finally, the <strong>API</strong> section describes in deeper detail more advaced aspects of each of the framework’s 
-features.</p>
+<p>You can use them in three ways: Form <a href="too">java client</a>, the <a href="todo">javascript client</a> or the raw http/json 
+API.</p>
+
+<p>The following table sumarizes the avaible repository actions:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Verb</th>
+      <th>Path</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GET</td>
+      <td>/{endpoint_path}</td>
+      <td>List entities of endpoint model</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>/{endpoint_path}</td>
+      <td>Create a entity</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/{endpoint_path}/{id}</td>
+      <td>Show a entity</td>
+    </tr>
+    <tr>
+      <td>PUT/PATCH</td>
+      <td>/{endpoint_path}/{id}</td>
+      <td>Update a entity</td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>/{endpoint_path}/{id}</td>
+      <td>Destroy a entity</td>
+    </tr>
+  </tbody>
+</table>
 
 
     </div>
