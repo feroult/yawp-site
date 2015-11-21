@@ -222,44 +222,54 @@
         </div>
     </div>
     <div class="guide">
-        <h1 id="your-first-api">Your First API</h1>
+        <h1 id="transformers">Transformers</h1>
 
-<p>Good news are that if you’ve installed <strong>YAWP!</strong> from the maven archetype, you already have
-your first API running.</p>
+<p>The Transformer API is used to create different views of the same domain object. If you wan’t to add 
+or hide information to be returned to the client, the way to go is to use a Transfomer. For instance:</p>
 
-<p>To create a new API you just need to create an <a href="todo link">Endpoint</a>, like the one that ships 
-within the archetype:</p>
+<pre><code class="language-java">public class BasicObjectTransformer extends Transformer&lt;Person&gt; {
 
-<pre><code class="language-java">@Endpoint(path = "/people")
-public class Person {
-
-    private IdRef&lt;Person&gt; id;
-    
-    private String name;
-    
+    public Map&lt;String, Object&gt; upperCase(Person person) {
+        Map&lt;String, Object&gt; map = asMap(person);
+        map.put("name", person.getName().toUpperCase());
+        return map;
+    }
 }
 </code></pre>
 
-<p>If it is not already running, start the development server:</p>
+<p>Now, to transform a given person, let’s say with id 123, you can:</p>
 
-<pre><code class="language-bash">mvn yawp:devserver
+<pre><code class="language-bash">curl -X GET http://localhost:8080/api&lt;b&gt;/people/123?t=upperCase&lt;/b&gt;
 </code></pre>
 
-<p>After the development server starts you can play with the <strong>Person</strong> endpoint APIs with cURL, to create a person,
-execute in a shell:</p>
+<p>The <strong>Javascript</strong> equivalent would be:</p>
 
-<pre><code class="language-bash">curl -H "Content-type: application/json" -X POST \
-     -d "{'name': 'John'}" http://localhost:8080/api/people
+<pre><code class="language-javascript">yawp('/people/123').transform('upperCase').first( function(person) {} );
 </code></pre>
 
-<p>To retrieve the created document, run:</p>
+<p>Note: All transformers can be applied for collections queries or fetching single objects.</p>
 
-<pre><code class="language-bash">curl http://localhost:8080/api/people
+<p>Finally, you can also create more sofisticated transformers using the presenter pattern, like this:</p>
+
+<pre><code class="language-java">public class UserTransformer extends Transformer&lt;User&gt; {
+
+   public static class UserView {
+        private String name;
+        private String company;
+        private int birthYear;
+
+        public UserView(User user) {
+            this.name = user.getName();
+            this.company = user.getCompany();
+            this.birthYear = Calendar.getInstance().get(Calendar.YEAR) - user.getAge();
+        }
+    }
+
+    public UserView withYear(User user) {
+        return new UserView(user);
+    }
+}
 </code></pre>
-
-<p>You may have noticed that we’ve annotated the <strong>name</strong> attribute of the Person endpoint with <strong>@Index</strong>. 
-That means we can query this endpoint using the attribute as a filter. In the next sections we will cover this 
-and other important features.</p>
 
     </div>
 </div>
