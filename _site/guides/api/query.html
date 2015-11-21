@@ -224,66 +224,42 @@
         </div>
     </div>
     <div class="guide">
-        <h1 id="the-java-client">The Java Client</h1>
+        <h1 id="query">Query</h1>
 
-<p>To access <strong>YAWP!</strong> APIs from your server side endpoint features (shields, actions, transformers, hooks), 
-you need  use its java client API. The method/attribute <strong>yawp</strong> is avaiable inside all of them.</p>
+<p>From a http/json call, a java or javascript method you can query your entities using a fluent 
+API that nicely exposes the Datastore Query class.</p>
 
-<h3 id="contents">Contents</h3>
+<p><strong>Javascript</strong>:</p>
 
-<ul>
-  <li><a href="#repository-actions">Repository Actions</a></li>
-  <li><a href="#custom-actions">Custom Actions</a></li>
-  <li><a href="#query">Query</a></li>
-  <li><a href="#transformers">Transformers</a></li>
-</ul>
+<pre><code class="language-javascript">yawp('/people').where([ 'name', '=', 'Janes']).first( function(person) {} );
 
-<h3 id="repository-actions">Repository Actions</h3>
-<pre><code class="language-java">// create / update
-yawp.save(person);
+yawp('/people').order([ { p: 'name', d: 'desc' } ]).list( function(people) {} );
 
-// destroy
-yawp.destroy(id);
-
-// fetch
-yawp(Person.class).fetch(id);
-
-// list
-yawp(Person.class).list();
+yawp('/people').from(parentId).list( function(people) {} );
 </code></pre>
 
-<h3 id="custom-actions">Custom Actions</h3>
+<p><strong>Java</strong>:</p>
 
-<pre><code class="language-java">// @GET("me") over collection action 
-feature(PersonMeAction.class).me();
+<pre><code class="language-java">Person person = yawp(Person.class).where("name", "=", "Janes").first();
 
-// @PUT("reverse-name") single entity action
-feature(PersonReverseNameAction.class).reverseName(id);
+List&lt;Person&gt; people = yawp(Person.class).order("name", "desc").list();
+
+List&lt;Person&gt; people = yawp(Person.class).from(parentId).list();
 </code></pre>
 
-<h3 id="query">Query</h3>
+<p>Other Java examples, also avaibale from http/json or Javascript:</p>
 
-<pre><code class="language-java">// where + list
-yawp(Person.class).where("name", "=", "janes").list();
+<pre><code class="language-java">yawp(Person.class).where("name", "=", "Mark").and("age", "&gt;=", 21).list();
 
-// where + first
-yawp(Person.class).where("name", "=", "janes").first();
+yawp(Person.class).where(or(and(c("company", "=", "github.com"), c("age", "&gt;=", 21)), and(c("company", "=", "YAWP!"), c("age", "&gt;=", 18)))).ids();
 
-// limit
-yawp(Person.class).where("name", "=", "janes").limit(10).list();
-
-// order
-yawp(Person.class).where("name", "=", "janes").order("name", "asc").list();
+yawp(Person.class).where("name", "=", "John").and("company", "=", "github.com").only();
 </code></pre>
 
-<h3 id="transfomers">Transfomers</h3>
+<p>Note: The methods <strong>c</strong>, <strong>and</strong> and <strong>or</strong> must be static imported or fully qualified.</p>
 
-<pre><code class="language-java">// transform + where + list
-yawp(Person.class).transform("upperCase").where("name", "=", "janes").list();
-
-// transform + first
-yawp(Person.class).transform("upperCase").where("name", "=", "janes").first();
-</code></pre>
+<p>You can look at this <a href="http://github.com/feroult/yawp/tree/master/src/test/java/io/yawp/repository/query/DatastoreQueryTest.java">Java test suite</a> 
+to see examples of more complex constructions.</p>
 
     </div>
 </div>

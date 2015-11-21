@@ -27,7 +27,7 @@ Now, to activate a given person, let's say with id 123, we can run:
 curl -X PUT http://localhost:8080/api/people/123/active
 ~~~
 
-Now, to do the samething in __Javascript__:
+Now, to do the same thing in __Javascript__:
 
 ~~~ javascript
 yawp('/people/123').put('active').done( function(status) {} );
@@ -64,7 +64,7 @@ The following routes will be created and mapped to your methods:
   
 ### Request Parameters
 
-If you want to access the request parameters inside your actions, just add, as the last argument 
+If you want to access the request parameters inside your actions, just add,     as the last argument 
 in the method signature, a __Map<String, String>__:
 
 ~~~ java
