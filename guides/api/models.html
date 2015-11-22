@@ -244,7 +244,7 @@ of its APIs to be <strong>/people</strong>.</p>
 <h3 id="primitive-properties">Primitive Properties</h3>
 
 <p>The primitive types that can be used as models attributes are describe in the following table. More complex
-types can be persisted using the <strong>@Json</strong> annotation.</p>
+types can be persisted using the <strong>@Json</strong> annotation:</p>
 
 <table>
   <thead>
@@ -279,20 +279,19 @@ types can be persisted using the <strong>@Json</strong> annotation.</p>
 
 <h3 id="id">@Id</h3>
 
-<p>All models should to have one, and only one, <strong>IdRef</strong> attribute annotaded with <strong>@Id</strong>. This is
-the id of your model and it will be used to access your its information or to create a relationship
+<p>All models should have one, and only one, <strong>IdRef</strong> attribute annotaded with <strong>@Id</strong>. This is
+the id of your model and it will be used to access its information or to create a relationship
 with another model.</p>
 
 <h3 id="index">@Index</h3>
 
-<p>Then you have the <strong>string name</strong> attribute. It is self explanatory, this attribute is used to store the name
-of a given person. The <strong>@Index</strong> annotation tells yawp to create indexes to allow queries using this
+<p>The <strong>@Index</strong> annotation tells yawp to create indexes to allow queries using this
 attribute as a filter or order clause.</p>
 
 <h3 id="json">@Json</h3>
 
-<p>Lets say you want store a more complex information inside your model. You serialize the attribute as
-a json string, all you need to do is to mark it, for example:</p>
+<p>If you want store a more complex object inside your model, you will need to serialize 
+the attribute as a json string. For instance:</p>
 
 <pre><code class="language-java">@Json
 private Address address;

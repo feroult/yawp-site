@@ -238,7 +238,7 @@ of the <strong>YAWP!</strong> framework in practice.</p>
 
 <h3 id="the-app-backlog">The App Backlog</h3>
 
-<p>Before we start to code our to-do list api, lets take a look at the wishes of our user:</p>
+<p>Before we start to code our to-do list API, let’s take a look at the wish list of our “customer”:</p>
 
 <table>
   <thead>
@@ -278,22 +278,17 @@ of the <strong>YAWP!</strong> framework in practice.</p>
 
 <h3 id="create-the-app-project">Create the App Project</h3>
 
-<p>To bootstrap our api, lets use the <strong>YAWP!</strong> maven archetype:</p>
+<p>To bootstrap our API, let’s use the <strong>YAWP!</strong> maven archetype:</p>
 
 <pre><code class="language-bash">mvn archetype:generate \
    -DarchetypeGroupId=io.yawp -DarchetypeArtifactId=yawp -DarchetypeVersion=LATEST \
    -DgroupId=todoapp -DartifactId=todoapp -Dversion=1.0-SNAPSHOT
 </code></pre>
 
-<p>Inside the app folder, compile the project to verify the installation:</p>
+<p>Inside the app folder, start the development server:</p>
 
 <pre><code class="language-bash">cd todoapp
-mvn clean install
-</code></pre>
-
-<p>Start the development server:</p>
-
-<pre><code class="language-bash">mvn yawp:devserver
+mvn yawp:devserver
 </code></pre>
 
 <p><strong>Note:</strong> If you are using an IDE that automatically compiles to the project’s
@@ -303,9 +298,9 @@ target folder, you won’t need to restart the development server again, your ch
 <h3 id="user-story-create-tasks">#1 User Story: Create Tasks</h3>
 
 <p>To get the first user story done we’re going to need a place to store our tasks information. 
-To do this, we will create a <strong>Task</strong> endpoint running the yawp scaffolding plugin.</p>
+To do this, we will create a <strong>Task</strong> endpoint running the yawp’s scaffolding plugin.</p>
 
-<p>Open another shell window/tab and run the following command, inside the app root folder:</p>
+<p>Open another shell window/tab and run the following command:</p>
 
 <pre><code class="language-bash">mvn yawp:endpoint -Dmodel=task
 </code></pre>
@@ -317,7 +312,7 @@ To do this, we will create a <strong>Task</strong> endpoint running the yawp sca
 [INFO] Scaffold src/main/java/todoapp/models/task/TaskShield.java created.
 </code></pre>
 
-<p>Lets take a look at the <strong>TaskTesk</strong> class:</p>
+<p>Let’s take a look at the <strong>TaskTesk</strong> class:</p>
 
 <pre><code class="language-java">public class TaskTest extends EndpointTestCase {
 
@@ -333,7 +328,7 @@ To do this, we will create a <strong>Task</strong> endpoint running the yawp sca
 }
 </code></pre>
 
-<p>Now, lets make the test more realistic by adding some information to the task model:</p>
+<p>Now, let’s make the test more realistic by adding some information to the task model:</p>
 
 <pre><code class="language-java">public class TaskTest extends EndpointTestCase {
 
@@ -348,10 +343,10 @@ To do this, we will create a <strong>Task</strong> endpoint running the yawp sca
 }
 </code></pre>
 
-<p>Just remember to import static <strong>assertEquals</strong>.</p>
+<p>Just remember to import as static the <strong>assertEquals</strong> method.</p>
 
-<p>Now, our test class is not compiling because the title field does not exist in the <strong>Task</strong> endpoint model.
-Lets add it. Open the <strong>Task</strong> endpoint class to add the title attribute:</p>
+<p>Now, our test class is not compiling because the title field does not exist in the <strong>Task</strong> endpoint class. 
+Open it to add the title attribute:</p>
 
 <pre><code class="language-java">@Endpoint(path = "/tasks")
 public class Task {
@@ -367,8 +362,8 @@ public class Task {
 }
 </code></pre>
 
-<p>All endpoints must have one @Id attribute. It also has to be of type IfRef<t>, where T is the class 
-endpoint POJO class.</t></p>
+<p>All endpoints must have one and only one <strong>@Id</strong> attribute. It also has to be of type __IfRef<t>__, 
+where T is the endpoint POJO class.</t></p>
 
 <p>If we run the unit test again, everything should be ok. With this, we already have an API to create
 tasks. We can verify it with cURL:</p>
@@ -377,7 +372,8 @@ tasks. We can verify it with cURL:</p>
      -d "{'title': 'test task'}" http://localhost:8080/api/tasks
 </code></pre>
 
-<p>You also should try the javascript client. Open the javascript console of your browser and type:</p>
+<p>You should also try the yawp’s <a href="/guides/tutorials/the-javascript-client">javascript client</a>. Since the library
+is already loaded in this tutorial page, you can open the javascript console of your browser and type:</p>
 
 <pre><code class="language-javascript">// create a task
 yawp('/tasks').create({ title: 'js task' });
@@ -417,8 +413,8 @@ public List&lt;String&gt; getNotes() {
 
 <p>You may have noticed that you’ll only need to add getters and setters to the endpoint attributes 
 if you’re going to access them from your server side (java) code. Also, notice that the <strong>@Json</strong> 
-annotation is used to tell <strong>YAWP!</strong> that the attribute will be serialized as a json object when 
-the model is read from or writen to the persistency layer.</p>
+annotation is used to tell the framework that the attribute will be serialized as a json object when 
+the model is read from or written to the persistence layer.</p>
 
 <p>We can test our new API with javascript:</p>
 
@@ -434,7 +430,7 @@ yawp('/tasks').create({ title: 'task1',
 
 <h3 id="user-story-mark-as-done">#3 User Story: Mark as Done</h3>
 
-<p>To mark a task as done, we’re going to create a custom action. Lets first add a test:</p>
+<p>To mark a task as done, we’re going to create a custom action. Let’s first add a test:</p>
 
 <pre><code class="language-java">@Test
 public void testMarkAsDone() {
@@ -450,7 +446,7 @@ public void testMarkAsDone() {
 saying that there is no endpoint called done. This is because <strong>YAWP!</strong> cannot find a route 
 for that uri.</p>
 
-<p>Lets create an action for the given route using a scaffold:</p>
+<p>Let’s create an action for the given route using a scaffold:</p>
 
 <pre><code class="language-bash">mvn yawp:action -Dmodel=task -Dname=MarkAsDone
 </code></pre>
@@ -482,7 +478,7 @@ public boolean isDone() {
 }
 </code></pre>
 
-<p>Run the tests again, they should pass. Again, to access the API with javascript we can do it very easily:</p>
+<p>Run the tests again, they should pass. Again, to access the API with javascript:</p>
 
 <pre><code class="language-javascript">yawp('/tasks').create({}).done(function (task) {
     yawp(task).put('done');
@@ -492,14 +488,14 @@ public boolean isDone() {
 <h3 id="user-story-privacy">#4 User Story: Privacy</h3>
 
 <p>The last item in our MVP backlog tells that the user doesn’t want that other users have access to its
-tasks information. To do that we need to assign tasks to users, lets change our <strong>Task</strong> class to add
+tasks information. To do that we need to assign tasks to users, let’s change our <strong>Task</strong> class to add
 this association:</p>
 
 <pre><code class="language-java">@Index
 private String user;
 </code></pre>
 
-<p>First lets add a failing test:</p>
+<p>First let’s add a failing test:</p>
 
 <pre><code class="language-java">@Test
 public void testPrivacy() {
@@ -520,12 +516,12 @@ private AppengineTestHelper helper() {
 }
 </code></pre>
 
-<p>Note that we using the specific <strong>AppengineTestHelper</strong> because the environment already has a default
+<p>Note that we using the specific <strong>AppengineTestHelper</strong> because this environment already has a default
 support for users authentication. If we run it, the test should fail because the user Jim has access
-to the Janes task.</p>
+to the Janes’ task.</p>
 
-<p>To assign users to tasks, lets add a endpoint Hook to set the user attribute before the security 
-shield kicks in. Again, using a scaffold, run in the command line shell:</p>
+<p>To assign user to tasks, let’s add a endpoint Hook to set the user attribute before the security 
+shield kicks in. Again, using a scaffold:</p>
 
 <pre><code class="language-bash">mvn yawp:hook -Dmodel=task -Dname=SetUser
 </code></pre>
@@ -568,7 +564,7 @@ following:</p>
 
 <p>Run the <strong>TaskTest</strong> suite again. Oooops, now only the <strong>testPrivacy</strong> method is passing. This is
 because the other tests do not login the user before they create tasks. Lets fix this by adding a 
-default user to all tests. Just add the following before section to the <em>_TaskTest</em> class:</p>
+default user to all tests. Just add the following snippet before section to the <em>_TaskTest</em> class:</p>
 
 <pre><code class="language-java">@Before
 public void defaultLogin() {
