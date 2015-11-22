@@ -21,11 +21,11 @@ mvn archetype:generate \
    -Dversion=1.0-SNAPSHOT
 ~~~
 
-After that, you can cd into the __yawp-app__ folder and start the development server:
+After that, you can cd into the __yawpapp__ folder and start the development server:
 
 ~~~ bash
-cd yawp-app
+cd yawpapp
 mvn yawp:devserver
 ~~~
 
-Just point a web browser to [http://localhost:8080/api/people](http://localhost:8080/api/people) to test if the sample endpoint is responding.
+Just point a web browser to [http://localhost:8080/api](http://localhost:8080/api) to verify it.
