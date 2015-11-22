@@ -18,7 +18,7 @@ of the __YAWP!__ framework in practice.
 
 ### The App Backlog
 
-Before we start to code our to-do list api, lets take a look at the wishes of our user:
+Before we start to code our to-do list API, let's take a look at the wish list of our "customer":
 
 | # | Story         | As a user I want...    
 | - |-------------- |----------------------------
@@ -33,7 +33,7 @@ For reference, the complete source code of this tutorial can be found [here](htt
 
 ### Create the App Project
 
-To bootstrap our api, lets use the __YAWP!__ maven archetype:
+To bootstrap our API, let's use the __YAWP!__ maven archetype:
 
 ~~~ bash
 mvn archetype:generate \
@@ -41,16 +41,10 @@ mvn archetype:generate \
    -DgroupId=todoapp -DartifactId=todoapp -Dversion=1.0-SNAPSHOT
 ~~~
 
-Inside the app folder, compile the project to verify the installation:
+Inside the app folder, start the development server:
 
 ~~~ bash
 cd todoapp
-mvn clean install
-~~~
-
-Start the development server:
-
-~~~ bash
 mvn yawp:devserver
 ~~~
 
@@ -62,9 +56,9 @@ __hot deployed__ by the yawp's maven plugin.
 ### #1 User Story: Create Tasks
 
 To get the first user story done we're going to need a place to store our tasks information. 
-To do this, we will create a __Task__ endpoint running the yawp scaffolding plugin. 
+To do this, we will create a __Task__ endpoint running the yawp's scaffolding plugin. 
 
-Open another shell window/tab and run the following command, inside the app root folder:
+Open another shell window/tab and run the following command:
 
 ~~~ bash
 mvn yawp:endpoint -Dmodel=task
@@ -78,7 +72,7 @@ The scaffold will create three files:
 [INFO] Scaffold src/main/java/todoapp/models/task/TaskShield.java created.
 ~~~
 
-Lets take a look at the __TaskTesk__ class:
+Let's take a look at the __TaskTesk__ class:
 
 ~~~ java
 public class TaskTest extends EndpointTestCase {
@@ -95,7 +89,7 @@ public class TaskTest extends EndpointTestCase {
 }
 ~~~
 
-Now, lets make the test more realistic by adding some information to the task model:
+Now, let's make the test more realistic by adding some information to the task model:
 
 ~~~ java
 public class TaskTest extends EndpointTestCase {
@@ -111,10 +105,10 @@ public class TaskTest extends EndpointTestCase {
 }
 ~~~
 
-Just remember to import static __assertEquals__.
+Just remember to import as static the __assertEquals__ method.
 
-Now, our test class is not compiling because the title field does not exist in the __Task__ endpoint model.
-Lets add it. Open the __Task__ endpoint class to add the title attribute:
+Now, our test class is not compiling because the title field does not exist in the __Task__ endpoint class. 
+Open it to add the title attribute:
 
 ~~~ java
 @Endpoint(path = "/tasks")
@@ -131,8 +125,8 @@ public class Task {
 }
 ~~~
 
-All endpoints must have one @Id attribute. It also has to be of type IfRef<T>, where T is the class 
-endpoint POJO class.
+All endpoints must have one and only one __@Id__ attribute. It also has to be of type __IfRef<T>__, 
+where T is the endpoint POJO class.
 
 If we run the unit test again, everything should be ok. With this, we already have an API to create
 tasks. We can verify it with cURL:
@@ -142,7 +136,8 @@ curl -H "Content-type: application/json" -X POST \
      -d "{'title': 'test task'}" http://localhost:8080/api/tasks
 ~~~
 
-You also should try the javascript client. Open the javascript console of your browser and type:
+You should also try the yawp's [javascript client](/guides/tutorials/the-javascript-client). Since the library
+is already loaded in this tutorial page, you can open the javascript console of your browser and type:
  
 ~~~ javascript
 // create a task
@@ -185,8 +180,8 @@ If we run our tests, they should pass.
 
 You may have noticed that you'll only need to add getters and setters to the endpoint attributes 
 if you're going to access them from your server side (java) code. Also, notice that the __@Json__ 
-annotation is used to tell __YAWP!__ that the attribute will be serialized as a json object when 
-the model is read from or writen to the persistency layer. 
+annotation is used to tell the framework that the attribute will be serialized as a json object when 
+the model is read from or written to the persistence layer. 
 
 We can test our new API with javascript:
 
@@ -203,7 +198,7 @@ yawp('/tasks').create({ title: 'task1',
 
 ### #3 User Story: Mark as Done
 
-To mark a task as done, we're going to create a custom action. Lets first add a test:
+To mark a task as done, we're going to create a custom action. Let's first add a test:
 
 ~~~ java
 @Test
@@ -220,7 +215,7 @@ Create the missing task method and then run the test above. As you can see, we g
 saying that there is no endpoint called done. This is because __YAWP!__ cannot find a route 
 for that uri. 
 
-Lets create an action for the given route using a scaffold:
+Let's create an action for the given route using a scaffold:
 
 ~~~ bash
 mvn yawp:action -Dmodel=task -Dname=MarkAsDone
@@ -255,7 +250,7 @@ public boolean isDone() {
 }
 ~~~
 
-Run the tests again, they should pass. Again, to access the API with javascript we can do it very easily:
+Run the tests again, they should pass. Again, to access the API with javascript:
 
 ~~~ javascript
 yawp('/tasks').create({}).done(function (task) {
@@ -266,7 +261,7 @@ yawp('/tasks').create({}).done(function (task) {
 ### #4 User Story: Privacy
 
 The last item in our MVP backlog tells that the user doesn't want that other users have access to its
-tasks information. To do that we need to assign tasks to users, lets change our __Task__ class to add
+tasks information. To do that we need to assign tasks to users, let's change our __Task__ class to add
 this association:
 
 ~~~ java
@@ -274,7 +269,7 @@ this association:
 private String user;
 ~~~
 
-First lets add a failing test:
+First let's add a failing test:
 
 ~~~ java
 @Test
@@ -296,12 +291,12 @@ private AppengineTestHelper helper() {
 }
 ~~~
 
-Note that we using the specific __AppengineTestHelper__ because the environment already has a default
+Note that we using the specific __AppengineTestHelper__ because this environment already has a default
 support for users authentication. If we run it, the test should fail because the user Jim has access
-to the Janes task.
+to the Janes' task.
 
-To assign users to tasks, lets add a endpoint Hook to set the user attribute before the security 
-shield kicks in. Again, using a scaffold, run in the command line shell:
+To assign user to tasks, let's add a endpoint Hook to set the user attribute before the security 
+shield kicks in. Again, using a scaffold:
 
 ~~~ bash
 mvn yawp:hook -Dmodel=task -Dname=SetUser
@@ -347,7 +342,7 @@ public class TaskShield extends Shield<Task> {
 
 Run the __TaskTest__ suite again. Oooops, now only the __testPrivacy__ method is passing. This is
 because the other tests do not login the user before they create tasks. Lets fix this by adding a 
-default user to all tests. Just add the following before section to the __TaskTest_ class:
+default user to all tests. Just add the following snippet before section to the __TaskTest_ class:
 
 ~~~ java
 @Before

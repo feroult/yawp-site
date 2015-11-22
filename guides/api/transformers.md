@@ -3,7 +3,7 @@ layout: guides
 ---
 # Transformers
 
-The Transformer API is used to create different views of the same domain object. If you wan't to add 
+The Transformer API is used to create different views of the same domain object. If you want to add 
 or hide information to be returned to the client, the way to go is to use a Transfomer. For instance:
 
 ~~~ java
@@ -31,7 +31,7 @@ yawp('/people/123').transform('upperCase').first( function(person) {} );
 
 Note: All transformers can be applied for collections queries or fetching single objects.
 
-Finally, you can also create more sofisticated transformers using the presenter pattern, like this:
+Finally, you can also create more sophisticated transformers using the presenter pattern, like this:
 
 ~~~ java
 public class UserTransformer extends Transformer<User> {

@@ -221,10 +221,12 @@
     <div class="guide">
         <h1 id="actions">Actions</h1>
 
-<p>To add custom behavior to your domain object you can use the Action API. Imagine you need to 
-activate a given person. To do this you can create an Action class:</p>
+<p>To add custom behavior to your models you can use the Action API.</p>
 
 <h3 id="single-entity">Single Entity</h3>
+
+<p>Imagine you need to activate a given person. To do this you can create an Action class with
+single entity action method:</p>
 
 <pre><code class="language-java">public class ActivatePersonAction extends Action&lt;Person&gt; {
 
@@ -243,14 +245,14 @@ activate a given person. To do this you can create an Action class:</p>
 <pre><code class="language-bash">curl -X PUT http://localhost:8080/api/people/123/active
 </code></pre>
 
-<p>Now, to do the same thing in <strong>Javascript</strong>:</p>
+<p>To do the same thing in <strong>Javascript</strong>:</p>
 
 <pre><code class="language-javascript">yawp('/people/123').put('active').done( function(status) {} );
 </code></pre>
 
 <h3 id="over-collection">Over Collection</h3>
 
-<p>Also, an action be called over a single entity or over a collection. For an action over a collection, 
+<p>An action can also be over a collection of entities. To create an action over a collection, 
 don’t specify an IdRef argument in the method signature.</p>
 
 <p>Note that you can specify an IdRef only if you are targeting a <strong>@ParentId IdRef</strong>. In that case, it will

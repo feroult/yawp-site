@@ -221,7 +221,8 @@
     <div class="guide">
         <h1 id="query">Query</h1>
 
-<p>From a http/json call, a java or javascript method you can query your entities using a fluent 
+<p>From a http/json call, a <a href="/guides/tutorials/the-java-client">java</a> or 
+<a href="/guides/tutorials/the-javascript-client">javascript</a> method you can query your entities using a fluent 
 API that nicely exposes the Datastore Query class.</p>
 
 <p><strong>Javascript</strong>:</p>
@@ -242,7 +243,7 @@ List&lt;Person&gt; people = yawp(Person.class).order("name", "desc").list();
 List&lt;Person&gt; people = yawp(Person.class).from(parentId).list();
 </code></pre>
 
-<p>Other Java examples, also avaibale from http/json or Javascript:</p>
+<p>Other Java examples, also available from http/json or Javascript:</p>
 
 <pre><code class="language-java">yawp(Person.class).where("name", "=", "Mark").and("age", "&gt;=", 21).list();
 

@@ -3,10 +3,12 @@ layout: guides
 ---
 # Actions
 
-To add custom behavior to your domain object you can use the Action API. Imagine you need to 
-activate a given person. To do this you can create an Action class:
+To add custom behavior to your models you can use the Action API. 
 
 ### Single Entity
+
+Imagine you need to activate a given person. To do this you can create an Action class with
+single entity action method:
 
 ~~~ java
 public class ActivatePersonAction extends Action<Person> {
@@ -27,7 +29,7 @@ Now, to activate a given person, let's say with id 123, we can run:
 curl -X PUT http://localhost:8080/api/people/123/active
 ~~~
 
-Now, to do the same thing in __Javascript__:
+To do the same thing in __Javascript__:
 
 ~~~ javascript
 yawp('/people/123').put('active').done( function(status) {} );
@@ -35,7 +37,7 @@ yawp('/people/123').put('active').done( function(status) {} );
 
 ### Over Collection
 
-Also, an action be called over a single entity or over a collection. For an action over a collection, 
+An action can also be over a collection of entities. To create an action over a collection, 
 don't specify an IdRef argument in the method signature.
 
 Note that you can specify an IdRef only if you are targeting a __@ParentId IdRef__. In that case, it will

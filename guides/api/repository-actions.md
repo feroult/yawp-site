@@ -3,13 +3,16 @@ layout: guides
 ---
 # Repository Actions
 
-All endpoint models have default repository actions. That means that you can create, fetch, update/pache, 
-destroy and query.
+All endpoint models have default repository actions. That means that you can create, fetch, update/patch, 
+destroy and query them.
 
-You can use them in three ways: From the [java client](/guides/tutorials/the-java-client), the [javascript client](/guides/tutorials/the-javascript-client) or the raw http/json 
-API.
+You can access the repository APIs in three ways: 
 
-The following table sumarizes the avaible repository actions:
+* The [java client](/guides/tutorials/the-java-client);
+* The [javascript client](/guides/tutorials/the-javascript-client);
+* Or the raw http/json API.
+
+The following table summarizes the available repository actions:
 
 | Verb        | Path                    | Action           
 | ----------- |------------------------ | -------------------

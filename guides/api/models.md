@@ -27,7 +27,7 @@ of its APIs to be __/people__.
 ### Primitive Properties
 
 The primitive types that can be used as models attributes are describe in the following table. More complex
-types can be persisted using the __@Json__ annotation.
+types can be persisted using the __@Json__ annotation:
 
 | Type                  | Java type(s)    
 | --------------------- |---------------------------------------------------------------------------
@@ -39,21 +39,20 @@ types can be persisted using the __@Json__ annotation.
 
 ### @Id
 
-All models should to have one, and only one, __IdRef__ attribute annotaded with __@Id__. This is
-the id of your model and it will be used to access your its information or to create a relationship
+All models should have one, and only one, __IdRef__ attribute annotaded with __@Id__. This is
+the id of your model and it will be used to access its information or to create a relationship
 with another model.
 
 ### @Index
 
-Then you have the __string name__ attribute. It is self explanatory, this attribute is used to store the name
-of a given person. The __@Index__ annotation tells yawp to create indexes to allow queries using this
+The __@Index__ annotation tells yawp to create indexes to allow queries using this
 attribute as a filter or order clause.
 
 
 ### @Json
 
-Lets say you want store a more complex information inside your model. You serialize the attribute as
-a json string, all you need to do is to mark it, for example:
+If you want store a more complex object inside your model, you will need to serialize 
+the attribute as a json string. For instance:
 
 ~~~ java
 @Json

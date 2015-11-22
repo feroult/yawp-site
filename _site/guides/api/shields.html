@@ -221,9 +221,9 @@
     <div class="guide">
         <h1 id="shields">Shields</h1>
 
-<p>With Shields it is possible to provide security to your endoint APIs. It works like a firewall 
-white list where you can specify what is allowed. To create a simple Shield, just extend
-the Shield class for your endpoint:</p>
+<p>With Shields it is possible to provide security to your <a href="/guides/api/models">endpoint APIs</a>. 
+It works like a firewall  white list where you can specify what is allowed. To create a simple Shield, 
+just extend the Shield class for your endpoint:</p>
 
 <pre><code class="language-java">public class PersonShield extends Shield&lt;Person&gt; {
 
@@ -275,7 +275,22 @@ public void destroy(IdRef&lt;T&gt; id)
 
 <h3 id="custom-actions">Custom Actions</h3>
 
-<p><em>TODO</em></p>
+<p>To have a fine-grained access control of your custom actions, you can add methods to your shield that
+have the same signature/annotation of your actions. For instance, imagine this action method:</p>
+
+<pre><code class="language-java">@PUT("active")
+public void activate(IdRef&lt;Person&gt; id) {  
+    // ...
+}
+</code></pre>
+
+<p>To create a shield rule only for that action, you could have this shield method:</p>
+
+<pre><code class="language-java">@PUT("active")
+public void activate(IdRef&lt;Person&gt; id) {  
+    allow();
+}
+</code></pre>
 
 <h3 id="special-rules">Special Rules</h3>
 
@@ -286,7 +301,7 @@ public void destroy(IdRef&lt;T&gt; id)
 }    
 
 public void defaults() {
-   // for route without a more specific shield rule.
+   // for routes without a more specific shield rule.
 } 
 </code></pre>
 
@@ -301,9 +316,11 @@ public void always() {
 }
 </code></pre>
 
-<h3 id="shield-faades">Shield Façades</h3>
+<h3 id="shield-facades">Shield Facades</h3>
 
-<p>Finally, Shields have a façade API. That means you can specify which attributes of your model a user can read or write. To do this, create a java interface that your model implements. Inside this interface specify what setters and getters will be allowed:</p>
+<p>Finally, Shields have a facade API. That means you can specify which attributes of your model a 
+user can read or write. To do this, create a java interface that your model implements. 
+Inside this interface specify which setters and getters will be allowed:</p>
 
 <pre><code class="language-java">@Endpoint(path = "/people")
 public class Person implements NameFacade {

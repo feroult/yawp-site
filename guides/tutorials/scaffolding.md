@@ -21,7 +21,7 @@ the security Shield.
 mvn yawp:shield -Dmodel=person
 ~~~
 
-Create a __PersonShield_ if the endpoint model is not already shielded.
+Create a __PersonShield__ if the endpoint model is not already shielded.
 
 ### Action
 
