@@ -1,5 +1,6 @@
 #!/bin/bash
 jekyll b
+sed -i '' -e 's/\.html//g' _site/sitemap.xml
 git add .
 git commit -am "publishing"
 git push
