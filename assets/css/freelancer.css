@@ -225,9 +225,11 @@ section.success a.active {
     transition: all ease .5s;
 }
 
+/* popup
 #portfolio .portfolio-item .portfolio-link .caption:hover {
     opacity: 0.7;
 }
+*/
 
 #portfolio .portfolio-item .portfolio-link .caption .caption-content {
     position: absolute;

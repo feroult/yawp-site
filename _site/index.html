@@ -129,29 +129,32 @@
         </div>
         <div class="row">
             <div class="col-sm-4 portfolio-item">
-                <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                
+                <div class="portfolio-link">
                     <div class="caption">
                         <div class="caption-content">
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
                     <img src="assets/img/features/easy.png" class="img-responsive" alt="">
-                </a>
-                <div class="feature"><span>Elegant API DSL</span><br>A very simple and elegant domain specific language that helps you to create amazing and meaningful APIs to support your Apps.</div>
+                </div>
+                <div class="feature"><span>Crafted for APIs</span><br>A very simple and elegant domain specific language that helps you to create amazing APIs to support your Apps.</div>
             </div>
             <div class="col-sm-4 portfolio-item">
-                <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
+                
+                <div class="portfolio-link">   
                     <div class="caption">
                         <div class="caption-content">
                             <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
                     <img src="assets/img/features/scalable.png" class="img-responsive" alt="">
-                </a>
-                <div class="feature"><span>Auto Scaling</span><br>YAWP! natively supports the Google Appengine Platform. You build your apps, it scales Automatically. And it is free to start!</div>
+                </div>
+                <div class="feature"><span>Auto Scaling</span><br>It natively supports the Google Appengine Platform. Build your apps, scales automatically.</div>
             </div>
             <div class="col-sm-4 portfolio-item">
-                <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
+                
+                <div class="portfolio-link">                      
                     <div class="caption">
                         <div class="caption-content">
                             <i class="fa fa-search-plus fa-3x"></i>
@@ -159,7 +162,7 @@
                     </div>
                     <img src="assets/img/features/portable.png" class="img-responsive" alt="">
                 </a>
-                <div class="feature"><span>Platform Free</span><br>Don't worry... You are not locked in with Google. You can move freely to another platform with the PostgreSQL persistence driver.</div>
+                <div class="feature"><span>Platform Free</span><br>Move freely to any cloud platform you want with the PostgreSQL persistence driver. You are not locked in with Google.</div>
             </div>
         </div>
     </div>
@@ -197,6 +200,7 @@
             <div class="col-sm-6"><pre class="code"><code class="java">@Endpoint(path = "/people")
 public class Person {
     private IdRef&lt;Person&gt; id;
+    private String name;
 }</code></pre></div>
         </div>
         <div class="row space">
