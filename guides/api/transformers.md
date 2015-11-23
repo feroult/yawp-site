@@ -20,7 +20,7 @@ public class BasicObjectTransformer extends Transformer<Person> {
 Now, to transform a given person, let's say with id 123, you can:
 
 ~~~ bash
-curl -X GET http://localhost:8080/api<b>/people/123?t=upperCase</b>
+curl -X GET http://localhost:8080/api/people/123?t=upperCase
 ~~~
 
 The __Javascript__ equivalent would be:
