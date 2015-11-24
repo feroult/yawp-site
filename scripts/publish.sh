@@ -2,6 +2,7 @@
 jekyll b
 sed -i '' -e 's/\.html//g' _site/sitemap.xml
 sed -i '' -e 's/\<loc\>/\<loc\>http:\/\/yawp.io/g' _site/sitemap.xml
+cp _site/sitemap.xml _site/sitemap2.xml
 git add .
 git commit -am "publishing"
 git push
