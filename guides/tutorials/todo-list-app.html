@@ -512,14 +512,7 @@ public boolean isDone() {
 <h3 id="user-story-privacy">#4 User Story: Privacy</h3>
 
 <p>The last item in our MVP backlog tells that the user doesn’t want that other users have access to its
-tasks information. To do that we need to assign tasks to users, let’s change our <strong>Task</strong> class to add
-this association:</p>
-
-<pre><code class="language-java">@Index
-private String user;
-</code></pre>
-
-<p>First let’s add a failing test:</p>
+tasks information. First let’s add a test for that:</p>
 
 <pre><code class="language-java">@Test
 public void testPrivacy() {
@@ -540,12 +533,19 @@ private AppengineTestHelper helper() {
 }
 </code></pre>
 
-<p>Note that we using the specific <strong>AppengineTestHelper</strong> because this environment already has a default
+<p>Note that we are using the specific <strong>AppengineTestHelper</strong> because this environment already has a default
 support for users authentication. If we run it, the test should fail because the user Jim has access
 to the Janes’ task.</p>
 
-<p>To assign user to tasks, let’s add a endpoint Hook to set the user attribute before the security 
-shield kicks in. Again, using a scaffold:</p>
+<p>Now, to fulfil this requirement we need to assign tasks to users. Let’s change our <strong>Task</strong> class to add
+this association:</p>
+
+<pre><code class="language-java">@Index
+private String user;
+</code></pre>
+
+<p>Plus, to assign tasks to users we also need to add an endpoint Hook that sets the user attribute before the 
+security shield kicks in. Again, using a scaffold:</p>
 
 <pre><code class="language-bash">mvn yawp:hook -Dmodel=task -Dname=SetUser
 </code></pre>
