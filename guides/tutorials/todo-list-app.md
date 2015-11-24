@@ -261,15 +261,7 @@ yawp('/tasks').create({}).done(function (task) {
 ### #4 User Story: Privacy
 
 The last item in our MVP backlog tells that the user doesn't want that other users have access to its
-tasks information. To do that we need to assign tasks to users, let's change our __Task__ class to add
-this association:
-
-~~~ java
-@Index
-private String user;
-~~~
-
-First let's add a failing test:
+tasks information. First let's add a test for that:
 
 ~~~ java
 @Test
@@ -291,12 +283,20 @@ private AppengineTestHelper helper() {
 }
 ~~~
 
-Note that we using the specific __AppengineTestHelper__ because this environment already has a default
+Note that we are using the specific __AppengineTestHelper__ because this environment already has a default
 support for users authentication. If we run it, the test should fail because the user Jim has access
 to the Janes' task.
 
-To assign user to tasks, let's add a endpoint Hook to set the user attribute before the security 
-shield kicks in. Again, using a scaffold:
+Now, to fulfil this requirement we need to assign tasks to users. Let's change our __Task__ class to add
+this association:
+
+~~~ java
+@Index
+private String user;
+~~~
+
+Plus, to assign tasks to users we also need to add an endpoint Hook that sets the user attribute before the 
+security shield kicks in. Again, using a scaffold:
 
 ~~~ bash
 mvn yawp:hook -Dmodel=task -Dname=SetUser

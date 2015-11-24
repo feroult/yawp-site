@@ -40,7 +40,7 @@ mvn yawp:transformer -Dmodel=person -Dname=upperCase
 Create a __PersonUpperCaseTransformer__ transformer for the endpoint model.
 
 
-#### Hook
+### Hook
 
 ~~~ bash
 mvn yawp:hook -Dmodel=person -Dname=setUser
