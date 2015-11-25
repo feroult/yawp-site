@@ -1,5 +1,7 @@
 ---
 layout: guides
+title: "API: Models"
+description: Guides for the Models API with java code samples
 ---
 # Models
 

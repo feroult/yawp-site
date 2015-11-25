@@ -1,7 +1,9 @@
 ---
 layout: guides
+title: "Tutorials: To-do list app"
+description: A simple yet comprehensive tutorial that shows how to use the fundamental features of the YAWP! framework in practice.
 ---
-# To-Do List App
+# To-do list app
 
 This is a simple yet comprehensive tutorial that shows how to use the fundamental features
 of the __YAWP!__ framework in practice.

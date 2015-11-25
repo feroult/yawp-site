@@ -1,5 +1,7 @@
 ---
 layout: guides
+title: "Getting Started: Installing YAWP!"
+description: A guide on how to install the YAWP! framework
 ---
 # Installing YAWP!
 

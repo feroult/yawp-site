@@ -1,5 +1,7 @@
 ---
 layout: guides
+title: "API: Shields"
+description: Guides for the Shields API with code samples
 ---
 # Shields
 

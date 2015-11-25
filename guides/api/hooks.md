@@ -1,5 +1,7 @@
 ---
 layout: guides
+title: "API: Hooks"
+description: Guides for the Hooks API with java code samples
 ---
 # Hooks
 

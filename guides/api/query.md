@@ -1,5 +1,7 @@
 ---
 layout: guides
+title: "API: Query"
+description: Guides for the Query API with java and javascript code samples
 ---
 # Query
 

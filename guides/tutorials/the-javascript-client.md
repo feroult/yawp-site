@@ -1,7 +1,9 @@
 ---
 layout: guides
+title: "Tutorials: The Javascript client"
+description: A guide on how to use the YAWP!'s Javascript client
 ---
-# The Javascript Client
+# The Javascript client
 
 To access __YAWP!__ APIs from your web apps, you can use its javascript client library.
 

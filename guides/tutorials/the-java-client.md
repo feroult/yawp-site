@@ -1,7 +1,9 @@
 ---
 layout: guides
+title: "Tutorials: The Java client"
+description: A guide on how to use the YAWP!'s Java client
 ---
-# The Java Client
+# The Java client
 
 To access __YAWP!__ APIs from your server side endpoint features (shields, actions, transformers, hooks), 
 you need  use its java client API. The method/attribute __yawp__ is available inside all of them.

@@ -1,5 +1,7 @@
 ---
 layout: guides
+title: "Getting Started: Core concepts"
+description: An overview of the core concepts of the YAWP! framework
 ---
 # Core concepts
 

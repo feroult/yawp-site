@@ -1,5 +1,7 @@
 ---
 layout: guides
+title: "API: Repository Actions"
+description: Guides for the Repository Actions API
 ---
 # Repository Actions
 

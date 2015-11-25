@@ -1,5 +1,7 @@
 ---
 layout: guides
+title: "API: Actions"
+description: Guides for the Actions API with java and javascript code samples
 ---
 # Actions
 

@@ -1,7 +1,9 @@
 ---
 layout: guides
+title: "Getting Started: Your first API"
+description: A quick guide on how to create a simple YAWP! API
 ---
-# Your First API
+# Your first API
 
 To have your first API you just need to create an [Endpoint](/guides/api/models). It is done very
 easily with a scaffold:

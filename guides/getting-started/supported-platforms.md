@@ -1,5 +1,7 @@
 ---
 layout: guides
+title: "Getting Started: Supported platforms"
+description: Information about the YAWP!'s supported platforms
 ---
 # Supported platforms
 

@@ -1,5 +1,7 @@
 ---
 layout: guides
+title: "Tutorials: Scaffolding"
+description: List and details of the available YAWP!'s scaffold options
 ---
 # Scaffolding
 
