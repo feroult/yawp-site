@@ -1,5 +1,7 @@
 ---
 layout: guides
+title: Guides
+description: YAWP! framework documentation
 ---
 # Guides
 
