@@ -127,7 +127,7 @@ public class Task {
 }
 ~~~
 
-All endpoints must have one and only one __@Id__ attribute. It also has to be of type __IdRef<T>__, 
+All endpoints must have one and only one __@Id__ attribute. It also has to be of type __IdRef&lt;T&gt;__, 
 where T is the endpoint POJO class.
 
 If we run the unit test again, everything should be ok. With this, we already have an API to create
