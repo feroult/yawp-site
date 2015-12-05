@@ -251,7 +251,7 @@ powerful web APIs.</p>
 
 <h3 id="endpoint-models">Endpoint Models</h3>
 
-<p>In the center of everything are the <a href="/api/models"><strong>Endpoint Models</strong></a>. More precisely, they are <strong>Active Web Documents</strong>:</p>
+<p>In the center of everything are the <a href="/guides/api/models"><strong>Endpoint Models</strong></a>. More precisely, they are <strong>Active Web Documents</strong>:</p>
 
 <ul>
   <li>
@@ -275,7 +275,7 @@ public class Person {
 }
 </code></pre>
 
-<p>This is the only configuration needed to create the <strong>Person</strong> endpoint model, which by default gives 
+<p>This is the only configuration needed to create the <strong>Person</strong> endpoint model, which by default gives
 you the repository actions with a complete set of Web APIs to access it:</p>
 
 <table>
@@ -317,8 +317,8 @@ you the repository actions with a complete set of Web APIs to access it:</p>
 
 <h3 id="endpoint-features">Endpoint Features</h3>
 
-<p>The default rest repository can be extended with custom business logic and this is done by means 
-of extending  a set of APIs known as <strong>Endpoint Features</strong>. They were carefully selected 
+<p>The default rest repository can be extended with custom business logic and this is done by means
+of extending  a set of APIs known as <strong>Endpoint Features</strong>. They were carefully selected
 to organize specific responsibilities together:</p>
 
 <ul>
@@ -334,7 +334,7 @@ to organize specific responsibilities together:</p>
     <p><strong>Transfomers</strong>: Used to customize different views of the same model entity;</p>
   </li>
   <li>
-    <p><strong>Shields</strong>: A complete set of features to add security to your endpoints. You can protected a group or 
+    <p><strong>Shields</strong>: A complete set of features to add security to your endpoints. You can protected a group or
  individual routes, based on user information or the contents of your models;</p>
   </li>
   <li>
@@ -344,11 +344,10 @@ to organize specific responsibilities together:</p>
 
 <h3 id="static-typed-over-a-schemaless-persistence-layer">Static Typed over a Schemaless Persistence Layer</h3>
 
-<p>We’ve selected Java as the core language of <strong>YAWP!</strong> because it is static typed at the compile time. 
-The main idea is to have a explicit and well organized place to declare your models structure. 
+<p>We’ve selected Java as the core language of <strong>YAWP!</strong> because it is static typed at the compile time.
+The main idea is to have a explicit and well organized place to declare your models structure.
 Since we are working over a schemaless persistence layer this setup can be very powerful, mixing
 flexibility and stability.</p>
-
 
     </div>
 </div>
