@@ -30,4 +30,4 @@ cd yawpapp
 mvn yawp:devserver
 ~~~
 
-Just point a web browser to [http://localhost:8080/api](http://localhost:8080/api) to verify it.
+Just point a web browser to [http://localhost:8080/api](http://localhost:8080/api/) to verify it.
