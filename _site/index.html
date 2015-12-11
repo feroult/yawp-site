@@ -122,7 +122,7 @@
                 <div class="intro">
                     <img class="img-responsive" src="assets/img/yeti.png" alt="" style="display: inline-block;">
                     <div class="intro-code" style="display: inline-block;">
-<pre class="code"><code class="shell">$ mvn archetype:generate \
+                        <pre class="code"><code class="shell">$ mvn archetype:generate \
     -DarchetypeGroupId=io.yawp \
     -DarchetypeArtifactId=yawp \
     -DarchetypeVersion=LATEST
@@ -187,7 +187,8 @@
                     </div>
                     <img src="assets/img/features/portable.png" class="img-responsive" alt="">
                 </a>
-                <div class="feature"><span>Platform Free</span><br>Move freely to any cloud platform you want with the PostgreSQL persistence driver.</div>
+                <div class="feature"><span>Platform Free</span>
+                    <br>Move freely to any cloud platform you want with the PostgreSQL persistence driver.</div>
             </div>
         </div>
     </div>
@@ -210,13 +211,15 @@
     -DarchetypeGroupId=io.yawp \
     -DarchetypeArtifactId=yawp \
     -DarchetypeVersion=LATEST
-</code></pre></div>
+</code></pre>
+            </div>
         </div>
         <div class="row space">
             <div class="col-sm-6 step-text">
                 <p>Start the development server</p>
             </div>
-            <div class="col-sm-6"><pre class="code"><code class="shell">$ mvn yawp:devserver</code></pre></div>
+            <div class="col-sm-6"><pre class="code"><code class="shell">$ mvn yawp:devserver</code></pre>
+            </div>
         </div>
         <div class="row space">
             <div class="col-sm-6 col-sm-offset-0 step-text">
@@ -226,7 +229,8 @@
 public class Person {
     private IdRef&lt;Person&gt; id;
     private String name;
-}</code></pre></div>
+}</code></pre>
+            </div>
         </div>
         <div class="row space">
             <div class="col-sm-6 col-sm-offset-0 step-text">
@@ -234,7 +238,8 @@ public class Person {
             </div>
             <div class="col-sm-6"><pre class="code"><code class="java">yawp('/people')
     .create({ name: 'Janes' })
-    .done(function(person) { })</code></pre></div>
+    .done(function(person) { })</code></pre>
+            </div>
         </div>
         <div class="row space">
             <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -262,7 +267,8 @@ public class Person {
         </div>
         <div class="row">
             <div class="col-sm-12 link">
-                <p><strong>#YAWP</strong> at <a href="https://freenode.net" target="_blank">freenode.net</a></p>
+                <p><strong>#YAWP</strong> at <a href="https://freenode.net" target="_blank">freenode.net</a>
+                </p>
             </div>
         </div>
         <div class="row space contributors">
@@ -270,20 +276,32 @@ public class Person {
                 <p><i class="fa fa-group"></i>&nbsp;&nbsp;Contributors</p>
             </div>
         </div>
-        <div class="row">
+        <div class="row contributors-images">
             <div class="col-sm-12 link">
-               <img src="https://avatars3.githubusercontent.com/u/1079279?v=3&s=100" />
-               <img src="https://avatars2.githubusercontent.com/u/882703?v=3&s=100" />
-               <img src="https://avatars0.githubusercontent.com/u/455623?v=3&s=100" />
-               <img src="https://avatars2.githubusercontent.com/u/4284504?v=3&s=100" />
-               <img src="https://avatars0.githubusercontent.com/u/832830?v=3&s=100" />
+                <a href="https://github.com/karreiro" target="_blank">
+                    <img src="https://avatars3.githubusercontent.com/u/1079279?v=3&s=60" />
+                </a>
+                <a href="https://github.com/luanpotter" target="_blank">
+                    <img src="https://avatars2.githubusercontent.com/u/882703?v=3&s=60" />
+                </a>
+                <a href="https://github.com/feroult" target="_blank">
+                    <img src="https://avatars0.githubusercontent.com/u/455623?v=3&s=60" />
+                </a>
+                <a href="https://github.com/daniloPereiraDeluca" target="_blank">
+                    <img src="https://avatars2.githubusercontent.com/u/4284504?v=3&s=60" />
+                </a>
+                <a href="https://github.com/paulovmr" target="_blank">
+                    <img src="https://avatars0.githubusercontent.com/u/832830?v=3&s=60" />
+                </a>
+                <a hef="https://github.com/wapmesquita" target="_blank">
+                    <img src="https://avatars1.githubusercontent.com/u/1653466?v=3&s=60" />
+                </a>
             </div>
         </div>
-        
-        
+
+
     </div>
 </section>
-
 
 
 
