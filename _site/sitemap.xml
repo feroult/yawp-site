@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/guides/api/actions.html</loc>
+    <loc>http://yawp.io/guides/api/actions</loc>
   </url>
   <url>
-    <loc>/guides/getting-started/core-concepts.html</loc>
+    <loc>http://yawp.io/guides/getting-started/core-concepts</loc>
   </url>
   <url>
-    <loc>/guides/api/hooks.html</loc>
+    <loc>http://yawp.io/guides/api/hooks</loc>
   </url>
   <url>
-    <loc>/</loc>
+    <loc>http://yawp.io/</loc>
   </url>
   <url>
-    <loc>/guides/</loc>
+    <loc>http://yawp.io/guides/</loc>
   </url>
   <url>
-    <loc>/guides/getting-started/installing-yawp.html</loc>
+    <loc>http://yawp.io/guides/getting-started/installing-yawp</loc>
   </url>
   <url>
-    <loc>/guides/api/models.html</loc>
+    <loc>http://yawp.io/guides/api/models</loc>
   </url>
   <url>
-    <loc>/guides/api/query.html</loc>
+    <loc>http://yawp.io/guides/api/query</loc>
   </url>
   <url>
-    <loc>/guides/api/repository-actions.html</loc>
+    <loc>http://yawp.io/guides/api/repository-actions</loc>
   </url>
   <url>
-    <loc>/guides/tutorials/scaffolding.html</loc>
+    <loc>http://yawp.io/guides/tutorials/scaffolding</loc>
   </url>
   <url>
-    <loc>/guides/api/shields.html</loc>
+    <loc>http://yawp.io/guides/api/shields</loc>
   </url>
   <url>
-    <loc>/guides/getting-started/supported-platforms.html</loc>
+    <loc>http://yawp.io/guides/getting-started/supported-platforms</loc>
   </url>
   <url>
-    <loc>/guides/tutorials/the-java-client.html</loc>
+    <loc>http://yawp.io/guides/tutorials/the-java-client</loc>
   </url>
   <url>
-    <loc>/guides/tutorials/the-javascript-client.html</loc>
+    <loc>http://yawp.io/guides/tutorials/the-javascript-client</loc>
   </url>
   <url>
-    <loc>/guides/tutorials/todo-list-app.html</loc>
+    <loc>http://yawp.io/guides/tutorials/todo-list-app</loc>
   </url>
   <url>
-    <loc>/guides/api/transformers.html</loc>
+    <loc>http://yawp.io/guides/api/transformers</loc>
   </url>
   <url>
-    <loc>/guides/getting-started/your-first-api.html</loc>
+    <loc>http://yawp.io/guides/getting-started/your-first-api</loc>
   </url>
   <url>
-    <loc>/guides/sandbox/index.html</loc>
+    <loc>http://yawp.io/guides/sandbox/index</loc>
     <lastmod>2015-11-20T16:06:24-02:00</lastmod>
   </url>
 </urlset>
