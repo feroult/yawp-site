@@ -148,6 +148,21 @@ div.step-text {
     font-size: 1.4em;
 }
 
+#community .contributors {
+    margin-bottom: 20px;
+}
+
+#community img {
+    margin-right: 30px;
+    border-radius: 10px;
+    opacity: 0.8;
+/*
+    filter: gray; 
+    filter: grayscale(1);
+    -webkit-filter: grayscale(1); 
+*/
+}
+
 /* modal */
 img.img-modal {
     width: 50%;
