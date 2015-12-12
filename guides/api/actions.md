@@ -5,7 +5,7 @@ description: Guides for the Actions API with java and javascript code samples
 ---
 # Actions
 
-To add custom behavior to your models you can use the Action API. 
+To add custom behavior to your models you can use the Action API.
 
 ### Single Entity
 
@@ -39,7 +39,7 @@ yawp('/people/123').put('active').done( function(status) {} );
 
 ### Over Collection
 
-An action can also be over a collection of entities. To create an action over a collection, 
+An action can also be over a collection of entities. To create an action over a collection,
 don't specify an IdRef argument in the method signature.
 
 Note that you can specify an IdRef only if you are targeting a __@ParentId IdRef__. In that case, it will
@@ -65,28 +65,65 @@ The following routes will be created and mapped to your methods:
 
   * GET /users/me -> call the action me()
   * GET /company/{companyId}/users/firstChild -> call the action firstUser()
-  
+
+### Request Json Payload
+
+In actions, it is also possible to capture the json payload from the request.
+This is simply done by adding a String or a Java POJO/Endpoint argument to the action's
+method signature:
+
+~~~ java
+public class PersonAction extends Action<Person> {
+
+    @POST
+    public Person addAddress1(IdRef<Person> id, String json) {
+        Address address = from(json, Address.class);
+        person.setAddress(address);
+        yawp.save(person);
+    }
+
+    // Or
+
+    @POST
+    public Person addAddress2(IdRef<Person> id, Address address) {
+        person.setAddress(address);
+        yawp.save(person);
+    }
+
+}
+~~~
+
+To invoke those actions from the javascript client:
+
+~~~ javascript
+yawp('/people/1').json({ city: 'Paris' }).post('add-address-1');
+
+// Or
+
+yawp('/people/1').json({ city: 'Paris' }).post('add-address-2');
+~~~
+
 ### Request Parameters
 
-If you want to access the request parameters inside your actions, just add,     as the last argument 
-in the method signature, a __Map<String, String>__:
+If you want to access the request parameters inside your action just add
+a __Map<String, String>__ in the method signature:
 
 ~~~ java
 public class PersonAction extends Action<Person> {
     // single entity
-    @GET("params1")
+    @GET
     public Person me(IdRef<Person> id, Map<String, String> params) {
         // ...
     }
 
     // over collection
-    @GET("params2")
+    @GET
     public Person me(Map<String, String> params) {
         // ...
     }
 
     // over collection with parent IdRef
-    @GET("params3")
+    @GET
     public Person first(IdRef<Company> companyId  Map<String, String> params) {
         // ...
     }

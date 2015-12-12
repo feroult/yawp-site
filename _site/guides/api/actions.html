@@ -277,7 +277,7 @@ single entity action method:</p>
 
 <h3 id="over-collection">Over Collection</h3>
 
-<p>An action can also be over a collection of entities. To create an action over a collection, 
+<p>An action can also be over a collection of entities. To create an action over a collection,
 don’t specify an IdRef argument in the method signature.</p>
 
 <p>Note that you can specify an IdRef only if you are targeting a <strong>@ParentId IdRef</strong>. In that case, it will
@@ -305,26 +305,61 @@ be an action over collection for all children of that <strong>@ParentId</strong>
   <li>GET /company/{companyId}/users/firstChild -&gt; call the action firstUser()</li>
 </ul>
 
+<h3 id="request-json-payload">Request Json Payload</h3>
+
+<p>In actions, it is also possible to capture the json payload from the request.
+This is simply done by adding a String or a Java POJO/Endpoint argument to the action’s
+method signature:</p>
+
+<pre><code class="language-java">public class PersonAction extends Action&lt;Person&gt; {
+
+    @POST
+    public Person addAddress1(IdRef&lt;Person&gt; id, String json) {
+        Address address = from(json, Address.class);
+        person.setAddress(address);
+        yawp.save(person);
+    }
+
+    // Or
+
+    @POST
+    public Person addAddress2(IdRef&lt;Person&gt; id, Address address) {
+        person.setAddress(address);
+        yawp.save(person);
+    }
+
+}
+</code></pre>
+
+<p>To invoke those actions from the javascript client:</p>
+
+<pre><code class="language-javascript">yawp('/people/1').json({ city: 'Paris' }).post('add-address-1');
+
+// Or
+
+yawp('/people/1').json({ city: 'Paris' }).post('add-address-2');
+</code></pre>
+
 <h3 id="request-parameters">Request Parameters</h3>
 
-<p>If you want to access the request parameters inside your actions, just add,     as the last argument 
-in the method signature, a <strong>Map&lt;String, String&gt;</strong>:</p>
+<p>If you want to access the request parameters inside your action just add
+a <strong>Map&lt;String, String&gt;</strong> in the method signature:</p>
 
 <pre><code class="language-java">public class PersonAction extends Action&lt;Person&gt; {
     // single entity
-    @GET("params1")
+    @GET
     public Person me(IdRef&lt;Person&gt; id, Map&lt;String, String&gt; params) {
         // ...
     }
 
     // over collection
-    @GET("params2")
+    @GET
     public Person me(Map&lt;String, String&gt; params) {
         // ...
     }
 
     // over collection with parent IdRef
-    @GET("params3")
+    @GET
     public Person first(IdRef&lt;Company&gt; companyId  Map&lt;String, String&gt; params) {
         // ...
     }
@@ -365,7 +400,7 @@ in the method signature, a <strong>Map&lt;String, String&gt;</strong>:</p>
 
     <!-- jQuery -->
     <script src="/assets/js/jquery.js"></script>
-    <script src="https://rawgit.com/feroult/yawp/yawp-1.3.8/yawp-core/src/main/js/yawp.js"></script>
+    <script src="https://rawgit.com/feroult/yawp/yawp-1.3.14/yawp-core/src/main/js/yawp.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="/assets/js/bootstrap.min.js"></script>

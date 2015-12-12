@@ -20,8 +20,8 @@ To access __YAWP!__ APIs from your web apps, you can use its javascript client l
 
 ~~~ html
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://rawgit.com/feroult/yawp/yawp-1.3.8/yawp-core/src/main/js/yawp.js"></script>
-~~~ 
+<script src="https://rawgit.com/feroult/yawp/yawp-1.3.14/yawp-core/src/main/js/yawp.js"></script>
+~~~
 
 ### Setup
 
@@ -70,7 +70,7 @@ yawp('/people').list(function (people) {
 ### Custom Actions
 
 ~~~ javascript
-// @GET("me") over collection action 
+// @GET("me") over collection action
 yawp('/people').get('me').done(function (person) {
     console.log(person);
 });
@@ -81,7 +81,7 @@ yawp('/people/1').put('reverse-name').done(function (person) {
 });
 ~~~
 
-### Query 
+### Query
 
 ~~~ javascript
 // where + list
@@ -119,4 +119,3 @@ yawp('/people').transform('upperCase').first(function (person) {
     console.log(person);
 });
 ~~~
-
