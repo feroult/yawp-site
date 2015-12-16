@@ -8,7 +8,7 @@ description: A guide on how to install the YAWP! framework
 The prerequisites to install __YAWP__ are:
 
  * Java SDK 1.7 or greater
- * Maven 3.0 or greater
+ * Maven 3.3 or greater
 
 The easiest way to install it is using its maven archetype.
 You may change the values of the __groupId__, __artifactId__ and __version__ variables:
