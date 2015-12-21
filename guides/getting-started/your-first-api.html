@@ -256,8 +256,10 @@ easily with a scaffold:</p>
 
 <pre><code class="language-java">@Endpoint(path = "/people")
 public class Person {
-    private IdRef&lt;Person&gt; id;
-    private String name;
+    @Id
+    IdRef&lt;Person&gt; id;
+    
+    String name;
 }
 </code></pre>
 
