@@ -17,8 +17,10 @@ Now we can change the __Person__ class to add the __name__ attribute:
 ~~~ java
 @Endpoint(path = "/people")
 public class Person {
-    private IdRef<Person> id;
-    private String name;
+    @Id
+    IdRef<Person> id;
+    
+    String name;
 }
 ~~~
 
