@@ -1,3 +1,18 @@
+{% if page.url == '/' %}
+  {% assign homePrefix = '' %}
+{% endif %}
+
+{% if page.url contains '/guides' %}
+  {% assign homePrefix = '/' %}
+  {% assign guidesActive = 'active' %}
+{% endif %}
+
+{% if page.url contains '/blog' %}
+  {% assign homePrefix = '/' %}
+  {% assign blogActive = 'active' %}
+{% endif %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +28,7 @@
     <title>YAWP! - {{ page.title }}</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="/assets/css/freelancer.css" rel="stylesheet">
@@ -43,8 +58,8 @@
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-54832827-1', 'auto');
-    ga('send', 'pageview');
+//    ga('create', 'UA-54832827-1', 'auto');
+//    ga('send', 'pageview');
 
     </script>
     <!-- End Google Analytics -->
@@ -90,34 +105,21 @@
                     <!-- <li class="page-scroll">
                         <a href="#page-top">Home</a>
                     </li> -->
-                {% if page.url == '/' %}
                     <li class="page-scroll">
-                        <a href="#portfolio">Features</a>
+                        <a href="{{ homePrefix }}#portfolio">Features</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#kickstart">Kickstart</a>
+                        <a href="{{ homePrefix }}#kickstart">Kickstart</a>
                     </li>
                     <li class="page-scroll">
+                        <a href="{{ homePrefix }}#community">Community</a>
+                    </li>
+                    <li class="page-scroll {{ guidesActive }}">
                         <a href="/guides">Guides</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#community">Community</a>
-                    </li>
-                {% else  %}
-                    <li class="page-scroll">
-                        <a href="/#portfolio">Features</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="/#kickstart">Kickstart</a>
-                    </li>
-                    <li class="page-scroll active">
-                        <a href="/guides">Guides</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="/#community">Community</a>
-                    </li>
-                {% endif %}
-
+                    </li>                    
+                    <li class="page-scroll {{ blogActive }}">
+                        <a href="/blog">Blog</a>
+                    </li>                                        
                     <li class="page-scroll">
                         <a href="http://github.com/feroult/yawp" target="_blank">GITHUB&nbsp;&nbsp;<i class="fa fa-github" style="font-size: 1.2em;"></i></a>
                     </li>
