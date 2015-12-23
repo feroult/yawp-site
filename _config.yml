@@ -1,3 +1,4 @@
 exclude: [ scripts ]
+permalink: /blog/:year/:month/:day/:title
 gems:
   - jekyll-sitemap
