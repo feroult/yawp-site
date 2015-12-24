@@ -15,7 +15,7 @@ As you can see, each blog post contains a topic for open discussion. Feel
 free to ask questions, give feedbacks or whatever comes to mind. The only rule 
 is to be respectful ;)
 
-Thanks for all **YAWP!'s contributors** and **Marry Xmas!**
+Thanks for all **YAWP!'s contributors** and **Merry Xmas!**
 
 
 
