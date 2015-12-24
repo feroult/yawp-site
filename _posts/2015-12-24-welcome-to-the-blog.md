@@ -6,7 +6,7 @@ title: Welcome to the Blog!
 This is the very first post on this blog!
 
 From now on, this is where we will announce information about all the 
-relevant  releases of the framework, including new features, bugfix, tips, 
+relevant  releases of the framework, including new features, bugfixes, tips, 
 usage examples and more.
 
 <!--more-->
