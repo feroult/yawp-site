@@ -1,17 +1,18 @@
 {% if page.url == '/' %}
-  {% assign homePrefix = '' %}
+    {% assign homePrefix = '' %}
+    {% assign pageScroll = 'page-scroll' %}
+{% else %}
+    {% assign homePrefix = '/' %}
+    {% assign pageScroll = '' %}
 {% endif %}
 
 {% if page.url contains '/guides' %}
-  {% assign homePrefix = '/' %}
-  {% assign guidesActive = 'active' %}
+    {% assign guidesActive = 'active' %}
 {% endif %}
 
 {% if page.url contains '/blog' %}
-  {% assign homePrefix = '/' %}
-  {% assign blogActive = 'active' %}
+    {% assign blogActive = 'active' %}
 {% endif %}
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +22,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% if page.id %}    
+    <meta name="description" content="{{ page.excerpt | strip_html }}">
+    {% else %}
     <meta name="description" content="{{ page.description }}">
+    {% endif %}    
     <meta name="author" content="Fernando Ultremare and YAWP! contributors">
     <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
 
@@ -58,8 +63,8 @@
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-//    ga('create', 'UA-54832827-1', 'auto');
-//    ga('send', 'pageview');
+    ga('create', 'UA-54832827-1', 'auto');
+    ga('send', 'pageview');
 
     </script>
     <!-- End Google Analytics -->
@@ -105,22 +110,22 @@
                     <!-- <li class="page-scroll">
                         <a href="#page-top">Home</a>
                     </li> -->
-                    <li class="page-scroll">
+                    <li class="{{ pageScroll }}">
                         <a href="{{ homePrefix }}#portfolio">Features</a>
                     </li>
-                    <li class="page-scroll">
+                    <li class="{{ pageScroll }}">
                         <a href="{{ homePrefix }}#kickstart">Kickstart</a>
                     </li>
-                    <li class="page-scroll">
+                    <li class="{{ pageScroll }}">
                         <a href="{{ homePrefix }}#community">Community</a>
                     </li>
-                    <li class="page-scroll {{ guidesActive }}">
+                    <li class="{{ guidesActive }}">
                         <a href="/guides">Guides</a>
                     </li>                    
-                    <li class="page-scroll {{ blogActive }}">
+                    <li class="{{ blogActive }}">
                         <a href="/blog">Blog</a>
                     </li>                                        
-                    <li class="page-scroll">
+                    <li>
                         <a href="http://github.com/feroult/yawp" target="_blank">GITHUB&nbsp;&nbsp;<i class="fa fa-github" style="font-size: 1.2em;"></i></a>
                     </li>
                 </ul>
