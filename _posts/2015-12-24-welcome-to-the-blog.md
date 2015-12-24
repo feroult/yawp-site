@@ -16,11 +16,3 @@ free to ask questions, give feedbacks or whatever comes to mind. The only rule
 is to be respectful ;)
 
 Thanks for all **YAWP!'s contributors** and **Merry Xmas!**
-
-
-
-
-
-
-
-
