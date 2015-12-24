@@ -214,3 +214,9 @@ h3:before {
     padding-right: 15px;
     border: 1px solid #aaa;
 }
+
+.post-date {
+    margin-left: 30px;
+    font-size: 18px;
+    color: #aaa;
+}
