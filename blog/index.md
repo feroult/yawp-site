@@ -1,6 +1,7 @@
 ---
 layout: blog
 title: Blog
+description: YAWP! Framework Blog. Announcements for releases, bugfixes, tips and more.
 ---
 
 {% for post in site.posts %}
