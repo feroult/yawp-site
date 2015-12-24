@@ -24,6 +24,7 @@ documentation, is the Person endpoint:
 ~~~ java
 @Endpoint(path = "/people")
 public class Person {
+    @Id
     private IdRef<Person> id;
     private String name;
 }
