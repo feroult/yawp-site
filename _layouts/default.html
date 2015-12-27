@@ -1,4 +1,5 @@
 {% if page.url == '/' %}
+    {% assign home = true %}
     {% assign homePrefix = '' %}
     {% assign pageScroll = 'page-scroll' %}
 {% else %}
@@ -79,6 +80,13 @@
     })();
     </script>
     <!-- End Inspectlet Embed Code -->
+    
+    
+    {% if home %}
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/highlight.js/8.9.1/styles/zenburn.min.css">
+    {% else %}
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/highlight.js/8.9.1/styles/atelier-cave.light.min.css"> 
+    {% endif %}
 
     {{ page.sections['header'] | textilize }}
 
@@ -187,8 +195,12 @@
     <!-- code formatter -->
     <script>hljs.initHighlightingOnLoad();</script>
 
-    {{ page.sections['scripts'] | textilize }}
+    {% if home %}
+    {% else %}
+    <script src="/assets/js/guides.js"></script>
+    {% endif %}   
 
+    {{ page.sections['scripts'] | textilize }}
 
     <script>
         yawp.config(function (c) {
