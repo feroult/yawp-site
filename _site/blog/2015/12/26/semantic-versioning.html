@@ -12,13 +12,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <meta name="description" content="A quick guide on how to create a simple YAWP! API">
+        
+    <meta name="description" content="Starting with version 1.4.0, to be released in a few days, YAWP! will enforce
+more strictly the semantic versioning scheme to indicate how 
+changes affects its API.
+
+Actually, you probably have had no problems so far, because we’ve been using a model 
+very similar with only few differences.
+
+">
         
     <meta name="author" content="Fernando Ultremare and YAWP! contributors">
     <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
 
-    <title>YAWP! - Getting Started: Your first API</title>
+    <title>YAWP! - Semantic Versioning</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -110,10 +117,10 @@
                     <li class="">
                         <a href="/#community">Community</a>
                     </li>
-                    <li class="active">
+                    <li class="">
                         <a href="/guides">Guides</a>
                     </li>                    
-                    <li class="">
+                    <li class="active">
                         <a href="/blog">Blog</a>
                     </li>                                        
                     <li>
@@ -126,77 +133,29 @@
         <!-- /.container-fluid -->
     </nav>
 
-    
-
-
-
-
-
-<div class="container">
+    <div class="container">
     <div id="accordion" class="panel-group">
         <div class="sidebar">
             <div class="panel panel-default">
                 <a data-toggle="collapse" href="#getting-started">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Getting Started</h4>
+                        <h4 class="panel-title">Recent Posts</h4>
                     </div>
                 </a>
 
                 <div id="getting-started" class="panel-collapse collapse in">
                     <div class="panel-body">
                         <ul>
-                            <a href="/guides/getting-started/installing-yawp">
-                                <li class="installing-yawp">
-                                    Installing YAWP!
+                            
+                            <a href="/blog/2015/12/26/semantic-versioning">
+                                <li class="semantic-versioning">
+                                    Semantic Versioning
                                 </li>
                             </a>
-                            <a href="/guides/getting-started/your-first-api">
-                                <li class="your-first-api">
-                                    Your first API
-                                </li>
-                            </a>
-                            <a href="/guides/getting-started/core-concepts">
-                                <li class="core-concepts">
-                                    Core concepts
-                                </li>
-                            </a>
-                            <a href="/guides/getting-started/supported-platforms">
-                                <li class="supported-platforms">
-                                    Supported platforms
-                                </li>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <a data-toggle="collapse" href="#tutorials">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">Tutorials</h4>
-                    </div>
-                </a>
-
-                <div id="tutorials" class="panel-collapse collapse ">
-                    <div class="panel-body">
-                        <ul>
-                            <a href="/guides/tutorials/todo-list-app">
-                                <li class="todo-list-app">
-                                    To-do list app
-                                </li>
-                            </a>
-                            <a href="/guides/tutorials/scaffolding">
-                                <li class="scaffolding">
-                                    Scaffolding
-                                </li>
-                            </a>
-                            <a href="/guides/tutorials/the-javascript-client">
-                                <li class="the-javascript-client">
-                                    The Javascript client
-                                </li>
-                            </a>
-                            <a href="/guides/tutorials/the-java-client">
-                                <li class="the-java-client">
-                                    The Java client
+                            
+                            <a href="/blog/2015/12/24/welcome-to-the-blog">
+                                <li class="welcome-to-the-blog">
+                                    Welcome to the Blog!
                                 </li>
                             </a>
                             
@@ -204,95 +163,64 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <a data-toggle="collapse" href="#api">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">API</h4>
-                    </div>
-                </a>
-
-                <div id="api" class="panel-collapse collapse ">
-                    <div class="panel-body">
-                        <ul>
-                            <a href="/guides/api/models">
-                                <li class="models">
-                                    Models
-                                </li>
-                            </a>
-                            <a href="/guides/api/repository-actions">
-                                <li class="repository-actions">
-                                    Repository Actions
-                                </li>
-                            </a>
-                            <a href="/guides/api/actions">
-                                <li class="actions">
-                                    Actions
-                                </li>
-                            </a>
-                            <a href="/guides/api/query">
-                                <li class="query">
-                                    Query
-                                </li>
-                            </a>
-                            <a href="/guides/api/transformers">
-                                <li class="transformers">
-                                    Transformers
-                                </li>
-                            </a>
-                            <a href="/guides/api/shields">
-                                <li class="shields">
-                                    Shields
-                                </li>
-                            </a>
-                            <a href="/guides/api/hooks">
-                                <li class="hooks">
-                                    Hooks
-                                </li>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div class="guide">
-        <h1 id="your-first-api">Your first API</h1>
+        
+            <h1>Semantic Versioning</h1>
+        
+        
+        <p>Starting with version <strong>1.4.0</strong>, to be released in a few days, YAWP! will enforce
+more strictly the <a href="http://semver.org">semantic versioning</a> scheme to indicate how 
+changes affects its API.</p>
 
-<p>To have your first API you just need to create an <a href="/guides/api/models">Endpoint</a>. It is done very
-easily with a scaffold:</p>
+<p>Actually, you probably have had no problems so far, because we’ve been using a model 
+very similar with only few differences.</p>
 
-<pre><code class="language-bash">mvn yawp:endpoint -Dmodel=person
+<!--more-->
+
+<p>Anyway, by doing this, it is safer for developers to decide whenever or not 
+upgrade to new versions of the framework without causing problems to existing apps.</p>
+
+<p>If you are not familiar with the model, it is really straightforward. Here is the 
+introduction extracted from its website:</p>
+
+<pre><code class="language-java">Given a version number MAJOR.MINOR.PATCH, increment the:
+
+MAJOR version when you make incompatible API changes,
+MINOR version when you add functionality in a backwards-compatible manner, and
+PATCH version when you make backwards-compatible bug fixes.
 </code></pre>
 
-<p>Now we can change the <strong>Person</strong> class to add the <strong>name</strong> attribute:</p>
 
-<pre><code class="language-java">@Endpoint(path = "/people")
-public class Person {
-    @Id
-    IdRef&lt;Person&gt; id;
-    
-    String name;
-}
-</code></pre>
+        
+            <br />
+            <div id="disqus_thread"></div>
+<script>
 
-<p>Just start the development server:</p>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
 
-<pre><code class="language-bash">mvn yawp:devserver
-</code></pre>
+s.src = '//yawp.disqus.com/embed.js';
 
-<p>After the development server starts, you can play with the <strong>Person</strong> endpoint APIs with cURL. To create a person,
-execute in a shell:</p>
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
-<pre><code class="language-bash">curl -H "Content-type: application/json" -X POST \
-     -d "{'name': 'John'}" http://localhost:8080/api/people
-</code></pre>
-
-<p>To list the created person:</p>
-
-<pre><code class="language-bash">curl http://localhost:8080/api/people
-</code></pre>
-
-    </div>
+        
+    </div>                
 </div>
 
     <!-- Footer -->

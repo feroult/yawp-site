@@ -16,7 +16,7 @@ layout: default
                         <ul>
                             {% for post in site.posts %}
                             <a href="{{ post.url }}">
-                                <li>
+                                <li class="{{ post.id | split: '/' | last }}">
                                     {{ post.title }}
                                 </li>
                             </a>
