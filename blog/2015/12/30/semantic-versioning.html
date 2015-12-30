@@ -12,13 +12,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <meta name="description" content="YAWP! Framework Blog. Announcements for releases, bugfixes, tips and more.">
+        
+    <meta name="description" content="Starting with version 1.4.0, to be released in a few days, YAWP! will enforce
+more strictly the semantic versioning scheme to indicate how 
+changes affects its API.
+
+Actually, you probably have had no problems so far, because we’ve been using a model 
+very similar with only few differences.
+
+">
         
     <meta name="author" content="Fernando Ultremare and YAWP! contributors">
     <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
 
-    <title>YAWP! - Blog</title>
+    <title>YAWP! - Semantic Versioning</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -160,30 +167,57 @@
     </div>
     <div class="guide">
         
+            <h1>Semantic Versioning</h1>
         
         
-<h2 id="semantic-versioning-span-classpost-datedecember-30-2015span">Semantic Versioning <span class="post-date">December 30, 2015</span></h2>
-
-<p>Starting with version <strong>1.4.0</strong>, to be released in a few days, YAWP! will enforce
+        <p>Starting with version <strong>1.4.0</strong>, to be released in a few days, YAWP! will enforce
 more strictly the <a href="http://semver.org">semantic versioning</a> scheme to indicate how 
 changes affects its API.</p>
 
 <p>Actually, you probably have had no problems so far, because we’ve been using a model 
 very similar with only few differences.</p>
 
-<p><a href="/blog/2015/12/30/semantic-versioning">Read more…</a></p>
+<!--more-->
 
-<h2 id="welcome-to-the-blog-span-classpost-datedecember-24-2015span">Welcome to the Blog! <span class="post-date">December 24, 2015</span></h2>
+<p>Anyway, by doing this, it is safer for developers to decide whenever or not 
+upgrade to new versions of the framework without causing problems to existing apps.</p>
 
-<p>This is the very first post on this blog!</p>
+<p>If you are not familiar with the model, it is really straightforward. Here is the 
+introduction extracted from its website:</p>
 
-<p>From now on, this is where we will announce information about all the 
-relevant  releases of the framework, including new features, bugfixes, tips, 
-usage examples and more.</p>
+<pre><code class="language-java">Given a version number MAJOR.MINOR.PATCH, increment the:
 
-<p><a href="/blog/2015/12/24/welcome-to-the-blog">Read more…</a></p>
+MAJOR version when you make incompatible API changes,
+MINOR version when you add functionality in a backwards-compatible manner, and
+PATCH version when you make backwards-compatible bug fixes.
+</code></pre>
 
 
+        
+            <br />
+            <div id="disqus_thread"></div>
+<script>
+
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//yawp.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
         
     </div>                
