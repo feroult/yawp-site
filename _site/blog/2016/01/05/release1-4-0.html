@@ -12,13 +12,21 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <meta name="description" content="YAWP! Framework Blog. Announcements for releases, bugfixes, tips and more.">
+        
+    <meta name="description" content="YAWP! 1.4.0 is ready to roll and, among other minor improvements, it brings:
+
+
+  Hierarchical APIs
+  jQuery dependency removed
+  Improved Action signature support
+
+
+">
         
     <meta name="author" content="Fernando Ultremare and YAWP! contributors">
     <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
 
-    <title>YAWP! - Blog</title>
+    <title>YAWP! - Release 1.4.0 is out!</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -166,11 +174,10 @@
     </div>
     <div class="guide">
         
+            <h1>Release 1.4.0 is out!</h1>
         
         
-<h2 id="release-140-is-out-span-classpost-datejanuary-05-2016span">Release 1.4.0 is out! <span class="post-date">January 05, 2016</span></h2>
-
-<p><strong>YAWP!</strong> 1.4.0 is ready to roll and, among other minor improvements, it brings:</p>
+        <p><strong>YAWP!</strong> 1.4.0 is ready to roll and, among other minor improvements, it brings:</p>
 
 <ul>
   <li>Hierarchical APIs</li>
@@ -178,30 +185,140 @@
   <li>Improved Action signature support</li>
 </ul>
 
-<p><a href="/blog/2016/01/05/release1-4-0">Read more…</a></p>
+<!--more-->
 
-<h2 id="semantic-versioning-span-classpost-datedecember-30-2015span">Semantic Versioning <span class="post-date">December 30, 2015</span></h2>
+<h1 id="hierarchical-apis">Hierarchical APIs</h1>
 
-<p>Starting with version <strong>1.4.0</strong>, to be released in a few days, YAWP! will enforce
-more strictly the <a href="http://semver.org">semantic versioning</a> scheme to indicate how 
-changes affects its API.</p>
+<p>YAWP! has now a full hierarchical API mechanism. When designing your endpoint
+models based on inheritance, it is now possible to design your feature
+classes (actions, hooks, transformers, shields) to reutilize behavior through
+inheritance too.</p>
 
-<p>Actually, you probably have had no problems so far, because we’ve been using a model 
-very similar with only few differences.</p>
+<p>For instance, imagine we have the following endpoint inheritance:</p>
 
-<p><a href="/blog/2015/12/30/semantic-versioning">Read more…</a></p>
+<pre><code class="language-java">public abstract class Vehicle&lt;T&gt; {
+    @Id
+    IdRef&lt;T&gt; id;
+}
 
-<h2 id="welcome-to-the-blog-span-classpost-datedecember-24-2015span">Welcome to the Blog! <span class="post-date">December 24, 2015</span></h2>
+public class Car extends Vehicle&lt;Car&gt; {
+}
 
-<p>This is the very first post on this blog!</p>
+public class Truck extends Vehicle&lt;Truck&gt; {
+}
 
-<p>From now on, this is where we will announce information about all the 
-relevant  releases of the framework, including new features, bugfixes, tips, 
-usage examples and more.</p>
+public class Airplane extends Vehicle&lt;Airplane&gt; {
+}
+</code></pre>
 
-<p><a href="/blog/2015/12/24/welcome-to-the-blog">Read more…</a></p>
+<p>Now imagine that we want an API to start/stop our vehicles. Let’s assume that all
+vehicles, with the exception of airplanes, have the same start/stop behavior.
+To design those features with hierarchical APIs we only need to do the following:</p>
+
+<pre><code class="language-java">public class VehicleStartStopAction&lt;T extends Vehicle&gt; extends Action&lt;T&gt; {
+    @PUT
+    public void start(IdRef&lt;Vehicle&gt; id) {
+        // do something
+    }
+    @PUT
+    public void stop(IdRef&lt;Vehicle&gt; id) {
+        // do something
+    }
+}
+
+public class AirplaneStartStopAction extends VehicleStartStopAction&lt;Airplane&gt; {
+    @PUT
+    public void start(IdRef&lt;Airplane&gt; id) {
+        // do another something
+    }
+    @PUT
+    public void stop(IdRef&lt;Airplane&gt; id) {
+        // do another something
+    }
+}
+</code></pre>
+
+<p>Since <strong>VehicleStartStopAction</strong> is not an abstract class, all vehicles will have the same
+action routes. The following routes are all valid ones:</p>
+
+<pre><code>PUT /api/cars/1/start
+PUT /api/trucks/1/start
+PUT /api/airplanes/1/start
+
+PUT /api/cars/1/stop
+PUT /api/trucks/1/stop
+PUT /api/airplanes/1/stop
+</code></pre>
+
+<p>Note that only the airplane’s routes will have different functionality.</p>
+
+<p>Finally, it is also possible to define global features (for all endpoints) if you target
+your inheritance to the Object superclass. For instance, to create a <a href="/guides/api/shields]">Shield</a>
+for all endpoints, we can create:</p>
+
+<pre><code class="language-java">public class BaseShield&lt;T&gt; extends Shield&lt;T&gt; {
+
+    @Override
+    public void defaults() {
+        allow();
+    }
+}
+</code></pre>
+
+<p>If you want to create a more specific Shield for an endpoint, just subclass the BaseShield.</p>
+
+<h1 id="jquery-dependency-removed">jQuery dependency removed</h1>
+
+<p>Thanks to (rsolci)[http://github.com/rsolci], the javascript client is now
+self-contained and do not require jQuery anymore. Soon it will be available as a
+npm package too.</p>
+
+<h1 id="improved-action-signature-support">Improved Action signature support</h1>
+
+<p>The position of each <a href="/guides/api/actions">action</a> method argument is not
+relevant anymore. You can add them in any order you want without changing how the
+API will work. For instance:</p>
+
+<pre><code class="language-java">// this:
+@POST
+public Person addAddress(IdRef&lt;Person&gt; id, Address address) {
+    person.setAddress(address);
+    yawp.save(person);
+}
+// could also be:
+@POST
+public Person addAddress(Address address, IdRef&lt;Person&gt; id) {
+    person.setAddress(address);
+    yawp.save(person);
+}
+</code></pre>
 
 
+        
+            <br />
+            <div id="disqus_thread"></div>
+<script>
+
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//yawp.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
         
     </div>                
