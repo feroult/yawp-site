@@ -334,7 +334,7 @@ target folder, you won’t need to restart the development server again, your ch
 
 <h3 id="user-story-create-tasks">#1 User Story: Create Tasks</h3>
 
-<p>To get the first user story done we’re going to need a place to store our tasks information. 
+<p>To get the first user story done we’re going to need a place to store our tasks information.
 To do this, we will create a <strong>Task</strong> endpoint running the yawp’s scaffolding plugin.</p>
 
 <p>Open another shell window/tab and run the following command:</p>
@@ -361,7 +361,7 @@ To do this, we will create a <strong>Task</strong> endpoint running the yawp’s
 
         assertNotNull(task);
     }
-    
+
 }
 </code></pre>
 
@@ -373,33 +373,30 @@ To do this, we will create a <strong>Task</strong> endpoint running the yawp’s
     public void testCreate() {
         String json = post("/tasks", "{ 'title': 'wash dishes' }");
         Task task = from(json, Task.class);
-        
-        assertEquals("wash dishes", task.getTitle());
+
+        assertEquals("wash dishes", task.title);
     }
-    
+
 }
 </code></pre>
 
 <p>Just remember to import as static the <strong>assertEquals</strong> method.</p>
 
-<p>Now, our test class is not compiling because the title field does not exist in the <strong>Task</strong> endpoint class. 
+<p>Now, our test class is not compiling because the title field does not exist in the <strong>Task</strong> endpoint class.
 Open it to add the title attribute:</p>
 
 <pre><code class="language-java">@Endpoint(path = "/tasks")
 public class Task {
 
     @Id
-    private IdRef&lt;Task&gt; id;
+    IdRef&lt;Task&gt; id;
 
-    private String title;
-    
-    public String getTitle() {
-        return title;
-    }
+    String title;
+
 }
 </code></pre>
 
-<p>All endpoints must have one and only one <strong>@Id</strong> attribute. It also has to be of type <strong>IdRef&lt;T&gt;</strong>, 
+<p>All endpoints must have one and only one <strong>@Id</strong> attribute. It also has to be of type <strong>IdRef&lt;T&gt;</strong>,
 where T is the endpoint POJO class.</p>
 
 <p>If we run the unit test again, everything should be ok. With this, we already have an API to create
@@ -430,38 +427,34 @@ public void testCreateWithNotes() {
     String json = post("/tasks", "{ notes: ['note 1', 'note 2'] }");
     Task task = from(json, Task.class);
 
-    assertEquals(2, task.getNotes().size());
-    assertEquals("note 1", task.getNotes().get(0));
-    assertEquals("note 2", task.getNotes().get(1));
+    assertEquals(2, task.notes.size());
+    assertEquals("note 1", task.notes.get(0));
+    assertEquals("note 2", task.notes.get(1));
 }
 </code></pre>
 
 <p>Open the <strong>Task</strong> class and add the following attribute:</p>
 
 <pre><code class="language-java">@Json
-private List&lt;String&gt; notes;
-
-public List&lt;String&gt; getNotes() {
-    return notes;
-}
+List&lt;String&gt; notes;
 </code></pre>
 
 <p>If we run our tests, they should pass.</p>
 
-<p>You may have noticed that you’ll only need to add getters and setters to the endpoint attributes 
-if you’re going to access them from your server side (java) code. Also, notice that the <strong>@Json</strong> 
-annotation is used to tell the framework that the attribute will be serialized as a json object when 
-the model is read from or written to the persistence layer.</p>
+<p>You may have noticed that you’ll only need to add getters and setters to the endpoint attributes
+if you’re going to access them from your server side (java) code outside the endpoint’s package.
+Also, notice that the <strong>@Json</strong> annotation is used to tell the framework that the attribute
+will be serialized as a json object when the model is read from or written to the persistence layer.</p>
 
 <p>We can test our new API with javascript:</p>
 
 <pre><code class="language-javascript">// to create a task with notes
-yawp('/tasks').create({ title: 'task1', 
+yawp('/tasks').create({ title: 'task1',
                         notes: ['note 1', 'note 2'] }).done(function (task)) {
-                        
-    // to change the notes of an already created task 
+
+    // to change the notes of an already created task
     yawp(task).patch({ notes: ['note 3'] });
-    
+
 });
 </code></pre>
 
@@ -479,8 +472,8 @@ public void testMarkAsDone() {
 }
 </code></pre>
 
-<p>Create the missing task method and then run the test above. As you can see, we get an error 
-saying that there is no endpoint called done. This is because <strong>YAWP!</strong> cannot find a route 
+<p>Create the missing task method and then run the test above. As you can see, we get an error
+saying that there is no endpoint called done. This is because <strong>YAWP!</strong> cannot find a route
 for that uri.</p>
 
 <p>Let’s create an action for the given route using a scaffold:</p>
@@ -498,13 +491,13 @@ for that uri.</p>
         task.markAsDone();
         yawp.save(task);
     }
-    
+
 }
 </code></pre>
 
 <p>Finally, change the <strong>Task</strong> endpoint to add the done flag:</p>
 
-<pre><code class="language-java">private boolean done;
+<pre><code class="language-java">boolean done;
 
 public void markAsDone() {
     this.done = true;
@@ -534,7 +527,7 @@ public void testPrivacy() {
 
     List&lt;Task&gt; tasks1 = fromList(get("/tasks"), Task.class);
     assertEquals(1, tasks1.size());
-    assertEquals("janes task", tasks1.get(0).getTitle());
+    assertEquals("janes task", tasks1.get(0).title);
 
     helper().login("jim", "rock.com");
     List&lt;Task&gt; tasks2 = fromList(get("/tasks"), Task.class);
@@ -550,14 +543,14 @@ private AppengineTestHelper helper() {
 support for users authentication. If we run it, the test should fail because the user Jim has access
 to the Janes’ task.</p>
 
-<p>Now, to fulfil this requirement we need to assign tasks to users. Let’s change our <strong>Task</strong> class to add
+<p>Now, to fulfill this requirement we need to assign tasks to users. Let’s change our <strong>Task</strong> class to add
 this association:</p>
 
 <pre><code class="language-java">@Index
-private String user;
+String user;
 </code></pre>
 
-<p>Plus, to assign tasks to users we also need to add an endpoint Hook that sets the user attribute before the 
+<p>Plus, to assign tasks to users we also need to add an endpoint Hook that sets the user attribute before the
 security shield kicks in. Again, using a scaffold:</p>
 
 <pre><code class="language-bash">mvn yawp:hook -Dmodel=task -Dname=SetUser
@@ -572,7 +565,7 @@ security shield kicks in. Again, using a scaffold:</p>
         if(!userService().isUserLoggedIn()) {
             return;
         }
-        task.setUser(userService().getCurrentUser().getEmail());
+        task.user = userService().getCurrentUser().getEmail();
     }
 
     private UserService userService() {
@@ -600,8 +593,8 @@ following:</p>
 </code></pre>
 
 <p>Run the <strong>TaskTest</strong> suite again. Oooops, now only the <strong>testPrivacy</strong> method is passing. This is
-because the other tests do not login the user before they create tasks. Lets fix this by adding a 
-default user to all tests. Just add the following snippet before section to the <em>_TaskTest</em> class:</p>
+because the other tests do not login the user before they create tasks. Lets fix this by adding a
+default user to all tests. Just add the following snippet before section to the <strong>TaskTest</strong> class:</p>
 
 <pre><code class="language-java">@Before
 public void defaultLogin() {

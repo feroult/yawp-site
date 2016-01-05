@@ -5,7 +5,7 @@ description: Guides for the Models API with java code samples
 ---
 # Models
 
-Endpoit Models represent the schema of your API resources. Lets take look at some important points
+Endpoint Models represent the schema of your API resources. Lets take look at some important points
 of our Person endpoint example:
 
 ~~~ java
@@ -13,10 +13,10 @@ of our Person endpoint example:
 public class Person {
 
     @Id
-    private IdRef<Person> id;
+    IdRef<Person> id;
 
     @Index
-    private String name;
+    String name;
 
 }
 ~~~
@@ -53,12 +53,12 @@ attribute as a filter or order clause.
 
 ### @Json
 
-If you want store a more complex object inside your model, you will need to serialize 
+If you want store a more complex object inside your model, you will need to serialize
 the attribute as a json string. For instance:
 
 ~~~ java
 @Json
-private Address address;
+Address address;
 ~~~
 
 ### @Text
@@ -68,7 +68,7 @@ larger texts but you can't create indexes over this attribute anymore.
 
 ~~~ java
 @Text
-private String comment;
+String comment;
 ~~~
 
 
@@ -81,5 +81,5 @@ model of your model, annotate it with __@ParentId__:
 
 ~~~ java
 @ParentId
-private IdRef<Company> companyId;
+IdRef<Company> companyId;
 ~~~

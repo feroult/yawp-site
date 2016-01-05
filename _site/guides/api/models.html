@@ -258,17 +258,17 @@
     <div class="guide">
         <h1 id="models">Models</h1>
 
-<p>Endpoit Models represent the schema of your API resources. Lets take look at some important points
+<p>Endpoint Models represent the schema of your API resources. Lets take look at some important points
 of our Person endpoint example:</p>
 
 <pre><code class="language-java">@Endpoint(path = "/people")
 public class Person {
 
     @Id
-    private IdRef&lt;Person&gt; id;
+    IdRef&lt;Person&gt; id;
 
     @Index
-    private String name;
+    String name;
 
 }
 </code></pre>
@@ -327,11 +327,11 @@ attribute as a filter or order clause.</p>
 
 <h3 id="json">@Json</h3>
 
-<p>If you want store a more complex object inside your model, you will need to serialize 
+<p>If you want store a more complex object inside your model, you will need to serialize
 the attribute as a json string. For instance:</p>
 
 <pre><code class="language-java">@Json
-private Address address;
+Address address;
 </code></pre>
 
 <h3 id="text">@Text</h3>
@@ -340,7 +340,7 @@ private Address address;
 larger texts but you can’t create indexes over this attribute anymore.</p>
 
 <pre><code class="language-java">@Text
-private String comment;
+String comment;
 </code></pre>
 
 <h3 id="parentid">@ParentId</h3>
@@ -350,7 +350,7 @@ to obtain strong consistency queries where it is necessary. To do so, you add an
 model of your model, annotate it with <strong>@ParentId</strong>:</p>
 
 <pre><code class="language-java">@ParentId
-private IdRef&lt;Company&gt; companyId;
+IdRef&lt;Company&gt; companyId;
 </code></pre>
 
     </div>
