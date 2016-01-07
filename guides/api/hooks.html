@@ -259,13 +259,13 @@
         <h1 id="hooks">Hooks</h1>
 
 <p>Hooks intercept the request execution flow at some important stages and let you customize the default
-behaviour of the <strong>YAWP!</strong> APIs.</p>
+behavior of the <strong>YAWP!</strong> APIs.</p>
 
-<p>For instance, you can intercept entities right before they are saved and change some of its attributes. 
-Another example is that you can intercept queries and force them to have a specific filter, order, 
+<p>For instance, you can intercept entities right before they are saved and change some of its attributes.
+Another example is that you can intercept queries and force them to have a specific filter, order,
 limit, etc.</p>
 
-<p>To create hooks, you need to extend the <strong>Hook</strong> class and override its methods. If the generic 
+<p>To create hooks, you need to extend the <strong>Hook</strong> class and override its methods. If the generic
 type of you hook is <strong>Object</strong>, then this hook will intercept the flow of all endpoint models.</p>
 
 <p>This is a example of the <strong>Hook</strong> feature for the <strong>User</strong> endpoint model:</p>
@@ -305,7 +305,7 @@ type of you hook is <strong>Object</strong>, then this hook will intercept the f
     <tr>
       <td><strong>beforeQuery</strong></td>
       <td>Before every query is executed</td>
-      <td>add mandatory filter, order or limit to queries based on the current logge user.</td>
+      <td>add mandatory filter, order or limit to queries based on the current logged user.</td>
     </tr>
     <tr>
       <td><strong>beforeSave</strong></td>
@@ -315,7 +315,7 @@ type of you hook is <strong>Object</strong>, then this hook will intercept the f
     <tr>
       <td><strong>afterSave</strong></td>
       <td>Right after the entity is saved</td>
-      <td>trigger assynchronous actions or log events.</td>
+      <td>trigger asynchronous actions or log events.</td>
     </tr>
     <tr>
       <td><strong>beforeDestroy</strong></td>
@@ -332,7 +332,7 @@ type of you hook is <strong>Object</strong>, then this hook will intercept the f
 
 <h3 id="exceptions">Exceptions</h3>
 
-<p>As you could see in the example above, to interrupt the flow and create the request response 
+<p>As you could see in the example above, to interrupt the flow and create the request response
 with an error information, just throw a HttpException.</p>
 
     </div>
