@@ -74,7 +74,7 @@ The scaffold will create three files:
 [INFO] Scaffold src/main/java/todoapp/models/task/TaskShield.java created.
 ~~~
 
-Let's take a look at the __TaskTesk__ class:
+Let's take a look at the __TaskTest__ class:
 
 ~~~ java
 public class TaskTest extends EndpointTestCase {
