@@ -19,8 +19,7 @@ To access __YAWP!__ APIs from your web apps, you can use its javascript client l
 ### Installation
 
 ~~~ html
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://rawgit.com/feroult/yawp/yawp-1.3.16/yawp-core/src/main/js/yawp.js"></script>
+<script src="https://rawgit.com/feroult/yawp/yawp-1.4.2/yawp-core/src/main/js/dist/yawp.min.js"></script>
 ~~~
 
 ### Setup
