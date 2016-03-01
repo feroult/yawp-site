@@ -1,0 +1,522 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="Guides for the Pipes API with java samples">
+        
+    <meta name="author" content="Fernando Ultremare and YAWP! contributors">
+    <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
+
+    <title>YAWP! - API: Pipes</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/assets/css/freelancer.css" rel="stylesheet">
+    <link href="/assets/css/yawp.css" rel="stylesheet">
+    <link href="/assets/css/github-ribbon.css" rel="stylesheet">
+    <link href="/assets/css/guides.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- code formating -->
+    <script src="http://cdn.jsdelivr.net/highlight.js/8.9.1/highlight.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Google Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-54832827-1', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+    <!-- End Google Analytics -->
+
+    <!-- Begin Inspectlet Embed Code -->
+    <script type="text/javascript" id="inspectletjs">
+    window.__insp = window.__insp || [];
+    __insp.push(['wid', 86703955]);
+    (function() {
+    function ldinsp(){if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+    setTimeout(ldinsp, 500); document.readyState != "complete" ? (window.attachEvent ? window.attachEvent('onload', ldinsp) : window.addEventListener('load', ldinsp, false)) : ldinsp();
+    })();
+    </script>
+    <!-- End Inspectlet Embed Code -->
+    
+    
+    
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/highlight.js/8.9.1/styles/atelier-cave.light.min.css"> 
+    
+
+    
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                    <a class="navbar-brand" href="/">YAWP!</a>
+                
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="main-navbar collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li class="page-scroll">
+                        <a href="#page-top">Home</a>
+                    </li> -->
+                    <li class="">
+                        <a href="/#portfolio">Features</a>
+                    </li>
+                    <li class="">
+                        <a href="/#kickstart">Kickstart</a>
+                    </li>
+                    <li class="">
+                        <a href="/#community">Community</a>
+                    </li>
+                    <li class="active">
+                        <a href="/guides">Guides</a>
+                    </li>                    
+                    <li class="">
+                        <a href="/blog">Blog</a>
+                    </li>                                        
+                    <li>
+                        <a href="http://github.com/feroult/yawp" target="_blank">GITHUB&nbsp;&nbsp;<i class="fa fa-github" style="font-size: 1.2em;"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    
+
+
+
+
+
+<div class="container">
+    <div id="accordion" class="panel-group">
+        <div class="sidebar">
+            <div class="panel panel-default">
+                <a data-toggle="collapse" href="#getting-started">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Getting Started</h4>
+                    </div>
+                </a>
+
+                <div id="getting-started" class="panel-collapse collapse ">
+                    <div class="panel-body">
+                        <ul>
+                            <a href="/guides/getting-started/installing-yawp">
+                                <li class="installing-yawp">
+                                    Installing YAWP!
+                                </li>
+                            </a>
+                            <a href="/guides/getting-started/your-first-api">
+                                <li class="your-first-api">
+                                    Your first API
+                                </li>
+                            </a>
+                            <a href="/guides/getting-started/core-concepts">
+                                <li class="core-concepts">
+                                    Core concepts
+                                </li>
+                            </a>
+                            <a href="/guides/getting-started/supported-platforms">
+                                <li class="supported-platforms">
+                                    Supported platforms
+                                </li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <a data-toggle="collapse" href="#tutorials">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Tutorials</h4>
+                    </div>
+                </a>
+
+                <div id="tutorials" class="panel-collapse collapse ">
+                    <div class="panel-body">
+                        <ul>
+                            <a href="/guides/tutorials/todo-list-app">
+                                <li class="todo-list-app">
+                                    To-do list app
+                                </li>
+                            </a>
+                            <a href="/guides/tutorials/scaffolding">
+                                <li class="scaffolding">
+                                    Scaffolding
+                                </li>
+                            </a>
+                            <a href="/guides/tutorials/the-javascript-client">
+                                <li class="the-javascript-client">
+                                    The Javascript client
+                                </li>
+                            </a>
+                            <a href="/guides/tutorials/the-java-client">
+                                <li class="the-java-client">
+                                    The Java client
+                                </li>
+                            </a>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <a data-toggle="collapse" href="#api">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">API</h4>
+                    </div>
+                </a>
+
+                <div id="api" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul>
+                            <a href="/guides/api/models">
+                                <li class="models">
+                                    Models
+                                </li>
+                            </a>
+                            <a href="/guides/api/repository-actions">
+                                <li class="repository-actions">
+                                    Repository Actions
+                                </li>
+                            </a>
+                            <a href="/guides/api/actions">
+                                <li class="actions">
+                                    Actions
+                                </li>
+                            </a>
+                            <a href="/guides/api/query">
+                                <li class="query">
+                                    Query
+                                </li>
+                            </a>
+                            <a href="/guides/api/transformers">
+                                <li class="transformers">
+                                    Transformers
+                                </li>
+                            </a>
+                            <a href="/guides/api/shields">
+                                <li class="shields">
+                                    Shields
+                                </li>
+                            </a>
+                            <a href="/guides/api/hooks">
+                                <li class="hooks">
+                                    Hooks
+                                </li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="guide">
+        <h1 id="pipes">Pipes</h1>
+
+<p>With pipes it is possible to create aggregated views of your models information.
+A pipe works asynchronously, which means they do not impact the write throughput
+of your API and they also have the same eventual consistency capabilities of your
+models.</p>
+
+<p>Finally, pipes can be connected to other pipes, so they can be used to construct
+multiple levels of aggregation.</p>
+
+<p><strong>Note</strong>: The Pipe API is currently only implemented for the Appengine environment.</p>
+
+<h3 id="consistency-warning">Consistency Warning</h3>
+
+<p>All pipes are designed to have the same eventual consistency capabilities of the
+Appengine datastore, that guarantees that in a near future all nodes will have the the
+same information and they will be consistent with the data they are aggregating.</p>
+
+<p>To achieve this result it is important to make sure that two special methods of the
+Pipe only uses ancestor queries or key fetches to retrieve the relations between
+sources and sinks. Those methods are indicated in the comments of the following
+examples.</p>
+
+<h3 id="pipe-flow">Pipe Flow</h3>
+
+<p>To create a Pipe, just extend the Pipe class for your endpoint model:</p>
+
+<pre><code class="language-java">public class PersonCounterPipe extends Pipe&lt;Person, PersonCounter&gt; {
+    
+    (...)
+}
+</code></pre>
+
+<p>Note that a Pipe feature takes an additional argument, which is called the <strong>Sink</strong>
+of the pipe. The main idea is that the Pipe above connects two endpoint models,
+the <strong>Person</strong> (in this case, the source) and the <strong>PersonCounter</strong> (the sink).</p>
+
+<p>Again, the <strong>PersonCounter</strong> class is a regular endpoint model, for instance it
+could be:</p>
+
+<pre><code class="language-java">@Endpoint(path = "/person_counters")
+public class PersonCounter {
+
+    @Id
+    IdRef&lt;PersonCounter&gt; id;
+
+    Integer count = 0;
+
+}
+</code></pre>
+
+<p>Now we need to describe how the sources are linked to sinks. To do this,
+we need to override the <strong>configureSinks(source)</strong>:</p>
+
+<pre><code class="language-java">public class PersonCounterPipe extends Pipe&lt;Person, PersonCounter&gt; {
+
+    @Override
+    public void configureSinks(Person person) {
+        // sinks need to be retrieved with strong consistent query/fetch
+        addSinkId(id(PersonCounter.class, 1l));
+    }   
+}
+</code></pre>
+
+<p><strong>Note:</strong> In this case, we are linking all persons to a single counter (with id=1).</p>
+
+<p>Finally, we need to describe the aggregation we wish to perform. To do this,
+we need to override two methods: <strong>flux(source, sink)</strong> and <strong>reflux(source, sink)</strong>:</p>
+
+<pre><code class="language-java">public class PersonCounterPipe extends Pipe&lt;Person, PersonCounter&gt; {
+
+    @Override
+    public void configureSinks(Person person) {
+        // sinks need to be retrieved with strong consistent query/fetch
+        addSinkId(id(PersonCounter.class, 1l));
+    }   
+
+    @Override
+    public void flux(Person person, PersonCounter counter) {
+        counter.count++;
+    }
+
+    @Override
+    public void reflux(Person person, PersonCounter counter) {
+        counter.count--;
+    }    
+}
+</code></pre>
+
+<p>Those methods are self explanatory. They are invoked when a given person is connected
+to a counter (flux) and when a person is destroyed or changed in a way that
+configureSinks does not connect it to the sink anymore (reflux).</p>
+
+<h3 id="pipe-reflow">Pipe Reflow</h3>
+
+<p>Sometimes it may be necessary to reflow all sources already associated to a sink due
+to a change in the sink itself. For instance, imagine an aggregator that sums the
+total sales for a given time period. Your sink may have the attributes that define its period,
+if they change you’ll want to reflow the sources again to make the aggregation consistent.</p>
+
+<p>For instance, the sales aggregator could be:</p>
+
+<pre><code class="language-java">@Endpoint(path = "/sales_by_period")
+public class SalesByPeriod {
+
+    @Id
+    IdRef&lt;SalesByPeriod&gt; id;
+
+    Date start;
+
+    Date end;
+
+    Double total = 0.0;
+
+}
+</code></pre>
+
+<p>To be reflowed a Pipe also needs to define how to retrieve de sources based on a
+given <strong>sink</strong>, to do this, we need to override the <strong>configureSources(sink)</strong>
+method:</p>
+
+<pre><code class="language-java">public class SalesByPeriodPipe extends Pipe&lt;Sale, SalesByPeriod&gt; {
+
+    @Override
+    public void configureSources(SalesByPeriod period) {
+        // sources need to be retrieved with strong consistent query/fetch
+        addSourcesQuery(yawp(Sale.class).from(getCompanyId())
+                                        .where("date", "&gt;=", period.start)
+                                        .and("date", "&lt;", period.end));
+    }
+
+}
+</code></pre>
+
+<p><strong>Note:</strong> Sometimes it may be necessary to create intermediate aggregations to unchangeable sinks
+to provide a way to have a ancestor query for sources (to guarantee consistency).
+For instance, it would be possible to compute the total sales for each day in the month
+(days don’t change) and then re-pipe this to the SalesByPeriod aggregation. And then, to reflow
+this pipe, compute the ids from the days it includes.</p>
+
+<p>Finally, to indicate in which conditions the sink needs to be reflowed, you have to
+override the <strong>reflowCondition(newSink, oldSink)</strong> method, like this:</p>
+
+<pre><code class="language-java">public class SalesByPeriodPipe extends Pipe&lt;Sale, SalesByPeriod&gt; {
+
+    (...)
+
+    @Override
+    public boolean reflowCondition(SalesByPeriod newPeriod, SalesByPeriod oldPeriod) {
+        return !newPeriod.start.equals(oldPeriod.start) || !newPeriod.end.equals(oldPeriod.end);
+    }
+
+    (...)
+}
+</code></pre>
+
+<h3 id="pipe-reload-tool">Pipe Reload Tool</h3>
+
+<p>If you have just created the Pipe presented in this guide and you already have
+persons in your datastore, or you’ve deleted your counter model by mistake,
+it is possible to fully reload a Pipe to make it consistent with the current
+situation of your data (i.e count all persons again).</p>
+
+<p>To to this, you need to override the <strong>drain</strong> method of your Pipe, this needed
+to describe how a sink is drained before it is reloaded:</p>
+
+<pre><code class="language-java">public class PersonCounterPipe extends Pipe&lt;Person, PersonCounter&gt; {
+
+    @Override
+    public void drain(PersonCounter counter) {
+        counter.count = 0;
+    }
+}
+</code></pre>
+
+<p>Now, point your browser to the following url, to invoke the pipe reload tool:</p>
+
+<pre><code>http://localhost:8080/_ah/yawp/pipes/reload?pipe=yourpackage.PersonCounterPipe
+</code></pre>
+
+<p>You may change the address to your app real host.</p>
+
+<p>The servlet above is mapped in your web.xml when you create the project from
+the yawp’s maven archetype.</p>
+
+<p><strong>Note</strong>: This tool is meant to be used in maintenance mode, so you need
+to make sure that there’s no concurrent writes to the Person API
+while you are reloading the Pipe, otherwise your counter may become corrupted.</p>
+
+<p>To verify the status of a pipe reload job, just point your browser to the following
+address:</p>
+
+<pre><code>http://localhost:8080/_ah/pipeline/list
+</code></pre>
+
+    </div>
+</div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4 col-md-offset-4">
+                        <ul class="list-inline">
+                            <li>
+                                <a href="http://github.com/feroult/yawp" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/yawpio" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <strong>YAWP!</strong> is released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT license</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/assets/js/jquery.js"></script>
+    <script src="https://rawgit.com/feroult/yawp/yawp-1.3.14/yawp-core/src/main/js/yawp.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdn.jsdelivr.net/jquery.easing/1.3/jquery.easing.1.3.min.js"></script>
+    <script src="/assets/js/classie.js"></script>
+    <script src="/assets/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="/assets/js/jqBootstrapValidation.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/assets/js/freelancer.js"></script>
+
+    <!-- code formatter -->
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    <script src="/assets/js/left-menu.js"></script>
+       
+
+    
+
+    <script>
+        yawp.config(function (c) {
+            c.baseUrl('http://localhost:8080/api');
+        });
+    </script>
+
+</body>
+
+
+</html>
