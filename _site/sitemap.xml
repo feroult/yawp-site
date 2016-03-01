@@ -1,82 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://yawp.io/blog/2016/01/05/release1-4-0</loc>
+    <loc>/blog/2016/01/05/release1-4-0</loc>
     <lastmod>2016-01-05T00:00:00-02:00</lastmod>
   </url>
   <url>
-    <loc>http://yawp.io/blog/2015/12/30/semantic-versioning</loc>
+    <loc>/blog/2015/12/30/semantic-versioning</loc>
     <lastmod>2015-12-30T00:00:00-02:00</lastmod>
   </url>
   <url>
-    <loc>http://yawp.io/blog/2015/12/24/welcome-to-the-blog</loc>
+    <loc>/blog/2015/12/24/welcome-to-the-blog</loc>
     <lastmod>2015-12-24T00:00:00-02:00</lastmod>
   </url>
   <url>
-    <loc>http://yawp.io/guides/api/actions</loc>
+    <loc>/guides/api/actions</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/getting-started/core-concepts</loc>
+    <loc>/guides/getting-started/core-concepts</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/api/hooks</loc>
+    <loc>/guides/api/hooks</loc>
   </url>
   <url>
-    <loc>http://yawp.io/</loc>
+    <loc>/</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/</loc>
+    <loc>/blog/</loc>
   </url>
   <url>
-    <loc>http://yawp.io/blog/</loc>
+    <loc>/guides/</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/getting-started/installing-yawp</loc>
+    <loc>/guides/getting-started/installing-yawp</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/api/models</loc>
+    <loc>/guides/api/models</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/api/query</loc>
+    <loc>/guides/api/pipes</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/api/repository-actions</loc>
+    <loc>/guides/api/query</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/tutorials/scaffolding</loc>
+    <loc>/guides/api/repository-actions</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/api/shields</loc>
+    <loc>/guides/tutorials/scaffolding</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/getting-started/supported-platforms</loc>
+    <loc>/guides/api/shields</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/tutorials/the-java-client</loc>
+    <loc>/guides/getting-started/supported-platforms</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/tutorials/the-javascript-client</loc>
+    <loc>/guides/tutorials/the-java-client</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/tutorials/todo-list-app</loc>
+    <loc>/guides/tutorials/the-javascript-client</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/api/transformers</loc>
+    <loc>/guides/tutorials/todo-list-app</loc>
   </url>
   <url>
-    <loc>http://yawp.io/guides/getting-started/your-first-api</loc>
+    <loc>/guides/api/transformers</loc>
+  </url>
+  <url>
+    <loc>/guides/getting-started/your-first-api</loc>
   </url>
     <url>
-      <loc>http://yawp.io/blog/2015/12/24/welcome-to-the-blog</loc>
+      <loc>/blog/2015/12/24/welcome-to-the-blog</loc>
     </url>
     <url>
-      <loc>http://yawp.io/blog/2015/12/30/semantic-versioning</loc>
+      <loc>/blog/2015/12/30/semantic-versioning</loc>
     </url>
     <url>
-      <loc>http://yawp.io/blog/2016/01/05/release1-4-0</loc>
+      <loc>/blog/2016/01/05/release1-4-0</loc>
     </url>
   <url>
-    <loc>http://yawp.io/guides/sandbox/index</loc>
+    <loc>/guides/sandbox/index.html</loc>
     <lastmod>2015-11-20T16:06:24-02:00</lastmod>
   </url>
 </urlset>
