@@ -11,7 +11,9 @@ of your API and they also have the same eventual consistency capabilities of you
 models.
 
 Finally, pipes can be connected to other pipes, so they can be used to construct
-multiple levels of aggregation.
+multiple levels of aggregations:
+
+<img src="/assets/img/pipes/aggregation.jpg" />
 
 __Note__: The Pipe API is currently only implemented for the Appengine environment.
 
@@ -32,7 +34,7 @@ To create a Pipe, just extend the Pipe class for your endpoint model:
 
 ~~~ java
 public class PersonCounterPipe extends Pipe<Person, PersonCounter> {
-    
+
     (...)
 }
 ~~~
@@ -41,7 +43,7 @@ Note that a Pipe feature takes an additional argument, which is called the __Sin
 of the pipe. The main idea is that the Pipe above connects two endpoint models,
 the __Person__ (in this case, the source) and the __PersonCounter__ (the sink).
 
-Again, the __PersonCounter__ class is a regular endpoint model, for instance it
+The __PersonCounter__ class is a regular endpoint model, for instance it
 could be:
 
 ~~~ java
@@ -96,7 +98,7 @@ public class PersonCounterPipe extends Pipe<Person, PersonCounter> {
 }
 ~~~
 
-Those methods are self explanatory. They are invoked when a given person is connected
+These methods are self-explanatory. They are invoked when a given person is connected
 to a counter (flux) and when a person is destroyed or changed in a way that
 configureSinks does not connect it to the sink anymore (reflux).
 
@@ -125,7 +127,7 @@ public class SalesByPeriod {
 }
 ~~~
 
-To be reflowed a Pipe also needs to define how to retrieve de sources based on a
+To be reflowed, a Pipe also needs to define how to retrieve sources based on a
 given __sink__, to do this, we need to override the __configureSources(sink)__
 method:
 
@@ -144,10 +146,10 @@ public class SalesByPeriodPipe extends Pipe<Sale, SalesByPeriod> {
 ~~~
 
 __Note:__ Sometimes it may be necessary to create intermediate aggregations to unchangeable sinks
-to provide a way to have a ancestor query for sources (to guarantee consistency).
+to provide a way to have an ancestor query for sources (to guarantee consistency).
 For instance, it would be possible to compute the total sales for each day in the month
-(days don't change) and then re-pipe this to the SalesByPeriod aggregation. And then, to reflow
-this pipe, compute the ids from the days it includes.
+(days in month don't change, right) and then re-pipe this to the SalesByPeriod aggregation.
+And then, to reflow this pipe, compute the ids from the days it includes.
 
 Finally, to indicate in which conditions the sink needs to be reflowed, you have to
 override the __reflowCondition(newSink, oldSink)__ method, like this:
@@ -159,6 +161,9 @@ public class SalesByPeriodPipe extends Pipe<Sale, SalesByPeriod> {
 
     @Override
     public boolean reflowCondition(SalesByPeriod newPeriod, SalesByPeriod oldPeriod) {
+        if(oldPeriod == null) {
+            return true;
+        }
         return !newPeriod.start.equals(oldPeriod.start) || !newPeriod.end.equals(oldPeriod.end);
     }
 
@@ -173,7 +178,7 @@ persons in your datastore, or you've deleted your counter model by mistake,
 it is possible to fully reload a Pipe to make it consistent with the current
 situation of your data (i.e count all persons again).
 
-To to this, you need to override the __drain__ method of your Pipe, this needed
+To to this, you need to override the __drain__ method of your Pipe, this is needed
 to describe how a sink is drained before it is reloaded:
 
 ~~~ java
@@ -195,7 +200,7 @@ http://localhost:8080/_ah/yawp/pipes/reload?pipe=yourpackage.PersonCounterPipe
 You may change the address to your app real host.
 
 The servlet above is mapped in your web.xml when you create the project from
-the yawp's maven archetype.
+the YAWP!'s maven archetype.
 
 __Note__: This tool is meant to be used in maintenance mode, so you need
 to make sure that there's no concurrent writes to the Person API

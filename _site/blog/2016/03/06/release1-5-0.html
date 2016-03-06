@@ -12,13 +12,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <meta name="description" content="Guides for Transformers API with java and javascript code samples">
+        
+    <meta name="description" content="YAWP! 1.5.0 is ready and it brings:
+
+
+  Pipe API
+  YAML configuration
+  ThreadLocal YAWP client
+  Shuffled Ids
+
+
+">
         
     <meta name="author" content="Fernando Ultremare and YAWP! contributors">
     <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
 
-    <title>YAWP! - API: Transformers</title>
+    <title>YAWP! - YAWP! 1.5.0 Released</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -110,10 +119,10 @@
                     <li class="">
                         <a href="/#community">Community</a>
                     </li>
-                    <li class="active">
+                    <li class="">
                         <a href="/guides">Guides</a>
                     </li>                    
-                    <li class="">
+                    <li class="active">
                         <a href="/blog">Blog</a>
                     </li>                                        
                     <li>
@@ -126,77 +135,41 @@
         <!-- /.container-fluid -->
     </nav>
 
-    
-
-
-
-
-
-<div class="container">
+    <div class="container">
     <div id="accordion" class="panel-group">
         <div class="sidebar">
             <div class="panel panel-default">
                 <a data-toggle="collapse" href="#getting-started">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Getting Started</h4>
+                        <h4 class="panel-title">Recent Posts</h4>
                     </div>
                 </a>
 
-                <div id="getting-started" class="panel-collapse collapse ">
+                <div id="getting-started" class="panel-collapse collapse in">
                     <div class="panel-body">
                         <ul>
-                            <a href="/guides/getting-started/installing-yawp">
-                                <li class="installing-yawp">
-                                    Installing YAWP!
+                            
+                            <a href="/blog/2016/03/06/release1-5-0">
+                                <li class="release1-5-0">
+                                    YAWP! 1.5.0 Released
                                 </li>
                             </a>
-                            <a href="/guides/getting-started/your-first-api">
-                                <li class="your-first-api">
-                                    Your first API
+                            
+                            <a href="/blog/2016/01/05/release1-4-0">
+                                <li class="release1-4-0">
+                                    YAWP! 1.4.0 Released
                                 </li>
                             </a>
-                            <a href="/guides/getting-started/core-concepts">
-                                <li class="core-concepts">
-                                    Core concepts
+                            
+                            <a href="/blog/2015/12/30/semantic-versioning">
+                                <li class="semantic-versioning">
+                                    Semantic Versioning
                                 </li>
                             </a>
-                            <a href="/guides/getting-started/supported-platforms">
-                                <li class="supported-platforms">
-                                    Supported platforms
-                                </li>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <a data-toggle="collapse" href="#tutorials">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">Tutorials</h4>
-                    </div>
-                </a>
-
-                <div id="tutorials" class="panel-collapse collapse ">
-                    <div class="panel-body">
-                        <ul>
-                            <a href="/guides/tutorials/todo-list-app">
-                                <li class="todo-list-app">
-                                    To-do list app
-                                </li>
-                            </a>
-                            <a href="/guides/tutorials/scaffolding">
-                                <li class="scaffolding">
-                                    Scaffolding
-                                </li>
-                            </a>
-                            <a href="/guides/tutorials/the-javascript-client">
-                                <li class="the-javascript-client">
-                                    The Javascript client
-                                </li>
-                            </a>
-                            <a href="/guides/tutorials/the-java-client">
-                                <li class="the-java-client">
-                                    The Java client
+                            
+                            <a href="/blog/2015/12/24/welcome-to-the-blog">
+                                <li class="welcome-to-the-blog">
+                                    Welcome to the Blog!
                                 </li>
                             </a>
                             
@@ -204,115 +177,106 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <a data-toggle="collapse" href="#api">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">API</h4>
-                    </div>
-                </a>
-
-                <div id="api" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <ul>
-                            <a href="/guides/api/models">
-                                <li class="models">
-                                    Models
-                                </li>
-                            </a>
-                            <a href="/guides/api/repository-actions">
-                                <li class="repository-actions">
-                                    Repository Actions
-                                </li>
-                            </a>
-                            <a href="/guides/api/actions">
-                                <li class="actions">
-                                    Actions
-                                </li>
-                            </a>
-                            <a href="/guides/api/query">
-                                <li class="query">
-                                    Query
-                                </li>
-                            </a>
-                            <a href="/guides/api/transformers">
-                                <li class="transformers">
-                                    Transformers
-                                </li>
-                            </a>
-                            <a href="/guides/api/shields">
-                                <li class="shields">
-                                    Shields
-                                </li>
-                            </a>
-                            <a href="/guides/api/hooks">
-                                <li class="hooks">
-                                    Hooks
-                                </li>
-                            </a>
-                            <a href="/guides/api/pipes">
-                                <li class="pipes">
-                                    Pipes
-                                </li>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div class="guide">
-        <h1 id="transformers">Transformers</h1>
+        
+            <h1>YAWP! 1.5.0 Released</h1>
+        
+        
+        <p><strong>YAWP!</strong> 1.5.0 is ready and it brings:</p>
 
-<p>The Transformer API is used to create different views of the same domain object. If you want to add 
-or hide information to be returned to the client, the way to go is to use a Transfomer. For instance:</p>
+<ul>
+  <li>Pipe API</li>
+  <li>YAML configuration</li>
+  <li>ThreadLocal YAWP client</li>
+  <li>Shuffled Ids</li>
+</ul>
 
-<pre><code class="language-java">public class BasicObjectTransformer extends Transformer&lt;Person&gt; {
+<!--more-->
 
-    public Map&lt;String, Object&gt; upperCase(Person person) {
-        Map&lt;String, Object&gt; map = asMap(person);
-        map.put("name", person.getName().toUpperCase());
-        return map;
-    }
-}
+<h1 id="pipe-api">Pipe API</h1>
+
+<p>The Pipe API is used to create an asynchronous information flow from
+one endpoint model (source) to another (sink). It can be used to
+create a variety of aggregation models without adding scalability
+bottle-necks.</p>
+
+<p><img src="/assets/img/pipes/aggregation.jpg" /></p>
+
+<p>See the <a href="/guides/api/pipes">Pipes API guide</a> for more information on how to use
+them.</p>
+
+<h1 id="yaml-configuration">YAML configuration</h1>
+
+<p>From now on, the preferred way to configure YAWP! is using its YAML configuration file,
+here is an example file:</p>
+
+<pre><code class="language-json">features:
+  default:
+    packagePrefix: com.yourpackage
 </code></pre>
 
-<p>Now, to transform a given person, let’s say with id 123, you can:</p>
+<p>The configuration file needs to be in the root classpath and to be called <strong>yawp.yaml</strong>.</p>
 
-<pre><code class="language-bash">curl -X GET http://localhost:8080/api/people/123?t=upperCase
+<h1 id="threadlocal-yawp-client">ThreadLocal YAWP client</h1>
+
+<p>After we’ve moved to the new YAWP!’s yaml configuration, it is possible to access
+the YAWP! client anywhere in our code. For instance, it is possible to use it from
+other servlets / services that we may have in our server app.</p>
+
+<p>To use the new YAWP’s client, we just need to static import it:</p>
+
+<pre><code class="language-java">import static io.yawp.repository.Yawp.yawp;
+
+// then use it as a regular yawp client
+yawp.save(person);
+yawp(Person.class).where(...)
 </code></pre>
 
-<p>The <strong>Javascript</strong> equivalent would be:</p>
+<h1 id="shuffled-ids">Shuffled Ids</h1>
 
-<pre><code class="language-javascript">yawp('/people/123').transform('upperCase').first( function(person) {} );
+<p>Sometimes we may need to have sequential IDs in our endpoints. Those IDs are nice
+to be read by the users but they are not so nice with the datastore index architecture.
+To help with this, the <strong>@Id</strong> annotation now has an option to indicate that we want
+to shuffle the ID before it is saved or fetched from the datastore.</p>
+
+<p>To use it, just set it to true:</p>
+
+<pre><code class="language-java">@Id(shuffle = true)
+private IdRef&lt;Person&gt; id;
 </code></pre>
 
-<p>Note: All transformers can be applied for collections queries or fetching single objects.</p>
 
-<p>Finally, you can also create more sophisticated transformers using the presenter pattern, like this:</p>
+        
+            <br />
+            <div id="disqus_thread"></div>
+<script>
 
-<pre><code class="language-java">public class UserTransformer extends Transformer&lt;User&gt; {
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
 
-   public static class UserView {
-        private String name;
-        private String company;
-        private int birthYear;
+s.src = '//yawp.disqus.com/embed.js';
 
-        public UserView(User user) {
-            this.name = user.getName();
-            this.company = user.getCompany();
-            this.birthYear = Calendar.getInstance().get(Calendar.YEAR) - user.getAge();
-        }
-    }
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
-    public UserView withYear(User user) {
-        return new UserView(user);
-    }
-}
-</code></pre>
-
-    </div>
+        
+    </div>                
 </div>
-
 
     <!-- Footer -->
     <footer class="text-center">
