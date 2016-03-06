@@ -60,6 +60,8 @@ to organize specific responsibilities together:
 
  * __Hooks__: A way to intercept the life-cycle of your models and add custom logic where necessary.
 
+ * __Pipes__: Create aggregated views (joins) of your models information.
+
 ### Static Typed over a Schemaless Persistence Layer
 
 We've selected Java as the core language of __YAWP!__ because it is static typed at the compile time.

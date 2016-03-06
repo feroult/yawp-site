@@ -5,7 +5,7 @@ description: Guides for the Pipes API with java samples
 ---
 # Pipes
 
-With pipes it is possible to create aggregated views of your models information.
+With pipes it is possible to create aggregated views (joins) of your models information.
 A pipe works asynchronously, which means they do not impact the write throughput
 of your API and they also have the same eventual consistency capabilities of your
 models.
