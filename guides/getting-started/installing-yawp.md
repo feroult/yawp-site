@@ -31,3 +31,6 @@ mvn yawp:devserver
 ~~~
 
 Just point a web browser to [http://localhost:8080/api](http://localhost:8080/api/) to verify it.
+
+Finally, if you want to deploy your API to __Google Appengine__, just follow this
+[simple guide](google-appengine-deploy).
