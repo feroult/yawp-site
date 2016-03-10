@@ -13,12 +13,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <meta name="description" content="A quick guide on how to create a simple YAWP! API">
+    <meta name="description" content="A guide on how to deploy YAWP! to Google Appengine">
         
     <meta name="author" content="Fernando Ultremare and YAWP! contributors">
     <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
 
-    <title>YAWP! - Getting Started: Your first API</title>
+    <title>YAWP! - Google Appengine Deploy</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -266,40 +266,26 @@
         </div>
     </div>
     <div class="guide">
-        <h1 id="your-first-api">Your first API</h1>
+        <h1 id="google-appengine-deploy">Google Appengine Deploy</h1>
 
-<p>To have your first API you just need to create an <a href="/guides/api/models">Endpoint</a>. It is done very
-easily with a scaffold:</p>
+<p>After you’ve bootstrapped your API with the ad of the YAWP!’s maven archetype, it is
+really straight forward to deploy it to Google Appengine, just follow these steps:</p>
 
-<pre><code class="language-bash">mvn yawp:endpoint -Dmodel=person
+<p>1) Create your Appengine Project ID using the <a href="https://console.cloud.google.com">Google Clound Console</a>.</p>
+
+<p>2) Change the file <strong>src/main/webapp/WEB-IF/appengine-web.xml</strong> and insert your Project ID:</p>
+
+<pre><code class="language-xml">&lt;application&gt;YOUR_APPENGINE_PROJECT_ID&lt;/application&gt;
 </code></pre>
 
-<p>Now we can change the <strong>Person</strong> class to add the <strong>name</strong> attribute:</p>
+<p>3) From the project’s root folder, deploy your APP using the Appengine Maven Plugin:</p>
 
-<pre><code class="language-java">@Endpoint(path = "/people")
-public class Person {
-    @Id
-    IdRef&lt;Person&gt; id;
-    
-    String name;
-}
+<pre><code class="language-bash">mvn appengine:update
 </code></pre>
 
-<p>Just start the development server:</p>
+<p>4) Try it with cURL:</p>
 
-<pre><code class="language-bash">mvn yawp:devserver
-</code></pre>
-
-<p>After the development server starts, you can play with the <strong>Person</strong> endpoint APIs with cURL. To create a person,
-execute in a shell:</p>
-
-<pre><code class="language-bash">curl -H "Content-type: application/json" -X POST \
-     -d "{'name': 'John'}" http://localhost:8080/api/people
-</code></pre>
-
-<p>To list the created person:</p>
-
-<pre><code class="language-bash">curl http://localhost:8080/api/people
+<pre><code class="language-bash">$ curl http://YOUR_APPENGINE_PROJECT_ID.appspot.com/api
 </code></pre>
 
     </div>
