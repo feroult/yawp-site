@@ -23,11 +23,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% if page.id %}    
+    {% if page.id %}
     <meta name="description" content="{{ page.excerpt | strip_html }}">
     {% else %}
     <meta name="description" content="{{ page.description }}">
-    {% endif %}    
+    {% endif %}
     <meta name="author" content="Fernando Ultremare and YAWP! contributors">
     <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
 
@@ -80,12 +80,12 @@
     })();
     </script>
     <!-- End Inspectlet Embed Code -->
-    
-    
+
+
     {% if home %}
     <link rel="stylesheet" href="http://cdn.jsdelivr.net/highlight.js/8.9.1/styles/zenburn.min.css">
     {% else %}
-    <link rel="stylesheet" href="http://cdn.jsdelivr.net/highlight.js/8.9.1/styles/atelier-cave.light.min.css"> 
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/highlight.js/8.9.1/styles/atelier-cave.light.min.css">
     {% endif %}
 
     {{ page.sections['header'] | textilize }}
@@ -129,10 +129,10 @@
                     </li>
                     <li class="{{ guidesActive }}">
                         <a href="/guides">Guides</a>
-                    </li>                    
+                    </li>
                     <li class="{{ blogActive }}">
                         <a href="/blog">Blog</a>
-                    </li>                                        
+                    </li>
                     <li>
                         <a href="http://github.com/feroult/yawp" target="_blank">GITHUB&nbsp;&nbsp;<i class="fa fa-github" style="font-size: 1.2em;"></i></a>
                     </li>
@@ -195,10 +195,13 @@
     <!-- code formatter -->
     <script>hljs.initHighlightingOnLoad();</script>
 
+    <!-- Place this tag right after the last button or just before your close body tag. -->
+    <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+
     {% if home %}
     {% else %}
     <script src="/assets/js/left-menu.js"></script>
-    {% endif %}   
+    {% endif %}
 
     {{ page.sections['scripts'] | textilize }}
 
