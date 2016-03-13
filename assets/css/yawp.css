@@ -37,7 +37,7 @@ header hr.star-light {
 
 header hr.star-light:after {
     /*color: black;*/
-    
+
     background: #F7F7DF;
 }
 
@@ -80,6 +80,16 @@ header div.star-right {
 
 .intro img {
     width: 180px;
+}
+
+.github-buttons {
+    margin-top: 28px;
+}
+
+.github-button {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
 }
 
 @media (max-width: 600px) {
@@ -157,7 +167,7 @@ div.step-text {
     margin: 8px;
     width: 70px;
 /*    opacity: 0.8; */
-    
+
     border: 2px solid #2c3e50;
     filter: gray;
     filter: grayscale(1);
