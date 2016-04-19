@@ -1,0 +1,13 @@
+<div class="col-sm-4 portfolio-item {{ include.class }}">
+    <div class="portfolio-link">
+        <div class="feature-icon">
+            <i class="fa fa-{{ include.icon }} fa-3x"></i>    
+        </div>
+    </div>
+    <div class="feature">
+        <h3>{{ include.title }}</h3>
+        <div class="sample">
+            {% include {{ include.src }} %}        
+        </div>
+    </div>
+</div>

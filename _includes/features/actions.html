@@ -1,0 +1,6 @@
+<pre class="code"><code class="java">@PUT("active")
+public void activate(IdRef<Person> id) {
+    Person person = id.fetch();
+    person.setActive(true);
+    yawp.save(person);
+}</code></pre>

@@ -1,0 +1,6 @@
+<pre class="code"><code class="java">@Override
+void beforeSave(Person person) {
+    if (person.age < 18)
+        throw new 
+              HttpException(422);
+}</code></pre>

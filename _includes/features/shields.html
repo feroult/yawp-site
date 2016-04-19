@@ -1,0 +1,6 @@
+<pre class="code"><code class="java">@Override
+public void show(IdRef<Person> id) {
+    allow(isAdmin());
+    allow(isUser())
+      .where("userId", "=", me());
+}</code></pre>

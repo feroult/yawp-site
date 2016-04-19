@@ -51,9 +51,6 @@ description: A very simple and elegant domain specific language / framework in J
         </div>
         <div class="row">
             <div class="col-sm-4 portfolio-item">
-                {% comment %}
-                <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">-->
-                {% endcomment %}
                 <div class="portfolio-link">
                     <div class="caption">
                         <div class="caption-content">
@@ -62,12 +59,9 @@ description: A very simple and elegant domain specific language / framework in J
                     </div>
                     <img src="assets/img/features/easy.png" class="img-responsive" alt="">
                 </div>
-                <div class="feature"><span>Crafted for APIs</span><br>A very simple and elegant domain specific language / framework in Java that helps you to create amazing APIs.</div>
+                <div class="feature"><h3>Crafted for APIs</h3>A very simple and elegant domain specific language / framework in Java that helps you to create amazing APIs.</div>
             </div>
             <div class="col-sm-4 portfolio-item">
-                {% comment %}
-                <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                {% endcomment %}
                 <div class="portfolio-link">
                     <div class="caption">
                         <div class="caption-content">
@@ -76,12 +70,9 @@ description: A very simple and elegant domain specific language / framework in J
                     </div>
                     <img src="assets/img/features/scalable.png" class="img-responsive" alt="">
                 </div>
-                <div class="feature"><span>Auto Scaling</span><br>It natively supports the Google Appengine Platform. Build your apps, scale automatically.</div>
+                <div class="feature"><h3>Auto Scaling</h3>It natively supports the Google Appengine Platform. Build your apps, scale automatically.</div>
             </div>
             <div class="col-sm-4 portfolio-item">
-                {% comment %}
-                <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                {% endcomment %}
                 <div class="portfolio-link">
                     <div class="caption">
                         <div class="caption-content">
@@ -89,11 +80,20 @@ description: A very simple and elegant domain specific language / framework in J
                         </div>
                     </div>
                     <img src="assets/img/features/portable.png" class="img-responsive" alt="">
-                </a>
-                <div class="feature"><span>Platform Free</span>
-                    <br>If scalability is not an issue or you'd rather do-it-yourself, move to any platform with the PostgreSQL driver.</div>
+                </div>
+                <div class="feature"><h3>Platform Free</h3>If scalability is not an issue or you'd rather do-it-yourself, move to any platform with the PostgreSQL driver.</div>        
             </div>
         </div>
+        <div class="row zebra" markdown="1">                    
+            {% include feature.html src="features/models.html" title="Models" icon="cubes"  %}                    
+            {% include feature.html src="features/actions.html" title="Actions" icon="flash"  %}   
+            {% include feature.html src="features/shields.html" title="Shields" icon="shield" %}                                             
+        </div>
+        <div class="row" markdown="1">         
+            {% include feature.html src="features/pipes.html" title="Pipes" icon="exchange" %}                      
+            {% include feature.html src="features/transformers.html" title="Transformers" icon="eye" %}           
+            {% include feature.html src="features/hooks.html" title="Hooks" icon="level-down" %}                    
+        </div>        
     </div>
 </section>
 
