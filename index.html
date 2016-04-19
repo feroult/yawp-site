@@ -257,7 +257,7 @@ public void activate(IdRef<Person> id) {
 public void show(IdRef<Person> id) {
     allow(isAdmin());
     allow(isUser())
-      .where("userId", "=", me());
+     .where("userId", "=", me());
 }</code></pre>        
         </div>
     </div>
