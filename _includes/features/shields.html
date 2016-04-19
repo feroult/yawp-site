@@ -2,5 +2,5 @@
 public void show(IdRef<Person> id) {
     allow(isAdmin());
     allow(isUser())
-      .where("userId", "=", me());
+     .where("userId", "=", me());
 }</code></pre>
