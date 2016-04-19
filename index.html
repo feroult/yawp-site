@@ -174,7 +174,6 @@
         </div>
         <div class="row">
             <div class="col-sm-4 portfolio-item">
-                
                 <div class="portfolio-link">
                     <div class="caption">
                         <div class="caption-content">
@@ -183,10 +182,9 @@
                     </div>
                     <img src="assets/img/features/easy.png" class="img-responsive" alt="">
                 </div>
-                <div class="feature"><span>Crafted for APIs</span><br>A very simple and elegant domain specific language / framework in Java that helps you to create amazing APIs.</div>
+                <div class="feature"><h3>Crafted for APIs</h3>A very simple and elegant domain specific language / framework in Java that helps you to create amazing APIs.</div>
             </div>
             <div class="col-sm-4 portfolio-item">
-                
                 <div class="portfolio-link">
                     <div class="caption">
                         <div class="caption-content">
@@ -195,10 +193,9 @@
                     </div>
                     <img src="assets/img/features/scalable.png" class="img-responsive" alt="">
                 </div>
-                <div class="feature"><span>Auto Scaling</span><br>It natively supports the Google Appengine Platform. Build your apps, scale automatically.</div>
+                <div class="feature"><h3>Auto Scaling</h3>It natively supports the Google Appengine Platform. Build your apps, scale automatically.</div>
             </div>
             <div class="col-sm-4 portfolio-item">
-                
                 <div class="portfolio-link">
                     <div class="caption">
                         <div class="caption-content">
@@ -206,11 +203,123 @@
                         </div>
                     </div>
                     <img src="assets/img/features/portable.png" class="img-responsive" alt="">
-                </a>
-                <div class="feature"><span>Platform Free</span>
-                    <br>If scalability is not an issue or you'd rather do-it-yourself, move to any platform with the PostgreSQL driver.</div>
+                </div>
+                <div class="feature"><h3>Platform Free</h3>If scalability is not an issue or you'd rather do-it-yourself, move to any platform with the PostgreSQL driver.</div>        
             </div>
         </div>
+        <div class="row zebra" markdown="1">                    
+            <div class="col-sm-4 portfolio-item ">
+    <div class="portfolio-link">
+        <div class="feature-icon">
+            <i class="fa fa-cubes fa-3x"></i>    
+        </div>
+    </div>
+    <div class="feature">
+        <h3>Models</h3>
+        <div class="sample">
+            <pre class="code"><code class="java">@Endpoint(path = "/people")
+public class Person {
+    @Id
+    IdRef&lt;Person&gt; id;
+    String name;
+}</code></pre>        
+        </div>
+    </div>
+</div>                    
+            <div class="col-sm-4 portfolio-item ">
+    <div class="portfolio-link">
+        <div class="feature-icon">
+            <i class="fa fa-flash fa-3x"></i>    
+        </div>
+    </div>
+    <div class="feature">
+        <h3>Actions</h3>
+        <div class="sample">
+            <pre class="code"><code class="java">@PUT("active")
+public void activate(IdRef<Person> id) {
+    Person person = id.fetch();
+    person.setActive(true);
+    yawp.save(person);
+}</code></pre>        
+        </div>
+    </div>
+</div>   
+            <div class="col-sm-4 portfolio-item ">
+    <div class="portfolio-link">
+        <div class="feature-icon">
+            <i class="fa fa-shield fa-3x"></i>    
+        </div>
+    </div>
+    <div class="feature">
+        <h3>Shields</h3>
+        <div class="sample">
+            <pre class="code"><code class="java">@Override
+public void show(IdRef<Person> id) {
+    allow(isAdmin());
+    allow(isUser())
+      .where("userId", "=", me());
+}</code></pre>        
+        </div>
+    </div>
+</div>                                             
+        </div>
+        <div class="row" markdown="1">         
+            <div class="col-sm-4 portfolio-item ">
+    <div class="portfolio-link">
+        <div class="feature-icon">
+            <i class="fa fa-exchange fa-3x"></i>    
+        </div>
+    </div>
+    <div class="feature">
+        <h3>Pipes</h3>
+        <div class="sample">
+            <pre class="code"><code class="java">@Override
+public void flux(Person person, 
+                 Agg agg) {
+    agg.increment();
+    agg.sum(person.salary);    
+}
+</code></pre>        
+        </div>
+    </div>
+</div>                      
+            <div class="col-sm-4 portfolio-item ">
+    <div class="portfolio-link">
+        <div class="feature-icon">
+            <i class="fa fa-eye fa-3x"></i>    
+        </div>
+    </div>
+    <div class="feature">
+        <h3>Transformers</h3>
+        <div class="sample">
+            <pre class="code"><code class="java">Object upperCase(Person p) {
+    Map<String, Object> map = asMap(p);
+    map.put("name", p.getName()
+          .toUpperCase());
+    return map;
+}</code></pre>        
+        </div>
+    </div>
+</div>           
+            <div class="col-sm-4 portfolio-item ">
+    <div class="portfolio-link">
+        <div class="feature-icon">
+            <i class="fa fa-level-down fa-3x"></i>    
+        </div>
+    </div>
+    <div class="feature">
+        <h3>Hooks</h3>
+        <div class="sample">
+            <pre class="code"><code class="java">@Override
+void beforeSave(Person person) {
+    if (person.age < 18)
+        throw new 
+              HttpException(422);
+}</code></pre>        
+        </div>
+    </div>
+</div>                    
+        </div>        
     </div>
 </section>
 
