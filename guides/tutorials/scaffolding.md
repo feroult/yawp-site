@@ -31,7 +31,7 @@ Create a __PersonShield__ if the endpoint model is not already shielded.
 mvn yawp:action -Dmodel=person -Dname=activate
 ~~~
 
-Create a __PersonActivateAction__ custom action for the endpoint model.
+Creates a __PersonActivateAction__ custom action for the endpoint model.
 
 ### Transformer
 
@@ -49,5 +49,14 @@ mvn yawp:hook -Dmodel=person -Dname=setUser
 ~~~
 
 Create a __PersonSetUserHook__ hook for the endpoint model.
+
+### Pipe
+
+~~~ bash
+mvn yawp:pipe -Dmodel=person -Dname=counter -Dsink=personCounter
+~~~
+
+Create a __PersonCounterPipe__ pipe from the source endpoint model Person 
+to the sink endpoint model PersonCounter.
 
 

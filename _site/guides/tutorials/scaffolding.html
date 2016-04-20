@@ -291,7 +291,7 @@ the security Shield.</p>
 <pre><code class="language-bash">mvn yawp:action -Dmodel=person -Dname=activate
 </code></pre>
 
-<p>Create a <strong>PersonActivateAction</strong> custom action for the endpoint model.</p>
+<p>Creates a <strong>PersonActivateAction</strong> custom action for the endpoint model.</p>
 
 <h3 id="transformer">Transformer</h3>
 
@@ -306,6 +306,14 @@ the security Shield.</p>
 </code></pre>
 
 <p>Create a <strong>PersonSetUserHook</strong> hook for the endpoint model.</p>
+
+<h3 id="pipe">Pipe</h3>
+
+<pre><code class="language-bash">mvn yawp:pipe -Dmodel=person -Dname=counter -Dsink=personCounter
+</code></pre>
+
+<p>Create a <strong>PersonCounterPipe</strong> pipe from the source endpoint model Person 
+to the sink endpoint model PersonCounter.</p>
 
 
     </div>
