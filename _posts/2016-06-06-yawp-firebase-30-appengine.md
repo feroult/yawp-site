@@ -71,7 +71,7 @@ described at the previous links:
 ~~~ java
 public class AppengineFirebaseAuth {
 
-    private static final String APP_ID = "baggrapp";
+    private static final String APP_ID = "YOUR_APP_ID";
 
     public static AppengineFirebaseToken verifyIdToken(String token) {
         Map<String, String> publicKeys = GooglePublicKeys.getKeys();
