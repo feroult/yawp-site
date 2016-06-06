@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: YAWP! + Firebase + GAE
+title: YAWP! + Firebase 3.0 + GAE
 ---
 
 Since I've started mixing YAWP! APIs with some of the new Google Firebase 3.0 features,
