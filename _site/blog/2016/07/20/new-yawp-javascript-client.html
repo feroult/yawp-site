@@ -13,12 +13,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <meta name="description" content="Guides for the Models API with java code samples">
+    <meta name="description" content="The new YAWP! Javascript Client is ready to use! And it includes:
+
+
+  Support for Node.js and React-Native platforms
+  ES6 Promises refactory
+  Endpoint extesion with ES6 class syntax or ES5 prototypes
+
+
+For more details, see the Javascript Client documents .
+
+">
     
     <meta name="author" content="Fernando Ultremare and YAWP! contributors">
     <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
 
-    <title>YAWP! - API: Models</title>
+    <title>YAWP! - New YAWP! Javascript Client</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -110,10 +120,10 @@
                     <li class="">
                         <a href="/#community">Community</a>
                     </li>
-                    <li class="active">
+                    <li class="">
                         <a href="/guides">Guides</a>
                     </li>
-                    <li class="">
+                    <li class="active">
                         <a href="/blog">Blog</a>
                     </li>
                     <li>
@@ -126,82 +136,53 @@
         <!-- /.container-fluid -->
     </nav>
 
-    
-
-
-
-
-
-<div class="container">
+    <div class="container">
     <div id="accordion" class="panel-group">
         <div class="sidebar">
             <div class="panel panel-default">
                 <a data-toggle="collapse" href="#getting-started">
                     <div class="panel-heading">
-                        <h4 class="panel-title">Getting Started</h4>
+                        <h4 class="panel-title">Recent Posts</h4>
                     </div>
                 </a>
 
-                <div id="getting-started" class="panel-collapse collapse ">
+                <div id="getting-started" class="panel-collapse collapse in">
                     <div class="panel-body">
                         <ul>
-                            <a href="/guides/getting-started/installing-yawp">
-                                <li class="installing-yawp">
-                                    Installing YAWP!
+                            
+                            <a href="/blog/2016/07/20/new-yawp-javascript-client">
+                                <li class="new-yawp-javascript-client">
+                                    New YAWP! Javascript Client
                                 </li>
                             </a>
-                            <a href="/guides/getting-started/google-appengine-deploy">
-                                <li class="google-appengine-deploy">
-                                    Google Appengine Deploy
+                            
+                            <a href="/blog/2016/06/06/yawp-firebase-30-appengine">
+                                <li class="yawp-firebase-30-appengine">
+                                    YAWP! + Firebase 3.0 + GAE
                                 </li>
                             </a>
-                            <a href="/guides/getting-started/your-first-api">
-                                <li class="your-first-api">
-                                    Your first API
+                            
+                            <a href="/blog/2016/03/06/release1-5-0">
+                                <li class="release1-5-0">
+                                    YAWP! 1.5.0 Released
                                 </li>
                             </a>
-                            <a href="/guides/getting-started/core-concepts">
-                                <li class="core-concepts">
-                                    Core concepts
+                            
+                            <a href="/blog/2016/01/05/release1-4-0">
+                                <li class="release1-4-0">
+                                    YAWP! 1.4.0 Released
                                 </li>
                             </a>
-                            <a href="/guides/getting-started/supported-platforms">
-                                <li class="supported-platforms">
-                                    Supported platforms
+                            
+                            <a href="/blog/2015/12/30/semantic-versioning">
+                                <li class="semantic-versioning">
+                                    Semantic Versioning
                                 </li>
                             </a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <a data-toggle="collapse" href="#tutorials">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">Tutorials</h4>
-                    </div>
-                </a>
-
-                <div id="tutorials" class="panel-collapse collapse ">
-                    <div class="panel-body">
-                        <ul>
-                            <a href="/guides/tutorials/todo-list-app">
-                                <li class="todo-list-app">
-                                    To-do list app
-                                </li>
-                            </a>
-                            <a href="/guides/tutorials/scaffolding">
-                                <li class="scaffolding">
-                                    Scaffolding
-                                </li>
-                            </a>
-                            <a href="/guides/tutorials/the-javascript-client">
-                                <li class="the-javascript-client">
-                                    The Javascript client
-                                </li>
-                            </a>
-                            <a href="/guides/tutorials/the-java-client">
-                                <li class="the-java-client">
-                                    The Java client
+                            
+                            <a href="/blog/2015/12/24/welcome-to-the-blog">
+                                <li class="welcome-to-the-blog">
+                                    Welcome to the Blog!
                                 </li>
                             </a>
                             
@@ -209,163 +190,101 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">
-                <a data-toggle="collapse" href="#api">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">API</h4>
-                    </div>
-                </a>
-
-                <div id="api" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <ul>
-                            <a href="/guides/api/models">
-                                <li class="models">
-                                    Models
-                                </li>
-                            </a>
-                            <a href="/guides/api/repository-actions">
-                                <li class="repository-actions">
-                                    Repository Actions
-                                </li>
-                            </a>
-                            <a href="/guides/api/actions">
-                                <li class="actions">
-                                    Actions
-                                </li>
-                            </a>
-                            <a href="/guides/api/query">
-                                <li class="query">
-                                    Query
-                                </li>
-                            </a>
-                            <a href="/guides/api/transformers">
-                                <li class="transformers">
-                                    Transformers
-                                </li>
-                            </a>
-                            <a href="/guides/api/shields">
-                                <li class="shields">
-                                    Shields
-                                </li>
-                            </a>
-                            <a href="/guides/api/hooks">
-                                <li class="hooks">
-                                    Hooks
-                                </li>
-                            </a>
-                            <a href="/guides/api/pipes">
-                                <li class="pipes">
-                                    Pipes
-                                </li>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div class="guide">
-        <h1 id="models">Models</h1>
+        
+            <h1>New YAWP! Javascript Client</h1>
+        
+        
+        <p>The new <strong>YAWP! Javascript Client</strong> is ready to use! And it includes:</p>
 
-<p>Endpoint Models represent the schema of your API resources. Lets take look at some important points
-of our Person endpoint example:</p>
+<ul>
+  <li>Support for Node.js and React-Native platforms</li>
+  <li>ES6 Promises refactory</li>
+  <li>Endpoint extesion with ES6 class syntax or ES5 prototypes</li>
+</ul>
 
-<pre><code class="language-java">@Endpoint(path = "/people")
-public class Person {
+<p>For more details, see the <a href="/guides/tutorials/the-javascript-client">Javascript Client documents</a> .</p>
 
-    @Id
-    IdRef&lt;Person&gt; id;
+<!--more-->
 
-    @Index
-    String name;
+<h1 id="nodejs-and-react-native">Node.js and React-Native</h1>
 
+<p>Now it is possible to write your API clients in Javascript and use them in different environments.</p>
+
+<p>To use it in Web Apps, just add the regular script tag:</p>
+
+<pre><code class="language-html">&lt;script src="https://rawgit.com/feroult/yawp/yawp-1.6.5/yawp-client/lib/web/yawp.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>Now to use it in Node.js or React-Native:</p>
+
+<pre><code class="language-bash">npm install yawp --save
+</code></pre>
+
+<h1 id="es6-promises">ES6 Promises</h1>
+
+<p>All YAWP! Javascript Client methods now return ES6 Promises, making it really easier to 
+work with asynchronous calls.</p>
+
+<p><strong>Note</strong>: Some existing client code may break, because we have renamed some callback methods. 
+It is really easy to fix doing the following changes:</p>
+
+<ul>
+  <li>done callbacks changes to <strong>then</strong>.</li>
+  <li>fail, exception and error callbacks change to <strong>catch</strong>.</li>
+</ul>
+
+<h1 id="endpoint-extensions">Endpoint Extensions</h1>
+
+<p>The most exciting feature of the new YAWP! Javascript Client is that all yawp client 
+methods can now be extended by subclassing the base <strong>yawp function</strong> for a given endpoint. 
+And this can be done either with the ES6 class syntax or with ES5 prototypes.</p>
+
+<p>For instance, to create a <strong>Person</strong> endpoint extension that is linked to the <strong>/people</strong> endpoint:</p>
+
+<pre><code class="language-javascript">class Person extends yawp('/people') {
+    static inactive() {
+        return this.where('status', '=', 'INACTIVE');
+    }
+    
+    activate() {
+        return this.put('active');
+    }
 }
 </code></pre>
 
-<h3 id="endpoint">@Endpoint</h3>
 
-<p>The beginning of everything is the <strong>@Endpoint</strong> annotation. It defines a new endpoint and the base route
-of its APIs to be <strong>/people</strong>.</p>
+        
+            <br />
+            <div id="disqus_thread"></div>
+<script>
 
-<h3 id="primitive-properties">Primitive Properties</h3>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
 
-<p>The primitive types that can be used as models attributes are describe in the following table. More complex
-types can be persisted using the <strong>@Json</strong> annotation:</p>
+s.src = '//yawp.disqus.com/embed.js';
 
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Java type(s)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Integer</td>
-      <td>short, int, long, java.lang.Short, java.lang.Integer, java.lang.Long</td>
-    </tr>
-    <tr>
-      <td>Floating-point number</td>
-      <td>float, double, java.lang.Float, java.lang.Double</td>
-    </tr>
-    <tr>
-      <td>Boolean</td>
-      <td>boolean, java.lang.Boolean</td>
-    </tr>
-    <tr>
-      <td>Text</td>
-      <td>String</td>
-    </tr>
-    <tr>
-      <td>Date</td>
-      <td>java.util.Date</td>
-    </tr>
-  </tbody>
-</table>
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 
-<h3 id="id">@Id</h3>
-
-<p>All models should have one, and only one, <strong>IdRef</strong> attribute annotaded with <strong>@Id</strong>. This is
-the id of your model and it will be used to access its information or to create a relationship
-with another model.</p>
-
-<h3 id="index">@Index</h3>
-
-<p>The <strong>@Index</strong> annotation tells yawp to create indexes to allow queries using this
-attribute as a filter or order clause.</p>
-
-<h3 id="json">@Json</h3>
-
-<p>If you want store a more complex object inside your model, you will need to serialize
-the attribute as a json string. For instance:</p>
-
-<pre><code class="language-java">@Json
-Address address;
-</code></pre>
-
-<h3 id="text">@Text</h3>
-
-<p>It is used to mark a string attribute as a large text value. When you use this annotation you can store
-larger texts but you can’t create indexes over this attribute anymore.</p>
-
-<pre><code class="language-java">@Text
-String comment;
-</code></pre>
-
-<h3 id="parentid">@ParentId</h3>
-
-<p>It is possible to create entity groups based on ancestor keys. In Appengine Datastore this is used
-to obtain strong consistency queries where it is necessary. To do so, you add an IdRef to the ancestor
-model of your model, annotate it with <strong>@ParentId</strong>:</p>
-
-<pre><code class="language-java">@ParentId
-IdRef&lt;Company&gt; companyId;
-</code></pre>
-
-    </div>
+        
+    </div>                
 </div>
-
 
     <!-- Footer -->
     <footer class="text-center">

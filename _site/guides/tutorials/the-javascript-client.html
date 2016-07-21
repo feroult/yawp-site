@@ -268,7 +268,7 @@
     <div class="guide">
         <h1 id="the-javascript-client">The Javascript client</h1>
 
-<p>To access <strong>YAWP!</strong> APIs from your web apps, you can use its javascript client library.</p>
+<p>To access <strong>YAWP!</strong> APIs from your Web or NodeJS apps, you can use its javascript client library.</p>
 
 <h3 id="contents">Contents</h3>
 
@@ -279,12 +279,24 @@
   <li><a href="#custom-actions">Custom Actions</a></li>
   <li><a href="#query">Query</a></li>
   <li><a href="#transformers">Transformers</a></li>
+  <li><a href="#instance-methods">Instance Methods</a></li>
+  <li><a href="#class-extension">Class Extension</a></li>
+  <li><a href="#es5-prototypes">ES5 Prototypes</a></li>
 </ul>
 
 <h3 id="installation">Installation</h3>
 
-<pre><code class="language-html">&lt;script src="https://rawgit.com/feroult/yawp/yawp-1.4.2/yawp-core/src/main/js/dist/yawp.min.js"&gt;&lt;/script&gt;
+<p><strong>Web</strong></p>
+
+<pre><code class="language-html">&lt;script src="https://rawgit.com/feroult/yawp/yawp-1.6.5/yawp-client/lib/web/yawp.min.js"&gt;&lt;/script&gt;
 </code></pre>
+
+<p><strong>NodeJs</strong></p>
+
+<pre><code class="language-bash">npm install yawp --save
+</code></pre>
+
+<p>Note: if your environemnt doesn’t support ES6 promises, you’ll need to use a polyfill like this <a href="https://github.com/taylorhakes/promise-polyfill">one</a>.</p>
 
 <h3 id="setup">Setup</h3>
 
@@ -378,6 +390,106 @@ yawp('/people').transform('upperCase').first(function (person) {
 });
 </code></pre>
 
+<h3 id="instance-methods">Instance Methods</h3>
+
+<p>All objects returned by the <strong>yawp query methods</strong> are wrapped inside an instance of the class <strong>Yawp</strong>. 
+This class gives us some methods that operate over those instances:</p>
+
+<pre><code class="language-javascript">yawp('/people/1').fetch(function (person) {
+    person.name = 'new name';
+    person.save(); // returns a promise
+    person.put('active'); // returns a promise
+    person._delete('active'); // returns a promise
+    person.destroy(); // returns a promise
+});
+</code></pre>
+
+<p>The complete API methods of the <strong>Yawp</strong> class can be found <a href="https://github.com/feroult/yawp/blob/master/yawp-client/src/commons/yawp.js">here</a>.</p>
+
+<h3 id="class-extension">Class Extension</h3>
+
+<p>All yawp client features can be extendend by subclassing the base <strong>Yawp</strong> class for a given
+endpoint. 
+And this can be done either with the ES6 class syntax or with ES5 prototypes.</p>
+
+<p>For instance, to create a <strong>Person</strong> class to add and encapsulate some new methods to the
+endpoint <strong>/people</strong>, we can do something this:</p>
+
+<pre><code class="language-javascript">class Person extends yawp('/people') {
+}
+</code></pre>
+
+<p>Now to add static methods to this endpoint model, we can do:</p>
+
+<pre><code class="language-javascript">class Person extends yawp('/people') {
+    static active() {
+        return this.where('status', '=', 'ACTIVE');
+    }
+}
+</code></pre>
+
+<p>Note that now all the objects returned by the API calls using <strong>Person</strong> will be wrapped inside an
+instance of the <strong>Person</strong> class. With this, it is also possible to add methods that 
+operate over instances of that class:</p>
+
+<pre><code class="language-javascript">class Person extends yawp('/people') {
+    static inactive() {
+        return this.where('status', '=', 'INACTIVE');
+    }
+    
+    activate() {
+        return this.put('active');
+    }
+}
+</code></pre>
+
+<p>And use then in our application code:</p>
+
+<pre><code class="language-javascript">Person.inative.first(function (person) {
+    person.activate().then(function() {
+        console.log('person is now active');
+    });
+})
+</code></pre>
+
+<p>Finally, we can override methods:</p>
+
+<pre><code class="language-javascript">class Person extends yawp('/people') {
+    save() {
+        console.log('saving...');
+        return super.save();
+    }
+}
+</code></pre>
+
+<h3 id="es5-prototypes">ES5 Prototypes</h3>
+
+<p>If we are running our app in an environment that doesn’t support ES6 class syntax, 
+we have two options. The first is to transpile our ES6 code to ES5 using the <a href="http://babeljs.io">Babel JS</a>.
+The other is to use some convenience <strong>YAWP!</strong> methods. To create the same <strong>Person</strong> class as above
+but in ES5 we can do:</p>
+
+<pre><code class="language-javascript">var Person = yawp('/people).subclass(/* we can pass a constructor function */);
+
+Person.inactive = function() {
+    return this.where('status', '=', 'INACTIVE');
+}
+
+Person.prototype.activate = function() {
+    return this.put('active');
+}
+</code></pre>
+
+<p>If we want to override methods, there is a small difference from the ES6 version. With ES5 we
+have to access the super methods using the syntax <strong>this.super</strong>, like this:</p>
+
+<pre><code class="language-javascript">Person.prototype.save = function() {
+    console.log('saving...');
+    return this.super.save();
+}
+</code></pre>
+
+
     </div>
 </div>
 
@@ -447,16 +559,6 @@ yawp('/people').transform('upperCase').first(function (person) {
         });
     </script>
 
-
-    <script type="text/javascript">
-var _urq = _urq || [];
-_urq.push(['initSite', 'a04442b1-d760-4f5c-98b2-dcb5a1705cea']);
-(function() {
-var ur = document.createElement('script'); ur.type = 'text/javascript'; ur.async = true;
-ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js');
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ur, s);
-})();
-</script>
 
 </body>
 
