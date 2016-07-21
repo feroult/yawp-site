@@ -163,7 +163,7 @@ class Person extends yawp('/people') {
 }
 ~~~
 
-Now to add static methods to this endpoint model, we can do this:
+Now to add static methods to this endpoint model, we can do:
 
 ~~~ javascript
 class Person extends yawp('/people') {
@@ -173,7 +173,7 @@ class Person extends yawp('/people') {
 }
 ~~~
 
-Note that now all the objects returned by the API calls using __Person__, will be wrapped inside an
+Note that now all the objects returned by the API calls using __Person__ will be wrapped inside an
 instance of the __Person__ class. With this, it is also possible to add methods that 
 operate over instances of that class:
 
@@ -199,7 +199,7 @@ Person.inative.first(function (person) {
 })
 ~~~
 
-Finally, to override methods: 
+Finally, we can override methods: 
 
 ~~~ javascript
 class Person extends yawp('/people') {
@@ -214,11 +214,11 @@ class Person extends yawp('/people') {
 
 If we are running our app in an environment that doesn't support ES6 class syntax, 
 we have two options. The first is to transpile our ES6 code to ES5 using the [Babel JS](http://babeljs.io).
-The other is to use some convenience __YAWP!__ methods. To create same __Person__ class as above
+The other is to use some convenience __YAWP!__ methods. To create the same __Person__ class as above
 but in ES5 we can do:
 
 ~~~ javascript
-var Person = yawp('/people).subclass();
+var Person = yawp('/people).subclass(/* we can pass a constructor function */);
 
 Person.inactive = function() {
     return this.where('status', '=', 'INACTIVE');
@@ -229,7 +229,7 @@ Person.prototype.activate = function() {
 }
 ~~~
 
-If we want to override methods, there's small difference from the ES6 version. With ES5 we
+If we want to override methods, there is a small difference from the ES6 version. With ES5 we
 have to access the super methods using the syntax __this.super__, like this:
 
 ~~~ javascript
