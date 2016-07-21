@@ -9,7 +9,7 @@ The new __YAWP! Javascript Client__ is ready to use! And it includes:
 * ES6 Promises refactory
 * Endpoint extesion with ES6 class syntax or ES5 prototypes
 
-For more details, see the [Javascript Client documents](/guides/tutorials/the-javascript-client) .
+For more details, see the [javascript client tutorial](/guides/tutorials/the-javascript-client) .
 
 <!--more-->
 
