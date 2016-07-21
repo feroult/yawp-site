@@ -5,7 +5,7 @@ description: A guide on how to use the YAWP!'s Javascript client
 ---
 # The Javascript client
 
-To access __YAWP!__ APIs from your web apps, you can use its javascript client library.
+To access __YAWP!__ APIs from your Web or NodeJS apps, you can use its javascript client library.
 
 ### Contents
 
@@ -15,12 +15,25 @@ To access __YAWP!__ APIs from your web apps, you can use its javascript client l
 - [Custom Actions](#custom-actions)
 - [Query](#query)
 - [Transformers](#transformers)
+- [Instance Methods](#instance-methods)
+- [Class Extension](#class-extension)
+- [ES5 Prototypes](#es5-prototypes)
 
 ### Installation
 
+__Web__
+
 ~~~ html
-<script src="https://rawgit.com/feroult/yawp/yawp-1.4.2/yawp-core/src/main/js/dist/yawp.min.js"></script>
+<script src="https://rawgit.com/feroult/yawp/yawp-1.6.5/yawp-client/lib/web/yawp.min.js"></script>
 ~~~
+
+__NodeJs__
+
+~~~ bash
+npm install yawp --save
+~~~
+
+Note: if your environemnt doesn't support ES6 promises, you'll need to use a polyfill like this [one](https://github.com/taylorhakes/promise-polyfill).
 
 ### Setup
 
@@ -118,3 +131,115 @@ yawp('/people').transform('upperCase').first(function (person) {
     console.log(person);
 });
 ~~~
+
+### Instance Methods
+
+All objects returned by the __yawp query methods__ are wrapped inside an instance of the class __Yawp__. 
+This class gives us some methods that operate over those instances:
+
+~~~ javascript
+yawp('/people/1').fetch(function (person) {
+    person.name = 'new name';
+    person.save(); // returns a promise
+    person.put('active'); // returns a promise
+    person._delete('active'); // returns a promise
+    person.destroy(); // returns a promise
+});
+~~~
+
+The complete API methods of the __Yawp__ class can be found [here](https://github.com/feroult/yawp/blob/master/yawp-client/src/commons/yawp.js).
+
+### Class Extension
+
+All yawp client features can be extendend by subclassing the base __Yawp__ class for a given
+endpoint. 
+And this can be done either with the ES6 class syntax or with ES5 prototypes.
+
+For instance, to create a __Person__ class to add and encapsulate some new methods to the
+endpoint __/people__, we can do something this:
+
+~~~ javascript
+class Person extends yawp('/people') {
+}
+~~~
+
+Now to add static methods to this endpoint model, we can do this:
+
+~~~ javascript
+class Person extends yawp('/people') {
+    static active() {
+        return this.where('status', '=', 'ACTIVE');
+    }
+}
+~~~
+
+Note that now all the objects returned by the API calls using __Person__, will be wrapped inside an
+instance of the __Person__ class. With this, it is also possible to add methods that 
+operate over instances of that class:
+
+~~~ javascript
+class Person extends yawp('/people') {
+    static inactive() {
+        return this.where('status', '=', 'INACTIVE');
+    }
+    
+    activate() {
+        return this.put('active');
+    }
+}
+~~~
+
+And use then in our application code:
+
+~~~ javascript
+Person.inative.first(function (person) {
+    person.activate().then(function() {
+        console.log('person is now active');
+    });
+})
+~~~
+
+Finally, to override methods: 
+
+~~~ javascript
+class Person extends yawp('/people') {
+    save() {
+        console.log('saving...');
+        return super.save();
+    }
+}
+~~~
+
+### ES5 Prototypes
+
+If we are running our app in an environment that doesn't support ES6 class syntax, 
+we have two options. The first is to transpile our ES6 code to ES5 using the [Babel JS](http://babeljs.io).
+The other is to use some convenience __YAWP!__ methods. To create same __Person__ class as above
+but in ES5 we can do:
+
+~~~ javascript
+var Person = yawp('/people).subclass();
+
+Person.inactive = function() {
+    return this.where('status', '=', 'INACTIVE');
+}
+
+Person.prototype.activate = function() {
+    return this.put('active');
+}
+~~~
+
+If we want to override methods, there's small difference from the ES6 version. With ES5 we
+have to access the super methods using the syntax __this.super__, like this:
+
+~~~ javascript
+Person.prototype.save = function() {
+    console.log('saving...');
+    return this.super.save();
+}
+~~~
+
+
+
+
+
