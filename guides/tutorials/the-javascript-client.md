@@ -24,7 +24,7 @@ To access __YAWP!__ APIs from your Web or NodeJS apps, you can use its javascrip
 __Web__
 
 ~~~ html
-<script src="https://rawgit.com/feroult/yawp/yawp-1.6.5/yawp-client/lib/web/yawp.min.js"></script>
+<script src="https://rawgit.com/feroult/yawp/yawp-1.6.8/yawp-client/lib/web/yawp.min.js"></script>
 ~~~
 
 __NodeJs__
