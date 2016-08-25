@@ -13,12 +13,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <meta name="description" content="Guides for Transformers API with java and javascript code samples">
+    <meta name="description" content="Introduction to the YAWP! Framework">
     
     <meta name="author" content="Fernando Ultremare and YAWP! contributors">
     <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
 
-    <title>YAWP! - API: Transformers</title>
+    <title>YAWP! - Getting Started: Introduction</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -142,7 +142,7 @@
                     </div>
                 </a>
 
-                <div id="getting-started" class="panel-collapse collapse ">
+                <div id="getting-started" class="panel-collapse collapse in">
                     <div class="panel-body">
                         <ul>
                             <a href="/guides/getting-started/introduction">
@@ -221,7 +221,7 @@
                     </div>
                 </a>
 
-                <div id="api" class="panel-collapse collapse in">
+                <div id="api" class="panel-collapse collapse ">
                     <div class="panel-body">
                         <ul>
                             <a href="/guides/api/models">
@@ -271,54 +271,81 @@
         </div>
     </div>
     <div class="guide">
-        <h1 id="transformers">Transformers</h1>
+        <h1 id="introduction">Introduction</h1>
 
-<p>The Transformer API is used to create different views of the same domain object. If you want to add 
-or hide information to be returned to the client, the way to go is to use a Transfomer. For instance:</p>
+<p>Hi there!</p>
 
-<pre><code class="language-java">public class BasicObjectTransformer extends Transformer&lt;Person&gt; {
+<p>A while ago I started developing this new framework, called <strong>YAWP!</strong></p>
 
-    public Map&lt;String, Object&gt; upperCase(Person person) {
-        Map&lt;String, Object&gt; map = asMap(person);
-        map.put("name", person.getName().toUpperCase());
-        return map;
-    }
-}
+<p>It started inside one of my personal projects and it was emerging
+from project to project until it was extracted to a separate library.</p>
+
+<p><strong>YAWP!</strong> is a lightweight REST API framework focused on productivity and scalability.</p>
+
+<p>The <strong>server side</strong> is written in Java and works on Google Appengine. 
+The <strong>client side</strong> is written in Javascript and works on Node.js or web browsers.</p>
+
+<hr />
+
+<p><strong>Cotributors are always welcome!</strong></p>
+
+<hr />
+
+<h2 id="core-features">Core Features</h2>
+
+<p><strong>Server Side:</strong></p>
+
+<ul>
+  <li><a href="/guides/api/repository-actions">Automatic CRUD routes</a></li>
+  <li><a href="/guides/api/query">Query API</a></li>
+  <li><a href="/guides/api/actions">Custom Action Routes</a></li>
+  <li><a href="/guides/api/transformers">Transformers</a></li>
+  <li><a href="/guides/api/shields">Security Shields</a></li>
+  <li><a href="/guides/api/hooks">Model Hooks</a></li>
+  <li><a href="/guides/api/pipes">Asynchronous Pipes</a></li>
+  <li><a href="/guides/getting-started/google-appengine-deploy">Google Appengine support</a></li>
+  <li><a href="/guides/getting-started/supported-platforms">PostgreSQL JsonB support (manual scaling)</a></li>
+</ul>
+
+<p><strong>Client Side:</strong></p>
+
+<ul>
+  <li><a href="/guides/tutorials/the-javascript-client">Fluent API</a></li>
+  <li><a href="/guides/tutorials/the-javascript-client">Easy access to all server APIs</a></li>
+  <li><a href="/guides/tutorials/the-javascript-client">ES6 Promises</a></li>
+  <li><a href="/guides/tutorials/the-javascript-client">ES6 class extension</a></li>
+</ul>
+
+<hr />
+
+<h2 id="short-example">Short Example</h2>
+
+<p>Everything happens around your model definitions, which are plain Java objects:</p>
+
+<pre><code class="language-java">@Endpoint(path = "/people")
+public class Person {
+    @Id
+    IdRef&lt;Person&gt; id;             
+    String name;
+}   
 </code></pre>
 
-<p>Now, to transform a given person, let’s say with id 123, you can:</p>
+<p>Then you can access it from Javascript:</p>
 
-<pre><code class="language-bash">curl -X GET http://localhost:8080/api/people/123?t=upperCase
+<pre><code class="language-javascript">var yawp = require('yawp');
+
+var promise = yawp('/people').create({name: 'janes'}).then(function(person) {
+    console.log('created', person.id);
+
+    person.name = 'janes joplin';
+    return person.save(function() {
+        console.log('updated');
+    });
+});
 </code></pre>
 
-<p>The <strong>Javascript</strong> equivalent would be:</p>
+<p>And then you can customize it with all the other features.</p>
 
-<pre><code class="language-javascript">yawp('/people/123').transform('upperCase').first( function(person) {} );
-</code></pre>
-
-<p>Note: All transformers can be applied for collections queries or fetching single objects.</p>
-
-<p>Finally, you can also create more sophisticated transformers using the presenter pattern, like this:</p>
-
-<pre><code class="language-java">public class UserTransformer extends Transformer&lt;User&gt; {
-
-   public static class UserView {
-        private String name;
-        private String company;
-        private int birthYear;
-
-        public UserView(User user) {
-            this.name = user.getName();
-            this.company = user.getCompany();
-            this.birthYear = Calendar.getInstance().get(Calendar.YEAR) - user.getAge();
-        }
-    }
-
-    public UserView withYear(User user) {
-        return new UserView(user);
-    }
-}
-</code></pre>
 
     </div>
 </div>
