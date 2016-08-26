@@ -277,19 +277,51 @@
 
 <p>A while ago I started developing this new framework, called <strong>YAWP!</strong></p>
 
-<p>It started inside one of my personal projects and it was emerging
-from project to project until it was extracted to a separate library.</p>
+<p>Before it was extracted to a separate library, it started inside one of my
+personal projects and it was emerging from project to project with patterns 
+and practices that I used.</p>
 
 <p><strong>YAWP!</strong> is a lightweight REST API framework focused on productivity and scalability.</p>
 
 <p>The <strong>server side</strong> is written in Java and works on Google Appengine. 
-The <strong>client side</strong> is written in Javascript and works on Node.js or web browsers.</p>
+The <strong>client side</strong> is written in Javascript and works on Node.js or a browser.</p>
+
+<p>Nowadays we already have teams using it in their projects as backend for
+their mobile or web apps. The project continues to evolve.</p>
+
+<p>Contributors are always welcome, the source code is at <a href="http://github.com/feroult/yawp">github.com/feroult/yawp</a></p>
+
+<p>Below, a quick overview of its usage and features.</p>
 
 <hr />
 
-<p><strong>Cotributors are always welcome!</strong></p>
+<h2 id="short-example">Short Example</h2>
 
-<hr />
+<p>Everything happens around a plain Java object:</p>
+
+<pre><code class="language-java">@Endpoint(path = "/people")
+public class Person {
+    @Id
+    IdRef&lt;Person&gt; id;             
+    String name;
+}   
+</code></pre>
+
+<p>Then you we access it from Javascript:</p>
+
+<pre><code class="language-javascript">var yawp = require('yawp');
+
+var promise = yawp('/people').create({name: 'janes'}).then(function(person) {
+    console.log('created', person.id);
+
+    person.name = 'janes joplin';
+    return person.save(function() {
+        console.log('updated');
+    });
+});
+</code></pre>
+
+<p>And then we can customize it with the extra features below.</p>
 
 <h2 id="core-features">Core Features</h2>
 
@@ -315,36 +347,6 @@ The <strong>client side</strong> is written in Javascript and works on Node.js o
   <li><a href="/guides/tutorials/the-javascript-client">ES6 Promises</a></li>
   <li><a href="/guides/tutorials/the-javascript-client">ES6 class extension</a></li>
 </ul>
-
-<hr />
-
-<h2 id="short-example">Short Example</h2>
-
-<p>Everything happens around your model definitions, which are plain Java objects:</p>
-
-<pre><code class="language-java">@Endpoint(path = "/people")
-public class Person {
-    @Id
-    IdRef&lt;Person&gt; id;             
-    String name;
-}   
-</code></pre>
-
-<p>Then you can access it from Javascript:</p>
-
-<pre><code class="language-javascript">var yawp = require('yawp');
-
-var promise = yawp('/people').create({name: 'janes'}).then(function(person) {
-    console.log('created', person.id);
-
-    person.name = 'janes joplin';
-    return person.save(function() {
-        console.log('updated');
-    });
-});
-</code></pre>
-
-<p>And then you can customize it with all the other features.</p>
 
 
     </div>
