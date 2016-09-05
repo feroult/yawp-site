@@ -31,7 +31,7 @@ Before we start to code our to-do list API, let's take a look at the wish list o
 
 ### Source Code
 
-For reference, the complete source code of this tutorial can be found [here](http://github.com/feroult/yawp-todoapp).
+For reference, the complete source code of this tutorial can be found [here](https://github.com/feroult/yawp-tutorials/tree/master/todoapp).
 
 ### Create the App Project
 
