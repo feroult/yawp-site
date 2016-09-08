@@ -35,7 +35,7 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- code formating -->
-    <script src="http://cdn.jsdelivr.net/highlight.js/8.9.1/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/highlight.js/8.9.1/highlight.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -305,6 +305,28 @@ execute in a shell:</p>
 <p>To list the created person:</p>
 
 <pre><code class="language-bash">curl http://localhost:8080/api/people
+</code></pre>
+
+<p>To access it from your Web or NodeJS apps, you can use the <a href="/guides/tutorials/the-javascript-client">YAWP! javascript</a> 
+client library.</p>
+
+<p>Install it:</p>
+
+<pre><code class="language-bash">npm install yawp --save
+</code></pre>
+
+<p>And crate a person:</p>
+
+<pre><code class="language-javascript">var yawp = require('yawp');
+
+var promise = yawp('/people').create({name: 'janes'}).then(function(person) {
+    console.log('created', person.id);
+
+    person.name = 'janes joplin';
+    return person.save(function() {
+        console.log('updated');
+    });
+});
 </code></pre>
 
     </div>
