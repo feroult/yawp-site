@@ -192,7 +192,7 @@ class Person extends yawp('/people') {
 And use then in our application code:
 
 ~~~ javascript
-Person.inative.first(function (person) {
+Person.inactive.first(function (person) {
     person.activate().then(function() {
         console.log('person is now active');
     });
