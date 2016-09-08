@@ -36,6 +36,9 @@
 
     <!-- code formating -->
     <script src="https://cdn.jsdelivr.net/highlight.js/8.9.1/highlight.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -132,7 +135,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="intro">
-                    <img class="img-responsive" src="assets/img/yeti.png" alt="" style="display: inline-block;">
+                    <img id="yeti" class="img-responsive" src="assets/img/yeti.png" alt="" style="display: inline-block;">
                     <div class="intro-code" style="display: inline-block;">
                         <pre class="code"><code class="shell">$ mvn archetype:generate \
     -DarchetypeGroupId=io.yawp \
@@ -150,7 +153,7 @@
                     <!-- <hr class="star-light" /> -->
                     <span class="skills">Easily create elegant and scalable REST APIs</span>
                 </div>
-                <div class="github-buttons">
+                <div id="github" class="github-buttons">
 <!--
                     <div class="github-button">
                         <a class="github-button" href="https://github.com/feroult/yawp" data-icon="octicon-eye" data-style="mega" data-count-href="/feroult/yawp/watchers" data-count-api="/repos/feroult/yawp#subscribers_count" data-count-aria-label="# watchers on GitHub" aria-label="Watch feroult/yawp on GitHub">Watch</a>                   
@@ -509,6 +512,8 @@ public class Person {
         yawp.config(function (c) {
             c.baseUrl('http://localhost:8080/api');
         });
+        
+        $('#github').addClass('animated swing');
     </script>
 
 
