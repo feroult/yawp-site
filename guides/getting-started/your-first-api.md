@@ -43,3 +43,27 @@ To list the created person:
 ~~~ bash
 curl http://localhost:8080/api/people
 ~~~
+
+To access it from your Web or NodeJS apps, you can use the [YAWP! javascript](/guides/tutorials/the-javascript-client) 
+client library.
+
+Install it:
+
+~~~ bash
+npm install yawp --save
+~~~
+
+And crate a person:
+
+~~~ javascript
+var yawp = require('yawp');
+
+var promise = yawp('/people').create({name: 'janes'}).then(function(person) {
+    console.log('created', person.id);
+
+    person.name = 'janes joplin';
+    return person.save(function() {
+        console.log('updated');
+    });
+});
+~~~
