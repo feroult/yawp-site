@@ -215,3 +215,7 @@ div.zebra {
     color: #2c3e50 !important;
 /*    font-family: Lato, "Helvetica Neue",Helvetica,Arial,sans-serif !important;*/
 }
+
+#github {
+  animation-delay: 2s;
+}
