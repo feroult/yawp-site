@@ -79,7 +79,10 @@ header div.star-right {
 }
 
 .intro img {
-    width: 180px;
+    width: 240px;
+    opacity: 0.94;
+    margin-left: -68px;
+    margin-right: -50px;
 }
 
 .github-buttons {
@@ -216,6 +219,6 @@ div.zebra {
 /*    font-family: Lato, "Helvetica Neue",Helvetica,Arial,sans-serif !important;*/
 }
 
-#github {
+#yeti, #github {
   animation-delay: 2s;
 }
