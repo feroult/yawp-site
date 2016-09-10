@@ -78,6 +78,11 @@ header div.star-right {
     display: inline-block;
 }
 
+.intro pre.code {
+    width: 210px;
+    margin-bottom: 5px;
+}
+
 .intro img {
     width: 240px;
     opacity: 0.94;
