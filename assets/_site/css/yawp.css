@@ -1,0 +1,221 @@
+/* code */
+
+pre.code {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    width: 300px;
+}
+
+code {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/* all */
+
+div.row.space {
+    margin-top: 30px;
+}
+/* hacks */
+
+#portfolio .portfolio-item .portfolio-link .caption {
+    /*opacity: 0.1;*/
+}
+
+header {
+    background: white;
+    background-image: url('/assets/img/patterns/skulls_green.png');
+    /*color: black;*/
+}
+
+header hr.star-light {
+    background: white;
+    /*border-color: black;*/
+}
+
+header hr.star-light:after {
+    /*color: black;*/
+    
+    background: #F7F7DF;
+}
+
+header div.star {
+    margin-left: auto;
+    margin-right: auto;
+    height: 15px;
+    line-height: 52px;
+    width: 250px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+header div.star:after {
+    content: "\f005";
+    display: inline-block;
+    position: relative;
+    top: -.8em;
+    padding: 0 .25em;
+    font-family: FontAwesome;
+    font-size: 2em;
+}
+
+header div.star-left {
+    border-top: 5px solid white;
+    width: 40.5%;
+    float: left;
+}
+
+header div.star-right {
+    border-top: 5px solid white;
+    width: 40.5%;
+    float: right;
+}
+/* intro */
+
+.intro div {
+    display: inline-block;
+}
+
+.intro img {
+    width: 180px;
+}
+
+.github-buttons {
+    margin-top: 28px;
+}
+
+.github-button {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+@media (max-width: 600px) {
+    .intro .intro-code {
+        display: none !important;
+    }
+    .intro img {
+        width: 140px;
+    }
+}
+
+.intro .intro-code {
+    vertical-align: middle;
+    text-align: left;
+    margin-left: 69px;
+}
+/* features */
+
+.feature {
+    text-align: center;
+    font-size: 1.3em;
+    color: #444;
+}
+
+.feature .code {
+    text-align: left;
+    font-size: 0.7em;
+    margin: auto;
+}
+
+/* kickstart */
+
+@media (max-width: 768px) {
+    #kickstart p {
+        text-align: center;
+    }re
+    #kickstart pre.code {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+div.step-text {
+    text-align: right;
+    font-style: italic;
+}
+
+.step-text div {
+    margin: auto 0;
+}
+/* community */
+
+#community .type p {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.8em !important;
+}
+
+#community .link {
+    text-align: center;
+    font-size: 1.4em;
+}
+
+#community .contributors {
+    /*    margin-bottom: 20px;*/
+}
+
+#community .contributors-images a,
+#community .contributors-images a:hover {
+    text-decoration: none;
+}
+
+#community img {
+    margin-right: 30px;
+    border-radius: 50%;
+    padding: 3px;
+    margin: 8px;
+    width: 70px;
+    /*    opacity: 0.8; */
+    
+    border: 2px solid #2c3e50;
+    filter: gray;
+    filter: grayscale(1);
+    -webkit-filter: grayscale(1);
+}
+
+#community img:hover {
+    cursor: pointer;
+    /*    opacity: 1; */
+    
+    filter: none;
+    -webkit-filter: grayscale(0);
+}
+/* modal */
+
+img.img-modal {
+    width: 50%;
+}
+
+div.feature-icon {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    color: #2C3E50;
+	text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;    
+}
+
+#portfolio img {
+    width: 220px;
+    margin: auto;
+}
+
+div.zebra {
+    background-color: #efefef;
+}
+
+.feature h3 {
+    text-transform: none;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #2c3e50 !important;
+/*    font-family: Lato, "Helvetica Neue",Helvetica,Arial,sans-serif !important;*/
+}
+
+#github {
+  animation-delay: 2s;
+}

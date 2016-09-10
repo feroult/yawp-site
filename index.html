@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Easily create elegant and scalable REST APIs
+title: Well designed and scalable APIs
 description: A very simple and elegant domain specific language / framework in Java that helps you to create amazing REST APIs.
 ---
 <!-- Header -->
@@ -9,7 +9,7 @@ description: A very simple and elegant domain specific language / framework in J
         <div class="row">
             <div class="col-lg-12">
                 <div class="intro">
-                    <img id="yeti" class="img-responsive" src="assets/img/yeti.png" alt="" style="display: inline-block;">
+                    <img id="yeti" class="img-responsive" src="assets/img/boat.png" alt="" style="display: inline-block;">
                     <div class="intro-code" style="display: inline-block;">
                         <pre class="code"><code class="shell">$ mvn archetype:generate \
     -DarchetypeGroupId=io.yawp \
@@ -19,13 +19,13 @@ description: A very simple and elegant domain specific language / framework in J
                     </div>
                 </div>
                 <div class="intro-text">
-                    <span class="name">YAWP!</span>
+                    <span class="name">Framework</span>
                     <div class="star">
                         <div class="star-left"></div>
                         <div class="star-right"></div>
                     </div>
                     <!-- <hr class="star-light" /> -->
-                    <span class="skills">Easily create elegant and scalable REST APIs</span>
+                    <span class="skills">Well designed and scalable APIs</span>
                 </div>
                 <div id="github" class="github-buttons">
 <!--
@@ -90,7 +90,7 @@ description: A very simple and elegant domain specific language / framework in J
                     </div>
                     <img src="assets/img/features/portable.png" class="img-responsive" alt="">
                 </div>
-                <div class="feature"><h3>Platform Free</h3>If scalability is not an issue or you'd rather do-it-yourself, move to any platform with the PostgreSQL driver.</div>        
+                <div class="feature"><h3>Platform Free</h3>If scalability is not an issue or you rather do-it-yourself, move to any platform with the PostgreSQL driver.</div>        
             </div>
         </div>
         <div class="row zebra" markdown="1">                    
@@ -151,7 +151,7 @@ public class Person {
             </div>
             <div class="col-sm-6"><pre class="code"><code class="java">yawp('/people')
     .create({ name: 'Janes' })
-    .done(function(person) { })</code></pre>
+    .then(function(person) { })</code></pre>
             </div>
         </div>
         <div class="row space">
