@@ -137,11 +137,15 @@
                 <div class="intro">
                     <img id="yeti" class="img-responsive" src="assets/img/boat.png" alt="" style="display: inline-block;">
                     <div class="intro-code" style="display: inline-block;">
-                        <pre class="code"><code class="shell">$ mvn archetype:generate \
+                        <pre class="code"><code class="shell">npm install yawp --save
+</code></pre>
+<!--
+                        <pre class="code"><code class="shell">mvn archetype:generate \
     -DarchetypeGroupId=io.yawp \
     -DarchetypeArtifactId=yawp \
     -DarchetypeVersion=LATEST
 </code></pre>
+-->
                     </div>
                 </div>
                 <div class="intro-text">
@@ -346,7 +350,7 @@ void beforeSave(Person person) {
         </div>
         <div class="row space">
             <div class="col-sm-6 step-text">
-                <p>Bootstrap your project</p>
+                <p>Bootstrap your backend</p>
             </div>
             <div class="col-sm-6"><pre class="code"><code class="shell">$ mvn archetype:generate \
     -DarchetypeGroupId=io.yawp \
@@ -376,7 +380,14 @@ public class Person {
         </div>
         <div class="row space">
             <div class="col-sm-6 col-sm-offset-0 step-text">
-                <p>Try with javascript</p>
+                <p>Install the javascript client</p>
+            </div>
+            <div class="col-sm-6"><pre class="code"><code class="shelll">npm install yawp --save</code></pre>
+            </div>
+        </div>      
+        <div class="row space">
+            <div class="col-sm-6 col-sm-offset-0 step-text">
+                <p>Try it</p>
             </div>
             <div class="col-sm-6"><pre class="code"><code class="java">yawp('/people')
     .create({ name: 'Janes' })
