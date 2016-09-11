@@ -84,7 +84,7 @@ header div.star-right {
 }
 
 .intro img {
-    width: 240px;
+    width: 270px;
     opacity: 0.94;
     margin-left: -68px;
     margin-right: -50px;
@@ -105,7 +105,7 @@ header div.star-right {
         display: none !important;
     }
     .intro img {
-        width: 140px;
+        width: 210px;
     }
 }
 
