@@ -137,7 +137,7 @@
                 <div class="intro">
                     <img id="yeti" class="img-responsive" src="assets/img/boat.png" alt="" style="display: inline-block;">
                     <div class="intro-code" style="display: inline-block;">
-                        <pre class="code"><code class="shell">npm install yawp --save
+                        <pre class="code"><code class="shell">npm install -g yawp-cli
 </code></pre>
 <!--
                         <pre class="code"><code class="shell">mvn archetype:generate \
@@ -352,10 +352,7 @@ void beforeSave(Person person) {
             <div class="col-sm-6 step-text">
                 <p>Bootstrap your backend</p>
             </div>
-            <div class="col-sm-6"><pre class="code"><code class="shell">$ mvn archetype:generate \
-    -DarchetypeGroupId=io.yawp \
-    -DarchetypeArtifactId=yawp \
-    -DarchetypeVersion=LATEST
+            <div class="col-sm-6"><pre class="code"><code class="shell">$ yawp new testapp && cd testapp
 </code></pre>
             </div>
         </div>
