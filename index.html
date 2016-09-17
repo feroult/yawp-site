@@ -1,9 +1,3 @@
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,13 +64,8 @@
     })();
     </script>
     <!-- End Inspectlet Embed Code -->
-
-
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/8.9.1/styles/zenburn.min.css">
-    
-
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/8.9.1/styles/zenburn.min.css">    
 
 </head>
 
@@ -137,15 +126,11 @@
                 <div class="intro">
                     <img id="yeti" class="img-responsive" src="assets/img/boat.png" alt="" style="display: inline-block;">
                     <div class="intro-code" style="display: inline-block;">
-                        <pre class="code"><code class="shell">npm install -g yawp-cli
-</code></pre>
-<!--
-                        <pre class="code"><code class="shell">mvn archetype:generate \
+                        <pre class="code"><code class="shell">$ mvn archetype:generate \
     -DarchetypeGroupId=io.yawp \
     -DarchetypeArtifactId=yawp \
     -DarchetypeVersion=LATEST
 </code></pre>
--->
                     </div>
                 </div>
                 <div class="intro-text">
@@ -350,9 +335,12 @@ void beforeSave(Person person) {
         </div>
         <div class="row space">
             <div class="col-sm-6 step-text">
-                <p>Bootstrap your backend</p>
+                <p>Bootstrap your project</p>
             </div>
-            <div class="col-sm-6"><pre class="code"><code class="shell">$ yawp new testapp && cd testapp
+            <div class="col-sm-6"><pre class="code"><code class="shell">$ mvn archetype:generate \
+    -DarchetypeGroupId=io.yawp \
+    -DarchetypeArtifactId=yawp \
+    -DarchetypeVersion=LATEST
 </code></pre>
             </div>
         </div>
@@ -377,14 +365,7 @@ public class Person {
         </div>
         <div class="row space">
             <div class="col-sm-6 col-sm-offset-0 step-text">
-                <p>Install the javascript client</p>
-            </div>
-            <div class="col-sm-6"><pre class="code"><code class="shelll">npm install yawp --save</code></pre>
-            </div>
-        </div>      
-        <div class="row space">
-            <div class="col-sm-6 col-sm-offset-0 step-text">
-                <p>Try it</p>
+                <p>Try with javascript</p>
             </div>
             <div class="col-sm-6"><pre class="code"><code class="java">yawp('/people')
     .create({ name: 'Janes' })
@@ -521,8 +502,8 @@ public class Person {
             c.baseUrl('http://localhost:8080/api');
         });
         
-//        $('#yeti').addClass('animated swing');
-        $('#github').addClass('animated swing');
+        $('#yeti').addClass('animated swing');
+//        $('#github').addClass('animated swing');
     </script>
 
 
