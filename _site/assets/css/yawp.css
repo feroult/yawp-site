@@ -79,7 +79,7 @@ header div.star-right {
 }
 
 .intro pre.code {
-    width: 210px;
+    width: 290px;
     margin-bottom: 5px;
 }
 
@@ -226,4 +226,5 @@ div.zebra {
 
 #yeti, #github {
   animation-delay: 2s;
+  animation-duration: 5s;
 }

@@ -1,9 +1,124 @@
----
-layout: default
-title: Well designed and scalable APIs
-description: A very simple and elegant domain specific language / framework in Java that helps you to create amazing REST APIs.
----
-<!-- Header -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="A very simple and elegant domain specific language / framework in Java that helps you to create amazing REST APIs.">
+    
+    <meta name="author" content="Fernando Ultremare and YAWP! contributors">
+    <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
+
+    <title>YAWP! - Well designed and scalable APIs</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/assets/css/freelancer.css" rel="stylesheet">
+    <link href="/assets/css/yawp.css" rel="stylesheet">
+    <link href="/assets/css/github-ribbon.css" rel="stylesheet">
+    <link href="/assets/css/guides.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="httpS://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="httpS://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- code formating -->
+    <script src="https://cdn.jsdelivr.net/highlight.js/8.9.1/highlight.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Google Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-54832827-1', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+    <!-- End Google Analytics -->
+
+    <!-- Begin Inspectlet Embed Code -->
+    <script type="text/javascript" id="inspectletjs">
+    window.__insp = window.__insp || [];
+    __insp.push(['wid', 86703955]);
+    (function() {
+    function ldinsp(){if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+    setTimeout(ldinsp, 500); document.readyState != "complete" ? (window.attachEvent ? window.attachEvent('onload', ldinsp) : window.addEventListener('load', ldinsp, false)) : ldinsp();
+    })();
+    </script>
+    <!-- End Inspectlet Embed Code -->
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/8.9.1/styles/zenburn.min.css">    
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                    <a class="navbar-brand" href="#page-top">YAWP!</a>
+                
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="main-navbar collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li class="page-scroll">
+                        <a href="#page-top">Home</a>
+                    </li> -->
+                    <li class="page-scroll">
+                        <a href="#portfolio">Features</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#kickstart">Kickstart</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#community">Community</a>
+                    </li>
+                    <li class="">
+                        <a href="/guides">Guides</a>
+                    </li>
+                    <li class="">
+                        <a href="/blog">Blog</a>
+                    </li>
+                    <li>
+                        <a href="http://github.com/feroult/yawp" target="_blank">GITHUB&nbsp;&nbsp;<i class="fa fa-github" style="font-size: 1.2em;"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
 <header>
     <div class="container">
         <div class="row">
@@ -11,15 +126,11 @@ description: A very simple and elegant domain specific language / framework in J
                 <div class="intro">
                     <img id="yeti" class="img-responsive" src="assets/img/boat.png" alt="" style="display: inline-block;">
                     <div class="intro-code" style="display: inline-block;">
-                        <pre class="code"><code class="shell">npm install -g yawp-cli
-</code></pre>
-<!--
-                        <pre class="code"><code class="shell">mvn archetype:generate \
+                        <pre class="code"><code class="shell">$ mvn archetype:generate \
     -DarchetypeGroupId=io.yawp \
     -DarchetypeArtifactId=yawp \
     -DarchetypeVersion=LATEST
 </code></pre>
--->
                     </div>
                 </div>
                 <div class="intro-text">
@@ -98,14 +209,117 @@ description: A very simple and elegant domain specific language / framework in J
             </div>
         </div>
         <div class="row zebra" markdown="1">                    
-            {% include feature.html src="features/models.html" title="Models" icon="cubes"  %}                    
-            {% include feature.html src="features/actions.html" title="Actions" icon="flash"  %}   
-            {% include feature.html src="features/shields.html" title="Shields" icon="shield" %}                                             
+            <div class="col-sm-4 portfolio-item ">
+    <div class="portfolio-link">
+        <div class="feature-icon">
+            <i class="fa fa-cubes fa-3x"></i>    
+        </div>
+    </div>
+    <div class="feature">
+        <h3>Models</h3>
+        <div class="sample">
+            <pre class="code"><code class="java">@Endpoint(path = "/people")
+public class Person {
+    @Id
+    IdRef&lt;Person&gt; id;
+    String name;
+}</code></pre>        
+        </div>
+    </div>
+</div>                    
+            <div class="col-sm-4 portfolio-item ">
+    <div class="portfolio-link">
+        <div class="feature-icon">
+            <i class="fa fa-flash fa-3x"></i>    
+        </div>
+    </div>
+    <div class="feature">
+        <h3>Actions</h3>
+        <div class="sample">
+            <pre class="code"><code class="java">@PUT("active")
+public void activate(IdRef<Person> id) {
+    Person person = id.fetch();
+    person.setActive(true);
+    yawp.save(person);
+}</code></pre>        
+        </div>
+    </div>
+</div>   
+            <div class="col-sm-4 portfolio-item ">
+    <div class="portfolio-link">
+        <div class="feature-icon">
+            <i class="fa fa-shield fa-3x"></i>    
+        </div>
+    </div>
+    <div class="feature">
+        <h3>Shields</h3>
+        <div class="sample">
+            <pre class="code"><code class="java">@Override
+public void show(IdRef<Person> id) {
+    allow(isAdmin());
+    allow(isUser())
+     .where("userId", "=", me());
+}</code></pre>        
+        </div>
+    </div>
+</div>                                             
         </div>
         <div class="row" markdown="1">         
-            {% include feature.html src="features/pipes.html" title="Pipes" icon="exchange" %}                      
-            {% include feature.html src="features/transformers.html" title="Transformers" icon="eye" %}           
-            {% include feature.html src="features/hooks.html" title="Hooks" icon="level-down" %}                    
+            <div class="col-sm-4 portfolio-item ">
+    <div class="portfolio-link">
+        <div class="feature-icon">
+            <i class="fa fa-exchange fa-3x"></i>    
+        </div>
+    </div>
+    <div class="feature">
+        <h3>Pipes</h3>
+        <div class="sample">
+            <pre class="code"><code class="java">@Override
+public void flux(Person person, 
+                 Agg agg) {
+    agg.increment();
+    agg.sum(person.salary);    
+}
+</code></pre>        
+        </div>
+    </div>
+</div>                      
+            <div class="col-sm-4 portfolio-item ">
+    <div class="portfolio-link">
+        <div class="feature-icon">
+            <i class="fa fa-eye fa-3x"></i>    
+        </div>
+    </div>
+    <div class="feature">
+        <h3>Transformers</h3>
+        <div class="sample">
+            <pre class="code"><code class="java">Object upperCase(Person p) {
+    Map<String, Object> map = asMap(p);
+    map.put("name", p.getName()
+          .toUpperCase());
+    return map;
+}</code></pre>        
+        </div>
+    </div>
+</div>           
+            <div class="col-sm-4 portfolio-item ">
+    <div class="portfolio-link">
+        <div class="feature-icon">
+            <i class="fa fa-level-down fa-3x"></i>    
+        </div>
+    </div>
+    <div class="feature">
+        <h3>Hooks</h3>
+        <div class="sample">
+            <pre class="code"><code class="java">@Override
+void beforeSave(Person person) {
+    if (person.age < 18)
+        throw new 
+              HttpException(422);
+}</code></pre>        
+        </div>
+    </div>
+</div>                    
         </div>        
     </div>
 </section>
@@ -121,9 +335,12 @@ description: A very simple and elegant domain specific language / framework in J
         </div>
         <div class="row space">
             <div class="col-sm-6 step-text">
-                <p>Bootstrap your backend</p>
+                <p>Bootstrap your project</p>
             </div>
-            <div class="col-sm-6"><pre class="code"><code class="shell">$ yawp new testapp && cd testapp
+            <div class="col-sm-6"><pre class="code"><code class="shell">$ mvn archetype:generate \
+    -DarchetypeGroupId=io.yawp \
+    -DarchetypeArtifactId=yawp \
+    -DarchetypeVersion=LATEST
 </code></pre>
             </div>
         </div>
@@ -148,14 +365,7 @@ public class Person {
         </div>
         <div class="row space">
             <div class="col-sm-6 col-sm-offset-0 step-text">
-                <p>Install the javascript client</p>
-            </div>
-            <div class="col-sm-6"><pre class="code"><code class="shelll">npm install yawp --save</code></pre>
-            </div>
-        </div>      
-        <div class="row space">
-            <div class="col-sm-6 col-sm-offset-0 step-text">
-                <p>Try it</p>
+                <p>Try with javascript</p>
             </div>
             <div class="col-sm-6"><pre class="code"><code class="java">yawp('/people')
     .create({ name: 'Janes' })
@@ -227,3 +437,77 @@ public class Person {
         </div>
     </div>
 </section>
+
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4 col-md-offset-4">
+                        <ul class="list-inline">
+                            <li>
+                                <a href="http://github.com/feroult/yawp" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/yawpio" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <strong>YAWP!</strong> is released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT license</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/assets/js/jquery.js"></script>
+    <script src="https://rawgit.com/feroult/yawp/yawp-1.6.8/yawp-client/lib/web/yawp.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdn.jsdelivr.net/jquery.easing/1.3/jquery.easing.1.3.min.js"></script>
+    <script src="/assets/js/classie.js"></script>
+    <script src="/assets/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="/assets/js/jqBootstrapValidation.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/assets/js/freelancer.js"></script>
+
+    <!-- code formatter -->
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- Place this tag right after the last button or just before your close body tag. -->
+    <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+
+    
+    
+
+    
+
+    <script>
+        yawp.config(function (c) {
+            c.baseUrl('http://localhost:8080/api');
+        });
+        
+        $('#yeti').addClass('animated swing');
+//        $('#github').addClass('animated swing');
+    </script>
+
+
+</body>
+
+
+</html>
