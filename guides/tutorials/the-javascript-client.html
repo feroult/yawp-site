@@ -296,13 +296,15 @@
 
 <p><strong>Web</strong></p>
 
-<pre><code class="language-html">&lt;script src="https://rawgit.com/feroult/yawp/yawp-1.6.8/yawp-client/lib/web/yawp.min.js"&gt;&lt;/script&gt;
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://rawgit.com/feroult/yawp/yawp-1.6.8/yawp-client/lib/web/yawp.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
+</div>
 
 <p><strong>NodeJs</strong></p>
 
-<pre><code class="language-bash">npm install yawp --save
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm install yawp --save
 </code></pre>
+</div>
 
 <p>Note: if your environemnt doesn’t support ES6 promises, you’ll need to use a polyfill like this <a href="https://github.com/taylorhakes/promise-polyfill">one</a>.</p>
 
@@ -311,106 +313,112 @@
 <p>By default the client routes all API calls to the path <strong>/api</strong> of the current app’s host.
 You can override this setting as following:</p>
 
-<pre><code class="language-javascript">yawp.config(function (c) {
-    c.baseUrl('http://your-cors-host.com/api');
-});
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">yawp</span><span class="p">.</span><span class="nx">config</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">baseUrl</span><span class="p">(</span><span class="s1">'http://your-cors-host.com/api'</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
+</div>
 
 <h3 id="repository-actions">Repository Actions</h3>
-<pre><code class="language-javascript">// create
-yawp('/people').create({ name: 'janes' }).done(function (person) {
-    console.log(person);
-});
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// create</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">).</span><span class="nx">create</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'janes'</span> <span class="p">}).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
+<span class="p">});</span>
 
-// update
-yawp('/people/1').update({ name: 'janes' }).done(function (person) {
-    console.log(person);
-});
+<span class="c1">// update</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people/1'</span><span class="p">).</span><span class="nx">update</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'janes'</span> <span class="p">}).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
+<span class="p">});</span>
 
-// patch
-yawp('/people/1').patch({ name: 'janes' }).done(function (person) {
-    console.log(person);
-});
+<span class="c1">// patch</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people/1'</span><span class="p">).</span><span class="nx">patch</span><span class="p">({</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'janes'</span> <span class="p">}).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
+<span class="p">});</span>
 
-// destroy
-yawp('/people/1').destroy().done(function (id) {
-    console.log(id);
-});
+<span class="c1">// destroy</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people/1'</span><span class="p">).</span><span class="nx">destroy</span><span class="p">().</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+<span class="p">});</span>
 
-// fetch
-yawp('/people/1').fetch(function (person) {
-    console.log(person);
-});
+<span class="c1">// fetch</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people/1'</span><span class="p">).</span><span class="nx">fetch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
+<span class="p">});</span>
 
-// list
-yawp('/people').list(function (people) {
-    console.log(people);
-});
+<span class="c1">// list</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">).</span><span class="nx">list</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">people</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">people</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
+</div>
 
 <h3 id="custom-actions">Custom Actions</h3>
 
-<pre><code class="language-javascript">// @GET("me") over collection action
-yawp('/people').get('me').done(function (person) {
-    console.log(person);
-});
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// @GET("me") over collection action</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">'me'</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
+<span class="p">});</span>
 
-// @PUT("reverse-name") single entity action
-yawp('/people/1').put('reverse-name').done(function (person) {
-    console.log(person);
-});
+<span class="c1">// @PUT("reverse-name") single entity action</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people/1'</span><span class="p">).</span><span class="nx">put</span><span class="p">(</span><span class="s1">'reverse-name'</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
+</div>
 
 <h3 id="query">Query</h3>
 
-<pre><code class="language-javascript">// where + list
-yawp('/people').where(['name', '=', 'janes']).list(function (people) {
-    console.log(people);
-});
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// where + list</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">).</span><span class="nx">where</span><span class="p">([</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'janes'</span><span class="p">]).</span><span class="nx">list</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">people</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">people</span><span class="p">);</span>
+<span class="p">});</span>
 
-// where + first
-yawp('/people').where(['name', '=', 'janes']).first(function (person) {
-    console.log(person);
-});
+<span class="c1">// where + first</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">).</span><span class="nx">where</span><span class="p">([</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'janes'</span><span class="p">]).</span><span class="nx">first</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
+<span class="p">});</span>
 
-// limit
-yawp('/people').where(['name', '=', 'janes']).limit(10).list(function (people) {
-    console.log(people);
-});
+<span class="c1">// limit</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">).</span><span class="nx">where</span><span class="p">([</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'janes'</span><span class="p">]).</span><span class="nx">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">list</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">people</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">people</span><span class="p">);</span>
+<span class="p">});</span>
 
-// order
-yawp('/people').where(['name', '=', 'janes']).order([{ p: 'name', d: 'asc'}])
-               .list(function (people) {
-    console.log(people);
-});
+<span class="c1">// order</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">).</span><span class="nx">where</span><span class="p">([</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'janes'</span><span class="p">]).</span><span class="nx">order</span><span class="p">([{</span> <span class="na">p</span><span class="p">:</span> <span class="s1">'name'</span><span class="p">,</span> <span class="na">d</span><span class="p">:</span> <span class="s1">'asc'</span><span class="p">}])</span>
+               <span class="p">.</span><span class="nx">list</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">people</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">people</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
+</div>
 
 <h3 id="transfomers">Transfomers</h3>
 
-<pre><code class="language-javascript">// transform + where + list
-yawp('/people').transform('upperCase').where(['name', '=', 'janes']).list(function (people) {
-    console.log(people);
-});
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// transform + where + list</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s1">'upperCase'</span><span class="p">).</span><span class="nx">where</span><span class="p">([</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'janes'</span><span class="p">]).</span><span class="nx">list</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">people</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">people</span><span class="p">);</span>
+<span class="p">});</span>
 
-// transform + first
-yawp('/people').transform('upperCase').first(function (person) {
-    console.log(person);
-});
+<span class="c1">// transform + first</span>
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s1">'upperCase'</span><span class="p">).</span><span class="nx">first</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">person</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
+</div>
 
 <h3 id="instance-methods">Instance Methods</h3>
 
 <p>All objects returned by the <strong>yawp query methods</strong> are wrapped inside an instance of the class <strong>Yawp</strong>. 
 This class gives us some methods that operate over those instances:</p>
 
-<pre><code class="language-javascript">yawp('/people/1').fetch(function (person) {
-    person.name = 'new name';
-    person.save(); // returns a promise
-    person.put('active'); // returns a promise
-    person._delete('active'); // returns a promise
-    person.destroy(); // returns a promise
-});
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people/1'</span><span class="p">).</span><span class="nx">fetch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">person</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'new name'</span><span class="p">;</span>
+    <span class="nx">person</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span> <span class="c1">// returns a promise</span>
+    <span class="nx">person</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">'active'</span><span class="p">);</span> <span class="c1">// returns a promise</span>
+    <span class="nx">person</span><span class="p">.</span><span class="nx">_delete</span><span class="p">(</span><span class="s1">'active'</span><span class="p">);</span> <span class="c1">// returns a promise</span>
+    <span class="nx">person</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span> <span class="c1">// returns a promise</span>
+<span class="p">});</span>
 </code></pre>
+</div>
 
 <p>The complete API methods of the <strong>Yawp</strong> class can be found <a href="https://github.com/feroult/yawp/blob/master/yawp-client/src/commons/yawp.js">here</a>.</p>
 
@@ -423,52 +431,57 @@ And this can be done either with the ES6 class syntax or with ES5 prototypes.</p
 <p>For instance, to create a <strong>Person</strong> class to add and encapsulate some new methods to the
 endpoint <strong>/people</strong>, we can do something this:</p>
 
-<pre><code class="language-javascript">class Person extends yawp('/people') {
-}
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Person</span> <span class="kr">extends</span> <span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">}</span>
 </code></pre>
+</div>
 
 <p>Now to add static methods to this endpoint model, we can do:</p>
 
-<pre><code class="language-javascript">class Person extends yawp('/people') {
-    static active() {
-        return this.where('status', '=', 'ACTIVE');
-    }
-}
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Person</span> <span class="kr">extends</span> <span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">static</span> <span class="nx">active</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'ACTIVE'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
+</div>
 
 <p>Note that now all the objects returned by the API calls using <strong>Person</strong> will be wrapped inside an
 instance of the <strong>Person</strong> class. With this, it is also possible to add methods that 
 operate over instances of that class:</p>
 
-<pre><code class="language-javascript">class Person extends yawp('/people') {
-    static inactive() {
-        return this.where('status', '=', 'INACTIVE');
-    }
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Person</span> <span class="kr">extends</span> <span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">static</span> <span class="nx">inactive</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'INACTIVE'</span><span class="p">);</span>
+    <span class="p">}</span>
     
-    activate() {
-        return this.put('active');
-    }
-}
+    <span class="nx">activate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">'active'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
+</div>
 
 <p>And use then in our application code:</p>
 
-<pre><code class="language-javascript">Person.inactive.first(function (person) {
-    person.activate().then(function() {
-        console.log('person is now active');
-    });
-})
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Person</span><span class="p">.</span><span class="nx">inactive</span><span class="p">.</span><span class="nx">first</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">person</span><span class="p">.</span><span class="nx">activate</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'person is now active'</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">})</span>
 </code></pre>
+</div>
 
 <p>Finally, we can override methods:</p>
 
-<pre><code class="language-javascript">class Person extends yawp('/people') {
-    save() {
-        console.log('saving...');
-        return super.save();
-    }
-}
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Person</span> <span class="kr">extends</span> <span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">save</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'saving...'</span><span class="p">);</span>
+        <span class="k">return</span> <span class="kr">super</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
+</div>
 
 <h3 id="es5-prototypes">ES5 Prototypes</h3>
 
@@ -477,25 +490,27 @@ we have two options. The first is to transpile our ES6 code to ES5 using the <a 
 The other is to use some convenience <strong>YAWP!</strong> methods. To create the same <strong>Person</strong> class as above
 but in ES5 we can do:</p>
 
-<pre><code class="language-javascript">var Person = yawp('/people).subclass(/* we can pass a constructor function */);
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people).subclass(/* we can pass a constructor function */);
 
 Person.inactive = function() {
-    return this.where('status', '=', 'INACTIVE');
+    return this.where('</span><span class="nx">status</span><span class="s1">', '</span><span class="o">=</span><span class="s1">', '</span><span class="nx">INACTIVE</span><span class="s1">');
 }
 
 Person.prototype.activate = function() {
-    return this.put('active');
-}
+    return this.put('</span><span class="nx">active</span><span class="err">'</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre>
+</div>
 
 <p>If we want to override methods, there is a small difference from the ES6 version. With ES5 we
 have to access the super methods using the syntax <strong>this.super</strong>, like this:</p>
 
-<pre><code class="language-javascript">Person.prototype.save = function() {
-    console.log('saving...');
-    return this.super.save();
-}
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">save</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'saving...'</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="kr">super</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+<span class="p">}</span>
 </code></pre>
+</div>
 
 
     </div>

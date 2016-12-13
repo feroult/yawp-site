@@ -217,52 +217,54 @@ inheritance too.</p>
 
 <p>For instance, imagine we have the following endpoint inheritance:</p>
 
-<pre><code class="language-java">public abstract class Vehicle&lt;T&gt; {
-    @Id
-    IdRef&lt;T&gt; id;
-}
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Vehicle</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="n">IdRef</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">;</span>
+<span class="o">}</span>
 
-public class Car extends Vehicle&lt;Car&gt; {
-}
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Car</span> <span class="kd">extends</span> <span class="n">Vehicle</span><span class="o">&lt;</span><span class="n">Car</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
 
-public class Truck extends Vehicle&lt;Truck&gt; {
-}
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Truck</span> <span class="kd">extends</span> <span class="n">Vehicle</span><span class="o">&lt;</span><span class="n">Truck</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
 
-public class Airplane extends Vehicle&lt;Airplane&gt; {
-}
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Airplane</span> <span class="kd">extends</span> <span class="n">Vehicle</span><span class="o">&lt;</span><span class="n">Airplane</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>Now imagine that we want an API to start/stop our vehicles. Let’s assume that all
 vehicles, with the exception of airplanes, have the same start/stop behavior.
 To design those features with hierarchical APIs we only need to do the following:</p>
 
-<pre><code class="language-java">public class VehicleStartStopAction&lt;T extends Vehicle&gt; extends Action&lt;T&gt; {
-    @PUT
-    public void start(IdRef&lt;Vehicle&gt; id) {
-        // do something
-    }
-    @PUT
-    public void stop(IdRef&lt;Vehicle&gt; id) {
-        // do something
-    }
-}
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">VehicleStartStopAction</span><span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Vehicle</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Action</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nd">@PUT</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Vehicle</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// do something</span>
+    <span class="o">}</span>
+    <span class="nd">@PUT</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">stop</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Vehicle</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// do something</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 
-public class AirplaneStartStopAction extends VehicleStartStopAction&lt;Airplane&gt; {
-    @PUT
-    public void start(IdRef&lt;Airplane&gt; id) {
-        // do another something
-    }
-    @PUT
-    public void stop(IdRef&lt;Airplane&gt; id) {
-        // do another something
-    }
-}
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AirplaneStartStopAction</span> <span class="kd">extends</span> <span class="n">VehicleStartStopAction</span><span class="o">&lt;</span><span class="n">Airplane</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nd">@PUT</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Airplane</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// do another something</span>
+    <span class="o">}</span>
+    <span class="nd">@PUT</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">stop</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Airplane</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// do another something</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>Since <strong>VehicleStartStopAction</strong> is not an abstract class, all vehicles will have the same
 action routes. The following routes are all valid ones:</p>
 
-<pre><code>PUT /api/cars/1/start
+<div class="highlighter-rouge"><pre class="highlight"><code>PUT /api/cars/1/start
 PUT /api/trucks/1/start
 PUT /api/airplanes/1/start
 
@@ -270,6 +272,7 @@ PUT /api/cars/1/stop
 PUT /api/trucks/1/stop
 PUT /api/airplanes/1/stop
 </code></pre>
+</div>
 
 <p>Note that only the airplane’s routes will have different functionality.</p>
 
@@ -277,14 +280,15 @@ PUT /api/airplanes/1/stop
 your inheritance to the Object superclass. For instance, to create a <a href="/guides/api/shields]">Shield</a>
 for all endpoints, we can create:</p>
 
-<pre><code class="language-java">public class BaseShield&lt;T&gt; extends Shield&lt;T&gt; {
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BaseShield</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Shield</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
 
-    @Override
-    public void defaults() {
-        allow();
-    }
-}
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">defaults</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">allow</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>If you want to create a more specific Shield for an endpoint, just subclass the BaseShield.</p>
 
@@ -300,19 +304,20 @@ npm package too.</p>
 relevant anymore. You can add them in any order you want without changing how the
 API will work. For instance:</p>
 
-<pre><code class="language-java">// this:
-@POST
-public Person addAddress(IdRef&lt;Person&gt; id, Address address) {
-    person.setAddress(address);
-    yawp.save(person);
-}
-// could also be:
-@POST
-public Person addAddress(Address address, IdRef&lt;Person&gt; id) {
-    person.setAddress(address);
-    yawp.save(person);
-}
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// this:</span>
+<span class="nd">@POST</span>
+<span class="kd">public</span> <span class="n">Person</span> <span class="nf">addAddress</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">,</span> <span class="n">Address</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">person</span><span class="o">.</span><span class="na">setAddress</span><span class="o">(</span><span class="n">address</span><span class="o">);</span>
+    <span class="n">yawp</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="c1">// could also be:</span>
+<span class="nd">@POST</span>
+<span class="kd">public</span> <span class="n">Person</span> <span class="nf">addAddress</span><span class="o">(</span><span class="n">Address</span> <span class="n">address</span><span class="o">,</span> <span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">person</span><span class="o">.</span><span class="na">setAddress</span><span class="o">(</span><span class="n">address</span><span class="o">);</span>
+    <span class="n">yawp</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 
         

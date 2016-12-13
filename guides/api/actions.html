@@ -283,27 +283,30 @@
 <p>Imagine you need to activate a given person. To do this you can create an Action class with
 single entity action method:</p>
 
-<pre><code class="language-java">public class ActivatePersonAction extends Action&lt;Person&gt; {
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ActivatePersonAction</span> <span class="kd">extends</span> <span class="n">Action</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="o">{</span>
 
-    @PUT("active")
-    public void activate(IdRef&lt;Person&gt; id) {
-        Person person = id.fetch();
-        person.setActive(true);
-        yawp.save(person);
-    }
+    <span class="nd">@PUT</span><span class="o">(</span><span class="s">"active"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">activate</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="n">id</span><span class="o">.</span><span class="na">fetch</span><span class="o">();</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setActive</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">yawp</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+    <span class="o">}</span>
 
-}
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>Now, to activate a given person, let’s say with id 123, we can run:</p>
 
-<pre><code class="language-bash">curl -X PUT http://localhost:8080/api/people/123/active
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -X PUT http://localhost:8080/api/people/123/active
 </code></pre>
+</div>
 
 <p>To do the same thing in <strong>Javascript</strong>:</p>
 
-<pre><code class="language-javascript">yawp('/people/123').put('active').done( function(status) {} );
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people/123'</span><span class="p">).</span><span class="nx">put</span><span class="p">(</span><span class="s1">'active'</span><span class="p">).</span><span class="nx">done</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">status</span><span class="p">)</span> <span class="p">{}</span> <span class="p">);</span>
 </code></pre>
+</div>
 
 <h3 id="over-collection">Over Collection</h3>
 
@@ -313,20 +316,21 @@ don’t specify an IdRef argument in the method signature.</p>
 <p>Note that you can specify an IdRef only if you are targeting a <strong>@ParentId IdRef</strong>. In that case, it will
 be an action over collection for all children of that <strong>@ParentId</strong>.</p>
 
-<pre><code class="language-java">public class PersonAction extends Action&lt;Person&gt; {
-    // over collection without IdRef
-    @GET("me")
-    public Person me() {
-        return SessionManager.getLoggedPerson(yawp);
-    }
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonAction</span> <span class="kd">extends</span> <span class="n">Action</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="c1">// over collection without IdRef</span>
+    <span class="nd">@GET</span><span class="o">(</span><span class="s">"me"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">me</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">SessionManager</span><span class="o">.</span><span class="na">getLoggedPerson</span><span class="o">(</span><span class="n">yawp</span><span class="o">);</span>
+    <span class="o">}</span>
 
-    // over collection with parent IdRef
-    @GET("first")
-    public Person first(IdRef&lt;Company&gt; companyId) {
-      return yawp(Person.class).from(companyId).first();
-    }
-}
+    <span class="c1">// over collection with parent IdRef</span>
+    <span class="nd">@GET</span><span class="o">(</span><span class="s">"first"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">first</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Company</span><span class="o">&gt;</span> <span class="n">companyId</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="nf">yawp</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">from</span><span class="o">(</span><span class="n">companyId</span><span class="o">).</span><span class="na">first</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>The following routes will be created and mapped to your methods:</p>
 
@@ -341,60 +345,63 @@ be an action over collection for all children of that <strong>@ParentId</strong>
 This is simply done by adding a String or a Java POJO/Endpoint argument to the action’s
 method signature:</p>
 
-<pre><code class="language-java">public class PersonAction extends Action&lt;Person&gt; {
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonAction</span> <span class="kd">extends</span> <span class="n">Action</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="o">{</span>
 
-    @POST
-    public Person addAddress1(IdRef&lt;Person&gt; id, String json) {
-        Address address = from(json, Address.class);
-        person.setAddress(address);
-        yawp.save(person);
-    }
+    <span class="nd">@POST</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">addAddress1</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">,</span> <span class="n">String</span> <span class="n">json</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Address</span> <span class="n">address</span> <span class="o">=</span> <span class="n">from</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">Address</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setAddress</span><span class="o">(</span><span class="n">address</span><span class="o">);</span>
+        <span class="n">yawp</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+    <span class="o">}</span>
 
-    // Or
+    <span class="c1">// Or</span>
 
-    @POST
-    public Person addAddress2(IdRef&lt;Person&gt; id, Address address) {
-        person.setAddress(address);
-        yawp.save(person);
-    }
+    <span class="nd">@POST</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">addAddress2</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">,</span> <span class="n">Address</span> <span class="n">address</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setAddress</span><span class="o">(</span><span class="n">address</span><span class="o">);</span>
+        <span class="n">yawp</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+    <span class="o">}</span>
 
-}
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>To invoke those actions from the javascript client:</p>
 
-<pre><code class="language-javascript">yawp('/people/1').json({ city: 'Paris' }).post('add-address-1');
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people/1'</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">city</span><span class="p">:</span> <span class="s1">'Paris'</span> <span class="p">}).</span><span class="nx">post</span><span class="p">(</span><span class="s1">'add-address-1'</span><span class="p">);</span>
 
-// Or
+<span class="c1">// Or</span>
 
-yawp('/people/1').json({ city: 'Paris' }).post('add-address-2');
+<span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people/1'</span><span class="p">).</span><span class="nx">json</span><span class="p">({</span> <span class="na">city</span><span class="p">:</span> <span class="s1">'Paris'</span> <span class="p">}).</span><span class="nx">post</span><span class="p">(</span><span class="s1">'add-address-2'</span><span class="p">);</span>
 </code></pre>
+</div>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
 <p>If you want to access the request parameters inside your action just add
 a <strong>Map&lt;String, String&gt;</strong> in the method signature:</p>
 
-<pre><code class="language-java">public class PersonAction extends Action&lt;Person&gt; {
-    // single entity
-    @GET
-    public Person me(IdRef&lt;Person&gt; id, Map&lt;String, String&gt; params) {
-        // ...
-    }
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonAction</span> <span class="kd">extends</span> <span class="n">Action</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="c1">// single entity</span>
+    <span class="nd">@GET</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">me</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// ...</span>
+    <span class="o">}</span>
 
-    // over collection
-    @GET
-    public Person me(Map&lt;String, String&gt; params) {
-        // ...
-    }
+    <span class="c1">// over collection</span>
+    <span class="nd">@GET</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">me</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// ...</span>
+    <span class="o">}</span>
 
-    // over collection with parent IdRef
-    @GET
-    public Person first(IdRef&lt;Company&gt; companyId  Map&lt;String, String&gt; params) {
-        // ...
-    }
-}
+    <span class="c1">// over collection with parent IdRef</span>
+    <span class="nd">@GET</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">first</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Company</span><span class="o">&gt;</span> <span class="n">companyId</span>  <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// ...</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
     </div>
 </div>

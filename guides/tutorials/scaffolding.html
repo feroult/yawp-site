@@ -281,44 +281,50 @@ little bit easier =)</p>
 
 <h3 id="endpoint">Endpoint</h3>
 
-<pre><code class="language-bash">mvn yawp:endpoint -Dmodel=person
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn yawp:endpoint -Dmodel<span class="o">=</span>person
 </code></pre>
+</div>
 
 <p>This will create the endpoint model <strong>Person</strong>. It also will create placeholders for its test suite and
 the security Shield.</p>
 
 <h3 id="shield">Shield</h3>
 
-<pre><code class="language-bash">mvn yawp:shield -Dmodel=person
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn yawp:shield -Dmodel<span class="o">=</span>person
 </code></pre>
+</div>
 
 <p>Create a <strong>PersonShield</strong> if the endpoint model is not already shielded.</p>
 
 <h3 id="action">Action</h3>
 
-<pre><code class="language-bash">mvn yawp:action -Dmodel=person -Dname=activate
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn yawp:action -Dmodel<span class="o">=</span>person -Dname<span class="o">=</span>activate
 </code></pre>
+</div>
 
 <p>Creates a <strong>PersonActivateAction</strong> custom action for the endpoint model.</p>
 
 <h3 id="transformer">Transformer</h3>
 
-<pre><code class="language-bash">mvn yawp:transformer -Dmodel=person -Dname=upperCase
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn yawp:transformer -Dmodel<span class="o">=</span>person -Dname<span class="o">=</span>upperCase
 </code></pre>
+</div>
 
 <p>Create a <strong>PersonUpperCaseTransformer</strong> transformer for the endpoint model.</p>
 
 <h3 id="hook">Hook</h3>
 
-<pre><code class="language-bash">mvn yawp:hook -Dmodel=person -Dname=setUser
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn yawp:hook -Dmodel<span class="o">=</span>person -Dname<span class="o">=</span>setUser
 </code></pre>
+</div>
 
 <p>Create a <strong>PersonSetUserHook</strong> hook for the endpoint model.</p>
 
 <h3 id="pipe">Pipe</h3>
 
-<pre><code class="language-bash">mvn yawp:pipe -Dmodel=person -Dname=counter -Dsink=personCounter
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn yawp:pipe -Dmodel<span class="o">=</span>person -Dname<span class="o">=</span>counter -Dsink<span class="o">=</span>personCounter
 </code></pre>
+</div>
 
 <p>Create a <strong>PersonCounterPipe</strong> pipe from the source endpoint model Person 
 to the sink endpoint model PersonCounter.</p>

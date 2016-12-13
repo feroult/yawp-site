@@ -227,10 +227,11 @@ them.</p>
 <p>From now on, the preferred way to configure YAWP! is using its YAML configuration file,
 here is an example file:</p>
 
-<pre><code class="language-json">features:
-  default:
-    packagePrefix: com.yourpackage
-</code></pre>
+<div class="language-json highlighter-rouge"><pre class="highlight"><code><span class="err">features:</span><span class="w">
+  </span><span class="err">default:</span><span class="w">
+    </span><span class="err">packagePrefix:</span><span class="w"> </span><span class="err">com.yourpackage</span><span class="w">
+</span></code></pre>
+</div>
 
 <p>The configuration file needs to be in the root classpath and to be called <strong>yawp.yml</strong>.</p>
 
@@ -242,12 +243,13 @@ other servlets / services that we may have in our server app.</p>
 
 <p>To use the new YAWP’s client, we just need to static import it:</p>
 
-<pre><code class="language-java">import static io.yawp.repository.Yawp.yawp;
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">static</span> <span class="n">io</span><span class="o">.</span><span class="na">yawp</span><span class="o">.</span><span class="na">repository</span><span class="o">.</span><span class="na">Yawp</span><span class="o">.</span><span class="na">yawp</span><span class="o">;</span>
 
-// then use it as a regular yawp client
-yawp.save(person);
-yawp(Person.class).where(...)
+<span class="c1">// then use it as a regular yawp client</span>
+<span class="n">yawp</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+<span class="n">yawp</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">where</span><span class="o">(...)</span>
 </code></pre>
+</div>
 
 <h1 id="shuffled-ids">Shuffled Ids</h1>
 
@@ -258,9 +260,10 @@ to shuffle the ID before it is saved or fetched from the datastore.</p>
 
 <p>To use it, just set it to true:</p>
 
-<pre><code class="language-java">@Id(shuffle = true)
-private IdRef&lt;Person&gt; id;
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Id</span><span class="o">(</span><span class="n">shuffle</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
+<span class="kd">private</span> <span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">;</span>
 </code></pre>
+</div>
 
 
         

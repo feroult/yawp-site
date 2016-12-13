@@ -280,10 +280,11 @@
 It works like a firewall  white list where you can specify what is allowed. To create a simple Shield, 
 just extend the Shield class for your endpoint:</p>
 
-<pre><code class="language-java">public class PersonShield extends Shield&lt;Person&gt; {
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonShield</span> <span class="kd">extends</span> <span class="n">Shield</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="o">{</span>
 
-    (...)
+    <span class="o">(...)</span>
 </code></pre>
+</div>
 
 <p>Since this Shield works like a white list, by simply creating this class, all the endpoint exposed 
 APIs get instantly blocked and they will return <strong>404 Not Found</strong> in production.</p>
@@ -299,77 +300,84 @@ this by overriding the methods of the Shield base class and then calling the <st
 <p>To allow only the show repository action of the person’s model to be accessed by everyone, you can add this method to 
 your Shield:</p>
 
-<pre><code class="language-java">@Override
-public void show(IdRef&lt;Person&gt; id) {
-    allow();
-}
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">allow</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>Now, you may want to provide access to the destroy repository action only if the current logged user 
 is the creator of a person’s instance:</p>
 
-<pre><code class="language-java">@Override
-public void destroy(IdRef&lt;Person&gt; id) {
-    Person person id.fetch();
-    allow(person.getCreatorId(Session.getLoggedUserId());
-}
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">destroy</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Person</span> <span class="n">person</span> <span class="n">id</span><span class="o">.</span><span class="na">fetch</span><span class="o">();</span>
+    <span class="n">allow</span><span class="o">(</span><span class="n">person</span><span class="o">.</span><span class="na">getCreatorId</span><span class="o">(</span><span class="n">Session</span><span class="o">.</span><span class="na">getLoggedUserId</span><span class="o">());</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>The name of the method being the repository action you are overriding:</p>
 
-<pre><code class="language-java">public void index(IdRef&lt;?&gt; parentId)
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">index</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;?&gt;</span> <span class="n">parentId</span><span class="o">)</span>
 
-public void show(IdRef&lt;T&gt; id)
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">show</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">)</span>
 
-public void create(List&lt;T&gt; objects)
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">create</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">objects</span><span class="o">)</span>
 
-public void update(IdRef&lt;T&gt; id, T object)
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">,</span> <span class="n">T</span> <span class="n">object</span><span class="o">)</span>
 
-public void destroy(IdRef&lt;T&gt; id)
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">destroy</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">)</span>
 </code></pre>
+</div>
 
 <h3 id="custom-actions">Custom Actions</h3>
 
 <p>To have a fine-grained access control of your custom actions, you can add methods to your shield that
 have the same signature/annotation of your actions. For instance, imagine this action method:</p>
 
-<pre><code class="language-java">@PUT("active")
-public void activate(IdRef&lt;Person&gt; id) {  
-    // ...
-}
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@PUT</span><span class="o">(</span><span class="s">"active"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">activate</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="c1">// ...</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>To create a shield rule only for that action, you could have this shield method:</p>
 
-<pre><code class="language-java">@PUT("active")
-public void activate(IdRef&lt;Person&gt; id) {  
-    allow();
-}
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@PUT</span><span class="o">(</span><span class="s">"active"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">activate</span><span class="o">(</span><span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>  
+    <span class="n">allow</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <h3 id="special-rules">Special Rules</h3>
 
 <p>For convenience shields may override two special methods, they are:</p>
 
-<pre><code class="language-java">public void always() {
-   // for every route
-}    
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">always</span><span class="o">()</span> <span class="o">{</span>
+   <span class="c1">// for every route</span>
+<span class="o">}</span>    
 
-public void defaults() {
-   // for routes without a more specific shield rule.
-} 
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">defaults</span><span class="o">()</span> <span class="o">{</span>
+   <span class="c1">// for routes without a more specific shield rule.</span>
+<span class="o">}</span> 
 </code></pre>
+</div>
 
 <h3 id="shield-where-clause">Shield Where Clause</h3>
 
 <p>Shields can also filter the data a given user can access (read or write). For instance, if the 
 current user can interact only with people he has created, the shield would be:</p>
 
-<pre><code class="language-java">@Override
-public void always() {
-    allow().where("creatorId", "=", Session.getLoggedUserId());
-}
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">always</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">allow</span><span class="o">().</span><span class="na">where</span><span class="o">(</span><span class="s">"creatorId"</span><span class="o">,</span> <span class="s">"="</span><span class="o">,</span> <span class="n">Session</span><span class="o">.</span><span class="na">getLoggedUserId</span><span class="o">());</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <h3 id="shield-facades">Shield Facades</h3>
 
@@ -377,27 +385,29 @@ public void always() {
 user can read or write. To do this, create a java interface that your model implements. 
 Inside this interface specify which setters and getters will be allowed:</p>
 
-<pre><code class="language-java">@Endpoint(path = "/people")
-public class Person implements NameFacade {
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Endpoint</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/people"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">NameFacade</span> <span class="o">{</span>
 
-    (...)
+    <span class="o">(...)</span>
 
-public interface NameFacade {
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">NameFacade</span> <span class="o">{</span>
 
-    public String getName();
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">();</span>
     
-    public void setName(String name);
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
     
-    (...)
+    <span class="o">(...)</span>
 </code></pre>
+</div>
 
 <p>Now it is possible to wire up your façade:</p>
 
-<pre><code class="language-java">@Override
-public void always() {
-    allow().where("creatorId", "=", Session.getLoggedUserId()).facade(NameFacade.class);
-}
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">always</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">allow</span><span class="o">().</span><span class="na">where</span><span class="o">(</span><span class="s">"creatorId"</span><span class="o">,</span> <span class="s">"="</span><span class="o">,</span> <span class="n">Session</span><span class="o">.</span><span class="na">getLoggedUserId</span><span class="o">()).</span><span class="na">facade</span><span class="o">(</span><span class="n">NameFacade</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
     </div>
 </div>

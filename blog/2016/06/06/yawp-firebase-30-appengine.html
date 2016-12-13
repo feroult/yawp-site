@@ -221,22 +221,24 @@ Identity Toolkit with easy to use SDKs for Java, Javascript, Android and iOS.</p
 <p>To execute the step 7, one could easily use the Firebase Java SDK, as 
 described in this <a href="https://firebase.google.com/docs/auth/server#verify_id_tokens">guide</a>, like this:</p>
 
-<pre><code class="language-java">String idToken;  // Get the user's ID token from the client app
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">String</span> <span class="n">idToken</span><span class="o">;</span>  <span class="c1">// Get the user's ID token from the client app</span>
 
-FirebaseAuth.getInstance().verifyIdToken(idToken)
-    .addOnSuccessListener(new OnSuccessListener&lt;FirebaseToken&gt;() {
-        @Override
-        public void onSuccess(FirebaseToken decodedToken) {
-          String uid = decodedToken.getUid();
-          // ...
-        }
-});
+<span class="n">FirebaseAuth</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">verifyIdToken</span><span class="o">(</span><span class="n">idToken</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">addOnSuccessListener</span><span class="o">(</span><span class="k">new</span> <span class="n">OnSuccessListener</span><span class="o">&lt;</span><span class="n">FirebaseToken</span><span class="o">&gt;()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">FirebaseToken</span> <span class="n">decodedToken</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">String</span> <span class="n">uid</span> <span class="o">=</span> <span class="n">decodedToken</span><span class="o">.</span><span class="na">getUid</span><span class="o">();</span>
+          <span class="c1">// ...</span>
+        <span class="o">}</span>
+<span class="o">});</span>
 </code></pre>
+</div>
 
 <p>The problem is that if you try to do this on Appengine, you will get the following error:</p>
 
-<pre><code class="language-java">java.lang.IllegalStateException: This feature is only available to backend instances.
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">IllegalStateException</span><span class="o">:</span> <span class="n">This</span> <span class="n">feature</span> <span class="n">is</span> <span class="n">only</span> <span class="n">available</span> <span class="n">to</span> <span class="n">backend</span> <span class="n">instances</span><span class="o">.</span>
 </code></pre>
+</div>
 
 <p>Saying that the SDK can’t be used inside the regular fronted instances because
 it uses some <strong>java.util.concurrent</strong> features that are only supported by the backend 
@@ -259,124 +261,126 @@ we are going to be using the <a href="https://github.com/jwtk/jjwt">JJWT Library
 <p>The following class has a <strong>verifyIdToken(token)</strong> method that assembles together all the details
 described at the previous links:</p>
 
-<pre><code class="language-java">public class AppengineFirebaseAuth {
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AppengineFirebaseAuth</span> <span class="o">{</span>
 
-    private static final String APP_ID = "YOUR_APP_ID";
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">APP_ID</span> <span class="o">=</span> <span class="s">"YOUR_APP_ID"</span><span class="o">;</span>
 
-    public static AppengineFirebaseToken verifyIdToken(String token) {
-        Map&lt;String, String&gt; publicKeys = GooglePublicKeys.getKeys();
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">AppengineFirebaseToken</span> <span class="nf">verifyIdToken</span><span class="o">(</span><span class="n">String</span> <span class="n">token</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">publicKeys</span> <span class="o">=</span> <span class="n">GooglePublicKeys</span><span class="o">.</span><span class="na">getKeys</span><span class="o">();</span>
 
-        for (String kid : publicKeys.keySet()) {
-            String publicKey = publicKeys.get(kid);
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">kid</span> <span class="o">:</span> <span class="n">publicKeys</span><span class="o">.</span><span class="na">keySet</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">String</span> <span class="n">publicKey</span> <span class="o">=</span> <span class="n">publicKeys</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">kid</span><span class="o">);</span>
 
-            try {
-                Jws&lt;Claims&gt; claimsJws = verifyIdTokey(token, kid, publicKey);
-                return new AppengineFirebaseToken(claimsJws.getBody());
-            } catch (SignatureException e) {
-                continue; // try next key
-            } catch (ExpiredJwtException e) {
-                throw new InvalidFirebaseTokenException(e.getMessage());
-            }
-        }
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">Jws</span><span class="o">&lt;</span><span class="n">Claims</span><span class="o">&gt;</span> <span class="n">claimsJws</span> <span class="o">=</span> <span class="n">verifyIdTokey</span><span class="o">(</span><span class="n">token</span><span class="o">,</span> <span class="n">kid</span><span class="o">,</span> <span class="n">publicKey</span><span class="o">);</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="nf">AppengineFirebaseToken</span><span class="o">(</span><span class="n">claimsJws</span><span class="o">.</span><span class="na">getBody</span><span class="o">());</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">SignatureException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">continue</span><span class="o">;</span> <span class="c1">// try next key</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ExpiredJwtException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidFirebaseTokenException</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
 
-        throw new InvalidFirebaseTokenException("No Google public keys for JWT Token");
-    }
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidFirebaseTokenException</span><span class="o">(</span><span class="s">"No Google public keys for JWT Token"</span><span class="o">);</span>
+    <span class="o">}</span>
 
-    private static Jws&lt;Claims&gt; verifyIdTokey(String token, String kid, String publicKey) {
-        PublicKey pk = createPk(publicKey);
-        Jws&lt;Claims&gt; claimsJws = Jwts.parser().setSigningKey(pk).parseClaimsJws(token);
-        validate(claimsJws, kid);
-        return claimsJws;
-    }
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Jws</span><span class="o">&lt;</span><span class="n">Claims</span><span class="o">&gt;</span> <span class="nf">verifyIdTokey</span><span class="o">(</span><span class="n">String</span> <span class="n">token</span><span class="o">,</span> <span class="n">String</span> <span class="n">kid</span><span class="o">,</span> <span class="n">String</span> <span class="n">publicKey</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">PublicKey</span> <span class="n">pk</span> <span class="o">=</span> <span class="n">createPk</span><span class="o">(</span><span class="n">publicKey</span><span class="o">);</span>
+        <span class="n">Jws</span><span class="o">&lt;</span><span class="n">Claims</span><span class="o">&gt;</span> <span class="n">claimsJws</span> <span class="o">=</span> <span class="n">Jwts</span><span class="o">.</span><span class="na">parser</span><span class="o">().</span><span class="na">setSigningKey</span><span class="o">(</span><span class="n">pk</span><span class="o">).</span><span class="na">parseClaimsJws</span><span class="o">(</span><span class="n">token</span><span class="o">);</span>
+        <span class="n">validate</span><span class="o">(</span><span class="n">claimsJws</span><span class="o">,</span> <span class="n">kid</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">claimsJws</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    private static void validate(Jws&lt;Claims&gt; claimsJws, String kid) {
-        if (claimsJws.getHeader().getAlgorithm().equals("RS256") &amp;&amp;
-                claimsJws.getBody().getAudience().equals(APP_ID) &amp;&amp;
-                claimsJws.getBody().getIssuer().equals("https://securetoken.google.com/" + APP_ID) &amp;&amp;
-                claimsJws.getBody().getSubject() != null &amp;&amp;
-                claimsJws.getHeader().getKeyId().equals(kid)) {
-            return;
-        }
-        throw new InvalidFirebaseTokenException("Invalid Firebase Id Token");
-    }
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">validate</span><span class="o">(</span><span class="n">Jws</span><span class="o">&lt;</span><span class="n">Claims</span><span class="o">&gt;</span> <span class="n">claimsJws</span><span class="o">,</span> <span class="n">String</span> <span class="n">kid</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">claimsJws</span><span class="o">.</span><span class="na">getHeader</span><span class="o">().</span><span class="na">getAlgorithm</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">"RS256"</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+                <span class="n">claimsJws</span><span class="o">.</span><span class="na">getBody</span><span class="o">().</span><span class="na">getAudience</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">APP_ID</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+                <span class="n">claimsJws</span><span class="o">.</span><span class="na">getBody</span><span class="o">().</span><span class="na">getIssuer</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="s">"https://securetoken.google.com/"</span> <span class="o">+</span> <span class="n">APP_ID</span><span class="o">)</span> <span class="o">&amp;&amp;</span>
+                <span class="n">claimsJws</span><span class="o">.</span><span class="na">getBody</span><span class="o">().</span><span class="na">getSubject</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span>
+                <span class="n">claimsJws</span><span class="o">.</span><span class="na">getHeader</span><span class="o">().</span><span class="na">getKeyId</span><span class="o">().</span><span class="na">equals</span><span class="o">(</span><span class="n">kid</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nf">InvalidFirebaseTokenException</span><span class="o">(</span><span class="s">"Invalid Firebase Id Token"</span><span class="o">);</span>
+    <span class="o">}</span>
 
-    private static PublicKey createPk(String publicKey) {
-        try {
-            CertificateFactory cf = CertificateFactory.getInstance("X.509");
-            InputStream stream = new ByteArrayInputStream(publicKey.getBytes("UTF-8"));
-            java.security.cert.Certificate cert = cf.generateCertificate(stream);
-            return cert.getPublicKey();
-        } catch (CertificateException | UnsupportedEncodingException e) {
-            throw new RuntimeException(e);
-        }
-    }
-}
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">PublicKey</span> <span class="nf">createPk</span><span class="o">(</span><span class="n">String</span> <span class="n">publicKey</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">CertificateFactory</span> <span class="n">cf</span> <span class="o">=</span> <span class="n">CertificateFactory</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="s">"X.509"</span><span class="o">);</span>
+            <span class="n">InputStream</span> <span class="n">stream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ByteArrayInputStream</span><span class="o">(</span><span class="n">publicKey</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(</span><span class="s">"UTF-8"</span><span class="o">));</span>
+            <span class="n">java</span><span class="o">.</span><span class="na">security</span><span class="o">.</span><span class="na">cert</span><span class="o">.</span><span class="na">Certificate</span> <span class="n">cert</span> <span class="o">=</span> <span class="n">cf</span><span class="o">.</span><span class="na">generateCertificate</span><span class="o">(</span><span class="n">stream</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">cert</span><span class="o">.</span><span class="na">getPublicKey</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">CertificateException</span> <span class="o">|</span> <span class="n">UnsupportedEncodingException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>Finally, the Google Cloud public certificates need to be fetched from time to time, since
 they are always changing to minimize security isssues. The following class will deal
 with this:</p>
 
-<pre><code class="language-java">public class GooglePublicKeys {
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GooglePublicKeys</span> <span class="o">{</span>
 
-    private static final String GOOGLE_PUBLIC_KEYS = "https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com";
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">GOOGLE_PUBLIC_KEYS</span> <span class="o">=</span> <span class="s">"https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com"</span><span class="o">;</span>
 
-    private static final int ONE_DAY = 1000 * 60 * 60 * 24;
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">ONE_DAY</span> <span class="o">=</span> <span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="o">;</span>
 
-    private static GooglePublicKeys instance;
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">GooglePublicKeys</span> <span class="n">instance</span><span class="o">;</span>
 
-    private long timestamp;
+    <span class="kd">private</span> <span class="kt">long</span> <span class="n">timestamp</span><span class="o">;</span>
 
-    private Map&lt;String, String&gt; keys;
+    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">keys</span><span class="o">;</span>
 
-    private GooglePublicKeys() {
-    }
+    <span class="kd">private</span> <span class="nf">GooglePublicKeys</span><span class="o">()</span> <span class="o">{</span>
+    <span class="o">}</span>
 
-    public static Map&lt;String, String&gt; getKeys() {
-        if (instance == null || isOutdated()) {
-            reload();
-        }
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">getKeys</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">instance</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">isOutdated</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">reload</span><span class="o">();</span>
+        <span class="o">}</span>
 
-        return instance.keys;
-    }
+        <span class="k">return</span> <span class="n">instance</span><span class="o">.</span><span class="na">keys</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    private static boolean isOutdated() {
-        return instance.timestamp &lt; System.currentTimeMillis() - ONE_DAY;
-    }
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isOutdated</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">instance</span><span class="o">.</span><span class="na">timestamp</span> <span class="o">&lt;</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">-</span> <span class="n">ONE_DAY</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    private synchronized static void reload() {
-        if (instance != null &amp;&amp; !isOutdated()) {
-            return;
-        }
+    <span class="kd">private</span> <span class="kd">synchronized</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">reload</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">instance</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">isOutdated</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
 
-        instance = new GooglePublicKeys();
-        instance.keys = fetchGooglePublicKeys();
-        instance.timestamp = System.currentTimeMillis();
-    }
+        <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GooglePublicKeys</span><span class="o">();</span>
+        <span class="n">instance</span><span class="o">.</span><span class="na">keys</span> <span class="o">=</span> <span class="n">fetchGooglePublicKeys</span><span class="o">();</span>
+        <span class="n">instance</span><span class="o">.</span><span class="na">timestamp</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">();</span>
+    <span class="o">}</span>
 
-    private static Map&lt;String, String&gt; fetchGooglePublicKeys() {
-        return parseJson(fetchKeysJson());
-    }
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">fetchGooglePublicKeys</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="nf">parseJson</span><span class="o">(</span><span class="n">fetchKeysJson</span><span class="o">());</span>
+    <span class="o">}</span>
 
-    private static String fetchKeysJson() {
-        try {
-            URLFetchService urlFetch = URLFetchServiceFactory.getURLFetchService();
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">fetchKeysJson</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">URLFetchService</span> <span class="n">urlFetch</span> <span class="o">=</span> <span class="n">URLFetchServiceFactory</span><span class="o">.</span><span class="na">getURLFetchService</span><span class="o">();</span>
 
-            HTTPResponse response = urlFetch.fetch(new URL(GOOGLE_PUBLIC_KEYS));
-            return new String(response.getContent());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+            <span class="n">HTTPResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">urlFetch</span><span class="o">.</span><span class="na">fetch</span><span class="o">(</span><span class="k">new</span> <span class="n">URL</span><span class="o">(</span><span class="n">GOOGLE_PUBLIC_KEYS</span><span class="o">));</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getContent</span><span class="o">());</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">RuntimeException</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 
-    private static Map&lt;String, String&gt; parseJson(String json) {
-        Gson gson = new Gson();
-        Map&lt;String, String&gt; map = new HashMap&lt;&gt;();
-        return gson.fromJson(json, map.getClass());
-    }
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">parseJson</span><span class="o">(</span><span class="n">String</span> <span class="n">json</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gson</span><span class="o">();</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+        <span class="k">return</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="n">map</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span>
+    <span class="o">}</span>
 
-}
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>That’s it.</p>
 

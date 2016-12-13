@@ -298,13 +298,14 @@ powerful web APIs.</p>
 <p>Endpoint models are really easy to create. The simplest example, used almost everywhere in this
 documentation, is the Person endpoint:</p>
 
-<pre><code class="language-java">@Endpoint(path = "/people")
-public class Person {
-    @Id
-    IdRef&lt;Person&gt; id;
-    String name;
-}
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Endpoint</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/people"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">;</span>
+    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>This is the only configuration needed to create the <strong>Person</strong> endpoint model, which by default gives
 you the repository actions with a complete set of Web APIs to access it:</p>
