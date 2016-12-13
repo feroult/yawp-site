@@ -279,17 +279,18 @@
 <p>Endpoint Models represent the schema of your API resources. Lets take look at some important points
 of our Person endpoint example:</p>
 
-<pre><code class="language-java">@Endpoint(path = "/people")
-public class Person {
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Endpoint</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/people"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
 
-    @Id
-    IdRef&lt;Person&gt; id;
+    <span class="nd">@Id</span>
+    <span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">;</span>
 
-    @Index
-    String name;
+    <span class="nd">@Index</span>
+    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
 
-}
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <h3 id="endpoint">@Endpoint</h3>
 
@@ -348,18 +349,20 @@ attribute as a filter or order clause.</p>
 <p>If you want store a more complex object inside your model, you will need to serialize
 the attribute as a json string. For instance:</p>
 
-<pre><code class="language-java">@Json
-Address address;
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Json</span>
+<span class="n">Address</span> <span class="n">address</span><span class="o">;</span>
 </code></pre>
+</div>
 
 <h3 id="text">@Text</h3>
 
 <p>It is used to mark a string attribute as a large text value. When you use this annotation you can store
 larger texts but you can’t create indexes over this attribute anymore.</p>
 
-<pre><code class="language-java">@Text
-String comment;
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Text</span>
+<span class="n">String</span> <span class="n">comment</span><span class="o">;</span>
 </code></pre>
+</div>
 
 <h3 id="parentid">@ParentId</h3>
 
@@ -367,9 +370,10 @@ String comment;
 to obtain strong consistency queries where it is necessary. To do so, you add an IdRef to the ancestor
 model of your model, annotate it with <strong>@ParentId</strong>:</p>
 
-<pre><code class="language-java">@ParentId
-IdRef&lt;Company&gt; companyId;
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@ParentId</span>
+<span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Company</span><span class="o">&gt;</span> <span class="n">companyId</span><span class="o">;</span>
 </code></pre>
+</div>
 
     </div>
 </div>

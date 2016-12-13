@@ -283,18 +283,21 @@ really straight forward to deploy it to Google Appengine, just follow these step
 
 <p>2) Change the file <strong>src/main/webapp/WEB-IF/appengine-web.xml</strong> and insert your Project ID:</p>
 
-<pre><code class="language-xml">&lt;application&gt;YOUR_APPENGINE_PROJECT_ID&lt;/application&gt;
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;application&gt;</span>YOUR_APPENGINE_PROJECT_ID<span class="nt">&lt;/application&gt;</span>
 </code></pre>
+</div>
 
 <p>3) From the project’s root folder, deploy your APP using the Appengine Maven Plugin:</p>
 
-<pre><code class="language-bash">mvn appengine:update
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn appengine:update
 </code></pre>
+</div>
 
 <p>4) Try it with cURL:</p>
 
-<pre><code class="language-bash">$ curl http://YOUR_APPENGINE_PROJECT_ID.appspot.com/api
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>curl http://YOUR_APPENGINE_PROJECT_ID.appspot.com/api
 </code></pre>
+</div>
 
     </div>
 </div>

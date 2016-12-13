@@ -279,49 +279,53 @@
 <p>The Transformer API is used to create different views of the same domain object. If you want to add 
 or hide information to be returned to the client, the way to go is to use a Transfomer. For instance:</p>
 
-<pre><code class="language-java">public class BasicObjectTransformer extends Transformer&lt;Person&gt; {
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BasicObjectTransformer</span> <span class="kd">extends</span> <span class="n">Transformer</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="o">{</span>
 
-    public Map&lt;String, Object&gt; upperCase(Person person) {
-        Map&lt;String, Object&gt; map = asMap(person);
-        map.put("name", person.getName().toUpperCase());
-        return map;
-    }
-}
+    <span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="nf">upperCase</span><span class="o">(</span><span class="n">Person</span> <span class="n">person</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="n">asMap</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
+        <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="n">person</span><span class="o">.</span><span class="na">getName</span><span class="o">().</span><span class="na">toUpperCase</span><span class="o">());</span>
+        <span class="k">return</span> <span class="n">map</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>Now, to transform a given person, let’s say with id 123, you can:</p>
 
-<pre><code class="language-bash">curl -X GET http://localhost:8080/api/people/123?t=upperCase
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -X GET http://localhost:8080/api/people/123?t<span class="o">=</span>upperCase
 </code></pre>
+</div>
 
 <p>The <strong>Javascript</strong> equivalent would be:</p>
 
-<pre><code class="language-javascript">yawp('/people/123').transform('upperCase').first( function(person) {} );
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people/123'</span><span class="p">).</span><span class="nx">transform</span><span class="p">(</span><span class="s1">'upperCase'</span><span class="p">).</span><span class="nx">first</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{}</span> <span class="p">);</span>
 </code></pre>
+</div>
 
 <p>Note: All transformers can be applied for collections queries or fetching single objects.</p>
 
 <p>Finally, you can also create more sophisticated transformers using the presenter pattern, like this:</p>
 
-<pre><code class="language-java">public class UserTransformer extends Transformer&lt;User&gt; {
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserTransformer</span> <span class="kd">extends</span> <span class="n">Transformer</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="o">{</span>
 
-   public static class UserView {
-        private String name;
-        private String company;
-        private int birthYear;
+   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">UserView</span> <span class="o">{</span>
+        <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="n">String</span> <span class="n">company</span><span class="o">;</span>
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">birthYear</span><span class="o">;</span>
 
-        public UserView(User user) {
-            this.name = user.getName();
-            this.company = user.getCompany();
-            this.birthYear = Calendar.getInstance().get(Calendar.YEAR) - user.getAge();
-        }
-    }
+        <span class="kd">public</span> <span class="nf">UserView</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">company</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="na">getCompany</span><span class="o">();</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">birthYear</span> <span class="o">=</span> <span class="n">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">get</span><span class="o">(</span><span class="n">Calendar</span><span class="o">.</span><span class="na">YEAR</span><span class="o">)</span> <span class="o">-</span> <span class="n">user</span><span class="o">.</span><span class="na">getAge</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 
-    public UserView withYear(User user) {
-        return new UserView(user);
-    }
-}
+    <span class="kd">public</span> <span class="n">UserView</span> <span class="nf">withYear</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">UserView</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
     </div>
 </div>

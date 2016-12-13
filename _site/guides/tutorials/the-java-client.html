@@ -289,51 +289,55 @@ you need  use its java client API. The method/attribute <strong>yawp</strong> is
 </ul>
 
 <h3 id="repository-actions">Repository Actions</h3>
-<pre><code class="language-java">// create / update
-yawp.save(person);
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// create / update</span>
+<span class="n">yawp</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">person</span><span class="o">);</span>
 
-// destroy
-yawp.destroy(id);
+<span class="c1">// destroy</span>
+<span class="n">yawp</span><span class="o">.</span><span class="na">destroy</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
 
-// fetch
-yawp(Person.class).fetch(id);
+<span class="c1">// fetch</span>
+<span class="n">yawp</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">fetch</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
 
-// list
-yawp(Person.class).list();
+<span class="c1">// list</span>
+<span class="n">yawp</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">list</span><span class="o">();</span>
 </code></pre>
+</div>
 
 <h3 id="custom-actions">Custom Actions</h3>
 
-<pre><code class="language-java">// @GET("me") over collection action 
-feature(PersonMeAction.class).me();
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// @GET("me") over collection action </span>
+<span class="n">feature</span><span class="o">(</span><span class="n">PersonMeAction</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">me</span><span class="o">();</span>
 
-// @PUT("reverse-name") single entity action
-feature(PersonReverseNameAction.class).reverseName(id);
+<span class="c1">// @PUT("reverse-name") single entity action</span>
+<span class="n">feature</span><span class="o">(</span><span class="n">PersonReverseNameAction</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">reverseName</span><span class="o">(</span><span class="n">id</span><span class="o">);</span>
 </code></pre>
+</div>
 
 <h3 id="query">Query</h3>
 
-<pre><code class="language-java">// where + list
-yawp(Person.class).where("name", "=", "janes").list();
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// where + list</span>
+<span class="n">yawp</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"="</span><span class="o">,</span> <span class="s">"janes"</span><span class="o">).</span><span class="na">list</span><span class="o">();</span>
 
-// where + first
-yawp(Person.class).where("name", "=", "janes").first();
+<span class="c1">// where + first</span>
+<span class="n">yawp</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"="</span><span class="o">,</span> <span class="s">"janes"</span><span class="o">).</span><span class="na">first</span><span class="o">();</span>
 
-// limit
-yawp(Person.class).where("name", "=", "janes").limit(10).list();
+<span class="c1">// limit</span>
+<span class="n">yawp</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"="</span><span class="o">,</span> <span class="s">"janes"</span><span class="o">).</span><span class="na">limit</span><span class="o">(</span><span class="mi">10</span><span class="o">).</span><span class="na">list</span><span class="o">();</span>
 
-// order
-yawp(Person.class).where("name", "=", "janes").order("name", "asc").list();
+<span class="c1">// order</span>
+<span class="n">yawp</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"="</span><span class="o">,</span> <span class="s">"janes"</span><span class="o">).</span><span class="na">order</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"asc"</span><span class="o">).</span><span class="na">list</span><span class="o">();</span>
 </code></pre>
+</div>
 
 <h3 id="transfomers">Transfomers</h3>
 
-<pre><code class="language-java">// transform + where + list
-yawp(Person.class).transform("upperCase").where("name", "=", "janes").list();
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="c1">// transform + where + list</span>
+<span class="n">yawp</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">transform</span><span class="o">(</span><span class="s">"upperCase"</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"="</span><span class="o">,</span> <span class="s">"janes"</span><span class="o">).</span><span class="na">list</span><span class="o">();</span>
 
-// transform + first
-yawp(Person.class).transform("upperCase").where("name", "=", "janes").first();
+<span class="c1">// transform + first</span>
+<span class="n">yawp</span><span class="o">(</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">transform</span><span class="o">(</span><span class="s">"upperCase"</span><span class="o">).</span><span class="na">where</span><span class="o">(</span><span class="s">"name"</span><span class="o">,</span> <span class="s">"="</span><span class="o">,</span> <span class="s">"janes"</span><span class="o">).</span><span class="na">first</span><span class="o">();</span>
 </code></pre>
+</div>
 
     </div>
 </div>

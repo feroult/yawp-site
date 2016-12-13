@@ -279,58 +279,65 @@
 <p>To have your first API you just need to create an <a href="/guides/api/models">Endpoint</a>. It is done very
 easily with a scaffold:</p>
 
-<pre><code class="language-bash">mvn yawp:endpoint -Dmodel=person
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn yawp:endpoint -Dmodel<span class="o">=</span>person
 </code></pre>
+</div>
 
 <p>Now we can change the <strong>Person</strong> class to add the <strong>name</strong> attribute:</p>
 
-<pre><code class="language-java">@Endpoint(path = "/people")
-public class Person {
-    @Id
-    IdRef&lt;Person&gt; id;
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Endpoint</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/people"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">;</span>
     
-    String name;
-}
+    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>Just start the development server:</p>
 
-<pre><code class="language-bash">mvn yawp:devserver
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn yawp:devserver
 </code></pre>
+</div>
 
 <p>After the development server starts, you can play with the <strong>Person</strong> endpoint APIs with cURL. To create a person,
 execute in a shell:</p>
 
-<pre><code class="language-bash">curl -H "Content-type: application/json" -X POST \
-     -d "{'name': 'John'}" http://localhost:8080/api/people
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl -H <span class="s2">"Content-type: application/json"</span> -X POST <span class="se">\</span>
+     -d <span class="s2">"{'name': 'John'}"</span> http://localhost:8080/api/people
 </code></pre>
+</div>
 
 <p>To list the created person:</p>
 
-<pre><code class="language-bash">curl http://localhost:8080/api/people
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>curl http://localhost:8080/api/people
 </code></pre>
+</div>
 
 <p>To access it from your Web or NodeJS apps, you can use the <a href="/guides/tutorials/the-javascript-client">YAWP! javascript</a> 
 client library.</p>
 
 <p>Install it:</p>
 
-<pre><code class="language-bash">npm install yawp --save
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm install yawp --save
 </code></pre>
+</div>
 
 <p>And crate a person:</p>
 
-<pre><code class="language-javascript">var yawp = require('yawp');
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">yawp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'yawp'</span><span class="p">);</span>
 
-var promise = yawp('/people').create({name: 'janes'}).then(function(person) {
-    console.log('created', person.id);
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">).</span><span class="nx">create</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="s1">'janes'</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'created'</span><span class="p">,</span> <span class="nx">person</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
 
-    person.name = 'janes joplin';
-    return person.save(function() {
-        console.log('updated');
-    });
-});
+    <span class="nx">person</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'janes joplin'</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">person</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'updated'</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
 </code></pre>
+</div>
 
     </div>
 </div>

@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <meta name="description" content="A very simple and elegant domain specific language / framework in Java that helps you to create amazing REST APIs.">
-    
+
     <meta name="author" content="Fernando Ultremare and YAWP! contributors">
     <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
 
@@ -30,7 +30,7 @@
 
     <!-- code formating -->
     <script src="https://cdn.jsdelivr.net/highlight.js/8.9.1/highlight.min.js"></script>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
 
@@ -64,8 +64,8 @@
     })();
     </script>
     <!-- End Inspectlet Embed Code -->
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/8.9.1/styles/zenburn.min.css">    
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/8.9.1/styles/zenburn.min.css">
 
 </head>
 
@@ -82,9 +82,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
+
                     <a class="navbar-brand" href="#page-top">YAWP!</a>
-                
+
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -145,13 +145,15 @@
                 <div id="github" class="github-buttons">
 <!--
                     <div class="github-button">
-                        <a class="github-button" href="https://github.com/feroult/yawp" data-icon="octicon-eye" data-style="mega" data-count-href="/feroult/yawp/watchers" data-count-api="/repos/feroult/yawp#subscribers_count" data-count-aria-label="# watchers on GitHub" aria-label="Watch feroult/yawp on GitHub">Watch</a>                   
+                        <a class="github-button" href="https://github.com/feroult/yawp" data-icon="octicon-eye" data-style="mega" data-count-href="/feroult/yawp/watchers" data-count-api="/repos/feroult/yawp#subscribers_count" data-count-aria-label="# watchers on GitHub" aria-label="Watch feroult/yawp on GitHub">Watch</a>
                     </div>
 -->
                     <div class="github-button">
-<!--                        <a class="github-button" href="https://github.com/feroult/yawp" data-icon="octicon-star" data-style="mega" data-count-href="/feroult/yawp/stargazers" data-count-api="/repos/feroult/yawp#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star feroult/yawp on GitHub">Star</a>-->                        
-                        <a class="github-button" href="https://github.com/feroult/yawp" data-style="mega" data-count-href="/feroult/yawp/stargazers" data-count-api="/repos/feroult/yawp#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star feroult/yawp on GitHub">Star</a>                        
-                        
+                        <a class="github-button" href="https://github.com/feroult/yawp/subscription" data-icon="octicon-eye" data-style="mega" data-count-href="/feroult/yawp/watchers" data-count-api="/repos/feroult/yawp#subscribers_count" data-count-aria-label="# watchers on GitHub" aria-label="Watch feroult/yawp on GitHub">Watch</a>
+                        <div class="github-button-sep"></div>
+                        <a class="github-button" href="https://github.com/feroult/yawp" data-style="mega" data-count-href="/feroult/yawp/stargazers" data-count-api="/repos/feroult/yawp#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star feroult/yawp on GitHub">Star</a>
+                        <div class="github-button-sep"></div>
+                        <a class="github-button" href="https://github.com/feroult/yawp/fork" data-icon="octicon-repo-forked" data-style="mega" data-count-href="/feroult/yawp/network" data-count-api="/repos/feroult/yawp#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork feroult/yawp on GitHub">Fork</a>
                     </div>
 <!--
                     <div class="github-button">
@@ -205,14 +207,14 @@
                     </div>
                     <img src="assets/img/features/portable.png" class="img-responsive" alt="">
                 </div>
-                <div class="feature"><h3>Platform Free</h3>If scalability is not an issue or you rather do-it-yourself, move to any platform with the PostgreSQL driver.</div>        
+                <div class="feature"><h3>Platform Free</h3>If scalability is not an issue or you rather do-it-yourself, move to any platform with the PostgreSQL driver.</div>
             </div>
         </div>
-        <div class="row zebra" markdown="1">                    
+        <div class="row zebra" markdown="1">
             <div class="col-sm-4 portfolio-item ">
     <div class="portfolio-link">
         <div class="feature-icon">
-            <i class="fa fa-cubes fa-3x"></i>    
+            <i class="fa fa-cubes fa-3x"></i>
         </div>
     </div>
     <div class="feature">
@@ -223,14 +225,14 @@ public class Person {
     @Id
     IdRef&lt;Person&gt; id;
     String name;
-}</code></pre>        
+}</code></pre>
         </div>
     </div>
-</div>                    
+</div>
             <div class="col-sm-4 portfolio-item ">
     <div class="portfolio-link">
         <div class="feature-icon">
-            <i class="fa fa-flash fa-3x"></i>    
+            <i class="fa fa-flash fa-3x"></i>
         </div>
     </div>
     <div class="feature">
@@ -241,14 +243,14 @@ public void activate(IdRef<Person> id) {
     Person person = id.fetch();
     person.setActive(true);
     yawp.save(person);
-}</code></pre>        
+}</code></pre>
         </div>
     </div>
-</div>   
+</div>
             <div class="col-sm-4 portfolio-item ">
     <div class="portfolio-link">
         <div class="feature-icon">
-            <i class="fa fa-shield fa-3x"></i>    
+            <i class="fa fa-shield fa-3x"></i>
         </div>
     </div>
     <div class="feature">
@@ -259,35 +261,35 @@ public void show(IdRef<Person> id) {
     allow(isAdmin());
     allow(isUser())
      .where("userId", "=", me());
-}</code></pre>        
+}</code></pre>
         </div>
     </div>
-</div>                                             
+</div>
         </div>
-        <div class="row" markdown="1">         
+        <div class="row" markdown="1">
             <div class="col-sm-4 portfolio-item ">
     <div class="portfolio-link">
         <div class="feature-icon">
-            <i class="fa fa-exchange fa-3x"></i>    
+            <i class="fa fa-exchange fa-3x"></i>
         </div>
     </div>
     <div class="feature">
         <h3>Pipes</h3>
         <div class="sample">
             <pre class="code"><code class="java">@Override
-public void flux(Person person, 
+public void flux(Person person,
                  Agg agg) {
     agg.increment();
-    agg.sum(person.salary);    
+    agg.sum(person.salary);
 }
-</code></pre>        
+</code></pre>
         </div>
     </div>
-</div>                      
+</div>
             <div class="col-sm-4 portfolio-item ">
     <div class="portfolio-link">
         <div class="feature-icon">
-            <i class="fa fa-eye fa-3x"></i>    
+            <i class="fa fa-eye fa-3x"></i>
         </div>
     </div>
     <div class="feature">
@@ -298,14 +300,14 @@ public void flux(Person person,
     map.put("name", p.getName()
           .toUpperCase());
     return map;
-}</code></pre>        
+}</code></pre>
         </div>
     </div>
-</div>           
+</div>
             <div class="col-sm-4 portfolio-item ">
     <div class="portfolio-link">
         <div class="feature-icon">
-            <i class="fa fa-level-down fa-3x"></i>    
+            <i class="fa fa-level-down fa-3x"></i>
         </div>
     </div>
     <div class="feature">
@@ -314,13 +316,13 @@ public void flux(Person person,
             <pre class="code"><code class="java">@Override
 void beforeSave(Person person) {
     if (person.age < 18)
-        throw new 
+        throw new
               HttpException(422);
-}</code></pre>        
+}</code></pre>
         </div>
     </div>
-</div>                    
-        </div>        
+</div>
+        </div>
     </div>
 </section>
 
@@ -492,16 +494,16 @@ public class Person {
     <!-- Place this tag right after the last button or just before your close body tag. -->
     <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
 
-    
-    
 
-    
+
+
+
 
     <script>
         yawp.config(function (c) {
             c.baseUrl('http://localhost:8080/api');
         });
-        
+
         $('#yeti').addClass('animated swing');
 //        $('#github').addClass('animated swing');
     </script>

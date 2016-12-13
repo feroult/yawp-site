@@ -302,27 +302,29 @@ their mobile or web apps. The project continues to evolve.</p>
 
 <p>Everything happens around a plain Java object:</p>
 
-<pre><code class="language-java">@Endpoint(path = "/people")
-public class Person {
-    @Id
-    IdRef&lt;Person&gt; id;             
-    String name;
-}   
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Endpoint</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/people"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+    <span class="nd">@Id</span>
+    <span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">;</span>             
+    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="o">}</span>   
 </code></pre>
+</div>
 
 <p>Then you we access it from Javascript:</p>
 
-<pre><code class="language-javascript">var yawp = require('yawp');
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">yawp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'yawp'</span><span class="p">);</span>
 
-var promise = yawp('/people').create({name: 'janes'}).then(function(person) {
-    console.log('created', person.id);
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">).</span><span class="nx">create</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="s1">'janes'</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">person</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'created'</span><span class="p">,</span> <span class="nx">person</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
 
-    person.name = 'janes joplin';
-    return person.save(function() {
-        console.log('updated');
-    });
-});
+    <span class="nx">person</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">'janes joplin'</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">person</span><span class="p">.</span><span class="nx">save</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'updated'</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
 </code></pre>
+</div>
 
 <p>And then we can customize it with the extra features below.</p>
 

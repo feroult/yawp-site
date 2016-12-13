@@ -288,21 +288,22 @@ type of you hook is <strong>Object</strong>, then this hook will intercept the f
 
 <p>This is a example of the <strong>Hook</strong> feature for the <strong>User</strong> endpoint model:</p>
 
-<pre><code class="language-java">public class UserHook extends Hook&lt;User&gt; {
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserHook</span> <span class="kd">extends</span> <span class="n">Hook</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="o">{</span>
 
-    @Override
-    public void beforeQuery(DatastoreQuery&lt;User&gt; q) {
-        q.where("company", "=", Session.getLoggedUser().getCompany());
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">beforeQuery</span><span class="o">(</span><span class="n">DatastoreQuery</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">q</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">q</span><span class="o">.</span><span class="na">where</span><span class="o">(</span><span class="s">"company"</span><span class="o">,</span> <span class="s">"="</span><span class="o">,</span> <span class="n">Session</span><span class="o">.</span><span class="na">getLoggedUser</span><span class="o">().</span><span class="na">getCompany</span><span class="o">());</span>
+    <span class="o">}</span>
 
-    @Override
-    public void beforeSave(User user) {
-        if (user.getAge() &lt; 18) {
-            throw new HttpException(422, "You must be 18 or more to sign up.");
-        }
-    }
-}
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">beforeSave</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">HttpException</span><span class="o">(</span><span class="mi">422</span><span class="o">,</span> <span class="s">"You must be 18 or more to sign up."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre>
+</div>
 
 <p>The complete list of events that you can intercept is:</p>
 

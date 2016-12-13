@@ -218,13 +218,15 @@ For more details, see the javascript client tutorial .
 
 <p>To use it in Web Apps, just add the regular script tag:</p>
 
-<pre><code class="language-html">&lt;script src="https://rawgit.com/feroult/yawp/yawp-1.6.5/yawp-client/lib/web/yawp.min.js"&gt;&lt;/script&gt;
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://rawgit.com/feroult/yawp/yawp-1.6.5/yawp-client/lib/web/yawp.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
+</div>
 
 <p>Now to use it in Node.js or React-Native:</p>
 
-<pre><code class="language-bash">npm install yawp --save
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm install yawp --save
 </code></pre>
+</div>
 
 <h1 id="es6-promises">ES6 Promises</h1>
 
@@ -247,16 +249,17 @@ And this can be done either with the ES6 class syntax or with ES5 prototypes.</p
 
 <p>For instance, to create a <strong>Person</strong> endpoint extension that is linked to the <strong>/people</strong> endpoint:</p>
 
-<pre><code class="language-javascript">class Person extends yawp('/people') {
-    static inactive() {
-        return this.where('status', '=', 'INACTIVE');
-    }
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Person</span> <span class="kr">extends</span> <span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">static</span> <span class="nx">inactive</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'INACTIVE'</span><span class="p">);</span>
+    <span class="p">}</span>
     
-    activate() {
-        return this.put('active');
-    }
-}
+    <span class="nx">activate</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">'active'</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
+</div>
 
 
         

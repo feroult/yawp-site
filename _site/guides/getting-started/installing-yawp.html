@@ -286,20 +286,22 @@
 <p>The easiest way to install it is using its maven archetype.
 You may change the values of the <strong>groupId</strong>, <strong>artifactId</strong> and <strong>version</strong> variables:</p>
 
-<pre><code class="language-bash">mvn archetype:generate \
-   -DarchetypeGroupId=io.yawp \
-   -DarchetypeArtifactId=yawp \
-   -DarchetypeVersion=LATEST \
-   -DgroupId=yawpapp \
-   -DartifactId=yawpapp \
-   -Dversion=1.0-SNAPSHOT
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn archetype:generate <span class="se">\</span>
+   -DarchetypeGroupId<span class="o">=</span>io.yawp <span class="se">\</span>
+   -DarchetypeArtifactId<span class="o">=</span>yawp <span class="se">\</span>
+   -DarchetypeVersion<span class="o">=</span>LATEST <span class="se">\</span>
+   -DgroupId<span class="o">=</span>yawpapp <span class="se">\</span>
+   -DartifactId<span class="o">=</span>yawpapp <span class="se">\</span>
+   -Dversion<span class="o">=</span>1.0-SNAPSHOT
 </code></pre>
+</div>
 
 <p>After that, you can cd into the <strong>yawpapp</strong> folder and start the development server:</p>
 
-<pre><code class="language-bash">cd yawpapp
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>yawpapp
 mvn yawp:devserver
 </code></pre>
+</div>
 
 <p>Just point a web browser to <a href="http://localhost:8080/api/">http://localhost:8080/api</a> to verify it.</p>
 
