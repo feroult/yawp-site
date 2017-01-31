@@ -13,22 +13,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <meta name="description" content="The new YAWP! Javascript Client is ready to use! And it includes:
+    <meta name="description" content="One common stack that I’ve been using to build apps is the React + MOBX + YAWP! combo.
+
+Why?
 
 
-  Support for Node.js and React-Native platforms
-  ES6 Promises refactory
-  Endpoint extesion with ES6 class syntax or ES5 prototypes
+  React (web or native) takes care of the UI rendering/update
+  MOBX makes my stores reactive to changes
+  YAWP! objects integrate nicely with MOBX
 
 
-For more details, see the javascript client tutorial .
+In this simple tutorial I’ll show you how to create a reactive API to automatically save
+products to the server as you type.
 
 ">
     
     <meta name="author" content="Fernando Ultremare and YAWP! contributors">
     <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
 
-    <title>YAWP! - New Javascript Client</title>
+    <title>YAWP! - React + MOBX + YAWP!</title>
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -203,69 +206,178 @@ For more details, see the javascript client tutorial .
     </div>
     <div class="guide">
         
-            <h1>New Javascript Client</h1>
+            <h1>React + MOBX + YAWP!</h1>
         
         
-        <p>The new <strong>YAWP! Javascript Client</strong> is ready to use! And it includes:</p>
+        <p>One common stack that I’ve been using to build apps is the <a href="https://facebook.github.io/react/">React</a> + <a href="https://mobx.js.org">MOBX</a> + YAWP! combo.</p>
+
+<p>Why?</p>
 
 <ul>
-  <li>Support for Node.js and React-Native platforms</li>
-  <li>ES6 Promises refactory</li>
-  <li>Endpoint extesion with ES6 class syntax or ES5 prototypes</li>
+  <li>React (web or native) takes care of the UI rendering/update</li>
+  <li>MOBX makes my stores reactive to changes</li>
+  <li>YAWP! objects integrate nicely with MOBX</li>
 </ul>
 
-<p>For more details, see the <a href="/guides/tutorials/the-javascript-client">javascript client tutorial</a> .</p>
+<p>In this simple tutorial I’ll show you how to create a reactive API to automatically save
+products to the server as you type.</p>
 
 <!--more-->
 
-<h1 id="nodejs-and-react-native">Node.js and React-Native</h1>
+<p>The source code of this tutorial can be found <a href="https://github.com/feroult/yawp-tutorials/tree/master/react-yawp">here</a></p>
 
-<p>Now it is possible to write your API clients in Javascript and use them in different environments.</p>
+<h3 id="setup">Setup</h3>
 
-<p>To use it in Web Apps, just add the regular script tag:</p>
+<h4 id="node-npm-and-create-react-app">Node, npm and create-react-app</h4>
 
-<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://rawgit.com/feroult/yawp/yawp-1.6.5/yawp-client/lib/web/yawp.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm install create-react-app
 </code></pre>
 </div>
 
-<p>Now to use it in Node.js or React-Native:</p>
+<h4 id="create-the-project-folder-structure">Create the project folder structure</h4>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm install yawp --save
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mkdir reactive-yawp
+<span class="nb">cd </span>reactive-yawp
 </code></pre>
 </div>
 
-<h1 id="es6-promises">ES6 Promises</h1>
+<h4 id="create-the-reactjs-project">Create the ReactJS project</h4>
 
-<p>All YAWP! Javascript Client methods now return ES6 Promises, making it really easier to
-work with asynchronous calls.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>create-react-app react-yawp
+mv react-yawp web
+<span class="nb">cd </span>web
+npm install yawp --save
+npm install mobx --save
+npm install mobx-react --save
+</code></pre>
+</div>
 
-<p><strong>Note</strong>: Some existing client code may break, because we have renamed some callback methods.
-It is really easy to fix doing the following changes:</p>
+<h4 id="create-the-yawp-backend">Create the yawp backend</h4>
 
-<ul>
-  <li>done callbacks changes to <strong>then</strong>.</li>
-  <li>fail, exception and error callbacks change to <strong>catch</strong>.</li>
-</ul>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn archetype:generate <span class="se">\</span>
+    -DarchetypeGroupId<span class="o">=</span>io.yawp <span class="se">\</span>
+    -DarchetypeArtifactId<span class="o">=</span>yawp <span class="se">\</span>
+    -DarchetypeVersion<span class="o">=</span>LATEST <span class="se">\</span>
+    -DgroupId<span class="o">=</span>demo <span class="se">\</span>
+    -DartifactId<span class="o">=</span>demo <span class="se">\</span>
+    -Dversion<span class="o">=</span>1.0-SNAPSHOT
 
-<h1 id="endpoint-extensions">Endpoint Extensions</h1>
+mv demo api
+</code></pre>
+</div>
 
-<p>The most exciting feature of the new YAWP! Javascript Client is that all yawp client
-methods can now be extended by subclassing the base <strong>yawp function</strong> for a given endpoint.
-And this can be done either with the ES6 class syntax or with ES5 prototypes.</p>
+<h3 id="a-simple-backend">A simple backend</h3>
 
-<p>For instance, to create a <strong>Person</strong> endpoint extension that is linked to the <strong>/people</strong> endpoint:</p>
+<p>For this tutorial we will have a very simple API containing a <strong>/produts</strong> resource
+endpoint:</p>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">class</span> <span class="nx">Person</span> <span class="kr">extends</span> <span class="nx">yawp</span><span class="p">(</span><span class="s1">'/people'</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">static</span> <span class="nx">inactive</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="s1">'status'</span><span class="p">,</span> <span class="s1">'='</span><span class="p">,</span> <span class="s1">'INACTIVE'</span><span class="p">);</span>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>api
+mvn yawp:endpoint -Dmodel<span class="o">=</span>product
+</code></pre>
+</div>
+
+<p>Open the created <strong>Product.java</strong> file and add the <strong>name</strong> attribute:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Endpoint</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/products"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Product</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Product</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<h2 id="a-simple-reactive-app">A simple reactive app</h2>
+
+<p>Now it is time to create the app logic.</p>
+
+<p>First we create the yawp Product client. Inside the folder <strong>web</strong> add the following content to the file <strong>Product.js</strong>:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">yawp</span> <span class="nx">from</span> <span class="s1">'yawp'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span><span class="nx">extendObservable</span><span class="p">,</span> <span class="nx">observe</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">'mobx'</span><span class="p">;</span>
+
+<span class="nx">yawp</span><span class="p">.</span><span class="nx">config</span><span class="p">(</span><span class="nx">c</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// do this only for dev</span>
+    <span class="nx">c</span><span class="p">.</span><span class="nx">baseUrl</span><span class="p">(</span><span class="s1">'http://localhost:8080/api'</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kr">class</span> <span class="nx">Product</span> <span class="kr">extends</span> <span class="nx">yawp</span><span class="p">(</span><span class="s1">'/products'</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">constructor</span><span class="p">(</span><span class="nx">attrs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">super</span><span class="p">();</span>
+        <span class="nx">extendObservable</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">attrs</span><span class="p">);</span>
+        <span class="nx">observe</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">save</span><span class="p">());</span>
     <span class="p">}</span>
 
-    <span class="nx">activate</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s1">'active'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">Product</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>Now we create a form to edit products. Change the content of the file <strong>App.js</strong> to be:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">'react'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span><span class="nx">observer</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">'mobx-react'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">Product</span> <span class="nx">from</span> <span class="s1">'./Product'</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+
+    <span class="nx">product</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Product</span><span class="p">({</span><span class="na">name</span><span class="p">:</span> <span class="s1">''</span><span class="p">});</span>
+
+    <span class="nx">onChange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">product</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+    <span class="p">};</span>
+
+    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">style</span><span class="o">=&gt;</span>
+                <span class="o">&lt;</span><span class="nx">form</span><span class="o">&gt;</span>
+                    <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">"text"</span>
+                           <span class="nx">placeholder</span><span class="o">=</span><span class="s2">"name"</span>
+                           <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">product</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span>
+                           <span class="nx">onChange</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">onChange</span><span class="p">}</span><span class="sr">/</span><span class="err">&gt;
+</span>                <span class="o">&lt;</span><span class="sr">/form</span><span class="err">&gt;
+</span>            <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">observer</span><span class="p">(</span><span class="nx">App</span><span class="p">);</span>
 </code></pre>
 </div>
+
+<h3 id="running-the-demo">Running the demo</h3>
+
+<p>Now that everything is done, lets run and check it out.</p>
+
+<p>In one terminal, run the yawp devserver:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>api
+mvn yawp:devserver
+</code></pre>
+</div>
+
+<p>In other terminal, run the react devserver:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>web
+npm start
+</code></pre>
+</div>
+
+<p>Your default browser should open the address <strong>http://localhost:3000</strong>. Just open
+the network monitor to check the server requests and then start typing at the name input.
+Just notice that everytime you type a letter the product will be automatically persisted
+to the server.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>As you can see, this is a very simple setup. But it can be extended to construct
+more complex reactive apps that easily interact with your yawp backend in a very
+organized way.</p>
 
 
         
