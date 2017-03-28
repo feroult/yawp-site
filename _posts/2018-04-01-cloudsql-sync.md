@@ -146,8 +146,99 @@ Finally, open the __appengine-web.xml__ file and add the following properties:
 
 ### Creating the synchronization Hook
 
+Now that we have all set up, we can create our synchornization hook. For that,
+we will use the yawp's hierarchy model and create an abstraction to make it
+possible to easiy synchronize any model by just marking it with a regular java interface.
 
+Inside the __models.syncable__ package, create the following interface:
 
+~~~ java
+public interface Syncable {
+}
+~~~
 
+Now we create the Hook that will be triggered for of any model that implements this interface.
+Let's use the scaffolder to do this:
+
+~~~ bash
+mvn yawp:hook -Dmodel=Syncable -Dname=CloudSQL
+~~~
+
+Change the code to be:
+
+~~~ java
+public class SyncableCloudSQLHook extends Hook<Syncable> {
+
+    @Override
+    public void beforeSave(Syncable entity) {
+        if (!yawp.isTransationInProgress()) {
+            yawp.begin();
+        }
+    }
+
+    @Override
+    public void afterSave(Syncable entity) {
+        feature(SynchronizationHelper.class).enqueueTaskFor(entity);
+        yawp.commit();
+    }
+
+}
+~~~
+
+Note that we are creating a deferred task that will handle the Cloud SQL update assynchronously and
+it is important that the task is added to the queue within a datastore transaction.
+
+__Versions__
+
+If we take a look inside the __enqueueTaskFor__ method, one important thing to note is that
+we are saving [__Version__](xxx) markers for each model before we actually enqueue the tasks.
+
+~~~ java
+public void enqueueTaskFor(Object entity) {
+    Queue queue = QueueHelper.getDefaultQueue();
+    Version taskVersion = saveVersionMarker(entity);
+    queue.add(TaskOptions.Builder.withPayload(new SynchronizationDeferredTask(entity, taskVersion)));
+}
+~~~
+
+As we will see in the next session, this is done to avoid possible problems caused by parallel updates
+to the same entity.
+
+### Saving entities to the Cloud SQL
+
+The code responsible for updating the CloudSQL is in the deferred task [__SynchronizationDeferredTask__](xxx).
+
+The most important part of this class is:
+
+~~~ java
+public void run() {
+    if (!isRightVersion()) {
+        return;
+    }
+
+    SynchronizationHelper helper = feature(SynchronizationHelper.class);
+
+    SqlConnection conn = SqlConnection.newInstance();
+    try {
+
+        helper.createTableIfNotExists(conn, entityKind);
+        helper.updateEntity(conn, entityKind, entityUri, entityJson, taskVersion);
+        conn.commit();
+
+    } finally {
+        conn.close();
+    }
+
+}
+~~~
+
+This method will run assynchronously by means of the appengine task queue. Note that we first check
+if the task is running for the right versions marker (saved before the tasks was created, 
+within the datastore transaction).
+
+If the versions is right, the next parte is pretty straight forward. We connect to the database, create
+the table if it doesn't exist and then update the entity.
+
+The code for handling the database/sql interaction can be faund in the [helper class](xxx).
 
 
