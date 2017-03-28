@@ -143,6 +143,12 @@
                     <div class="panel-body">
                         <ul>
                             
+                            <a href="/blog/2017/03/28/cloudsql-synchronization">
+                                <li class="cloudsql-synchronization">
+                                    Cloud SQL Synchronization
+                                </li>
+                            </a>
+                            
                             <a href="/blog/2017/01/31/react-mobx-yawp">
                                 <li class="react-mobx-yawp">
                                     React + MOBX + YAWP!
@@ -195,6 +201,19 @@
         
         
         
+<h2 id="cloud-sql-synchronization-march-28-2017">Cloud SQL Synchronization <span class="post-date">March 28, 2017</span></h2>
+
+<p>Sometimes we want to export information from our datastore models to different
+storage technologies, with different capabilities.</p>
+
+<p>A relational database is a good option if we need to create aggregation reports from our data, 
+which in turn is really difficult to do directly from datastore, since it doesn’t support
+joins.</p>
+
+<p>This guide shows how to keep datastore/yawp models in sync with Google Cloud SQL.</p>
+
+<p><a href="/blog/2017/03/28/cloudsql-synchronization">Read more…</a></p>
+
 <h2 id="react--mobx--yawp-january-31-2017">React + MOBX + YAWP! <span class="post-date">January 31, 2017</span></h2>
 
 <p>One common stack that I’ve been using to build apps is the <a href="https://facebook.github.io/react/">React</a> + <a href="https://mobx.js.org">MOBX</a> + YAWP! combo.</p>

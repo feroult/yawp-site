@@ -1,0 +1,628 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <meta name="description" content="Sometimes we want to export information from our datastore models to different
+storage technologies, with different capabilities.
+
+A relational database is a good option if we need to create aggregation reports from our data, 
+which in turn is really difficult to do directly from datastore, since it doesn’t support
+joins.
+
+This guide shows how to keep datastore/yawp models in sync with Google Cloud SQL.
+
+">
+    
+    <meta name="author" content="Fernando Ultremare and YAWP! contributors">
+    <meta name="google-site-verification" content="M6k8Ek0uNY4lajqXCtfLutObDtu7H9jDeEU7W35F9nY" />
+
+    <title>YAWP! - Cloud SQL Synchronization</title>
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/assets/css/freelancer.css" rel="stylesheet">
+    <link href="/assets/css/yawp.css" rel="stylesheet">
+    <link href="/assets/css/github-ribbon.css" rel="stylesheet">
+    <link href="/assets/css/guides.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="httpS://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="httpS://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- code formating -->
+    <script src="https://cdn.jsdelivr.net/highlight.js/8.9.1/highlight.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Google Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-54832827-1', 'auto');
+    ga('send', 'pageview');
+
+    </script>
+    <!-- End Google Analytics -->
+
+    <!-- Begin Inspectlet Embed Code -->
+    <script type="text/javascript" id="inspectletjs">
+    window.__insp = window.__insp || [];
+    __insp.push(['wid', 86703955]);
+    (function() {
+    function ldinsp(){if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+    setTimeout(ldinsp, 500); document.readyState != "complete" ? (window.attachEvent ? window.attachEvent('onload', ldinsp) : window.addEventListener('load', ldinsp, false)) : ldinsp();
+    })();
+    </script>
+    <!-- End Inspectlet Embed Code -->
+
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/8.9.1/styles/atelier-cave.light.min.css">
+    
+
+    
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                    <a class="navbar-brand" href="/">YAWP!</a>
+                
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="main-navbar collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li class="page-scroll">
+                        <a href="#page-top">Home</a>
+                    </li> -->
+                    <li class="">
+                        <a href="/#portfolio">Features</a>
+                    </li>
+                    <li class="">
+                        <a href="/#kickstart">Kickstart</a>
+                    </li>
+                    <li class="">
+                        <a href="/#community">Community</a>
+                    </li>
+                    <li class="">
+                        <a href="/guides">Guides</a>
+                    </li>
+                    <li class="active">
+                        <a href="/blog">Blog</a>
+                    </li>
+                    <li>
+                        <a href="http://github.com/feroult/yawp" target="_blank">GITHUB&nbsp;&nbsp;<i class="fa fa-github" style="font-size: 1.2em;"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+    <div id="accordion" class="panel-group">
+        <div class="sidebar">
+            <div class="panel panel-default">
+                <a data-toggle="collapse" href="#getting-started">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Recent Posts</h4>
+                    </div>
+                </a>
+
+                <div id="getting-started" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <ul>
+                            
+                            <a href="/blog/2017/03/28/cloudsql-synchronization">
+                                <li class="cloudsql-synchronization">
+                                    Cloud SQL Synchronization
+                                </li>
+                            </a>
+                            
+                            <a href="/blog/2017/01/31/react-mobx-yawp">
+                                <li class="react-mobx-yawp">
+                                    React + MOBX + YAWP!
+                                </li>
+                            </a>
+                            
+                            <a href="/blog/2016/07/20/new-yawp-javascript-client">
+                                <li class="new-yawp-javascript-client">
+                                    New Javascript Client
+                                </li>
+                            </a>
+                            
+                            <a href="/blog/2016/06/06/yawp-firebase-30-appengine">
+                                <li class="yawp-firebase-30-appengine">
+                                    YAWP! + Firebase 3.0 + GAE
+                                </li>
+                            </a>
+                            
+                            <a href="/blog/2016/03/06/release1-5-0">
+                                <li class="release1-5-0">
+                                    YAWP! 1.5.0 Released
+                                </li>
+                            </a>
+                            
+                            <a href="/blog/2016/01/05/release1-4-0">
+                                <li class="release1-4-0">
+                                    YAWP! 1.4.0 Released
+                                </li>
+                            </a>
+                            
+                            <a href="/blog/2015/12/30/semantic-versioning">
+                                <li class="semantic-versioning">
+                                    Semantic Versioning
+                                </li>
+                            </a>
+                            
+                            <a href="/blog/2015/12/24/welcome-to-the-blog">
+                                <li class="welcome-to-the-blog">
+                                    Welcome to the Blog!
+                                </li>
+                            </a>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="guide">
+        
+            <h1>Cloud SQL Synchronization</h1>
+        
+        
+        <p>Sometimes we want to export information from our datastore models to different
+storage technologies, with different capabilities.</p>
+
+<p>A relational database is a good option if we need to create aggregation reports from our data, 
+which in turn is really difficult to do directly from datastore, since it doesn’t support
+joins.</p>
+
+<p>This guide shows how to keep datastore/yawp models in sync with Google Cloud SQL.</p>
+
+<!--more-->
+
+<h3 id="introduction">Introduction</h3>
+
+<p>It is important to note that the Cloud SQL and the datastore have different
+scalability models. Cloud SQL has a single node architecture, so it scales vertically, 
+while datastore has a distributed model and it scales horizontally.</p>
+
+<p>What it means is that, depending on the volume of information you have in datastore, this
+synchronization idea won’t work well. In that case, you may consider using a “Big Query like” 
+technology, with a few tweaks to this guide.</p>
+
+<p>The idea is to use datastore as our primary storage technology and then asynchronously 
+update a corresponding Cloud SQL table/row every time an entity is created or updated.</p>
+
+<p>The full source code for this guide can be found <a href="https://github.com/feroult/yawp-tutorials/tree/master/cloudsqlsync">here</a></p>
+
+<h3 id="overview">Overview</h3>
+
+<p>The process detailed in this post consists in the following steps:</p>
+
+<ol>
+  <li><a href="#project-bootstrap">Project bootstrap</a></li>
+  <li><a href="#creating-the-entity-model">Creating the entity model</a></li>
+  <li><a href="#cloud-sql-setup">Cloud SQL Setup</a></li>
+  <li><a href="#application-setup">Application Setup</a></li>
+  <li><a href="#creating-the-synchronization-hook">Creating the synchronization Hook</a></li>
+  <li><a href="#saving-entities-to-Cloud SQL">Saving entities to Cloud SQL</a></li>
+  <li><a href="#testing-the-synchronization">Testing the synchronization</a></li>
+  <li><a href="#flushing-existing-entities">Flushing existing entities</a></li>
+</ol>
+
+<h3 id="project-bootstrap">Project bootstrap</h3>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn archetype:generate     
+       -DarchetypeGroupId<span class="o">=</span>io.yawp
+       -DarchetypeArtifactId<span class="o">=</span>yawp
+       -DarchetypeVersion<span class="o">=</span>LATEST
+       -DgroupId<span class="o">=</span>Cloud SQLsync
+       -DartifactId<span class="o">=</span>cloudqlsync
+</code></pre>
+</div>
+
+<h3 id="creating-the-entity-model">Creating the entity model</h3>
+
+<p>We’ll use a simple <strong>Order</strong> model to store orders for products 
+with quantity and timestamp fields. Inside the project folder:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>cloudqlsync
+mvn yawp:endpoint -Dmodel<span class="o">=</span>order
+</code></pre>
+</div>
+
+<p>Add the fields to the Order class:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Endpoint</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/orders"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Order</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="n">IdRef</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">id</span><span class="o">;</span>
+
+    <span class="n">String</span> <span class="n">product</span><span class="o">;</span>
+
+    <span class="n">Long</span> <span class="n">quantity</span><span class="o">;</span>
+
+    <span class="n">Date</span> <span class="n">createdAt</span><span class="o">;</span>
+
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>With this endpoint, we should be able to create orders. To try it we need to start the devserver
+and then use the <strong>yawp-cli</strong> tool to test the api.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn yawp:devserver
+</code></pre>
+</div>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>npm install -g yawp-cli
+</code></pre>
+</div>
+
+<p>Now run:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>yawp console
+</code></pre>
+</div>
+
+<p>And, inside the console:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">yawp</span><span class="p">(</span><span class="s1">'/orders'</span><span class="p">).</span><span class="nx">create</span><span class="p">({</span><span class="na">product</span><span class="p">:</span> <span class="s1">'test'</span><span class="p">,</span> <span class="na">quantity</span><span class="p">:</span> <span class="mi">10</span><span class="p">});</span>
+</code></pre>
+</div>
+
+<h3 id="cloud-sql-setup">Cloud SQL Setup</h3>
+
+<p>Now we can configure our the Cloud SQL MySQL database.</p>
+
+<p>Open the <a href="http://console.cloud.google.com/">Google Cloud console</a> and create a new Cloud SQL instance.
+It is fine to use all the defaults.</p>
+
+<p>After the instance is created, take note of the <strong>Instance connection name</strong> and <strong>IP Address</strong>
+of your instance. They can be found in the property group in the <strong>Instance Details</strong> panel.</p>
+
+<p>For the next steps, we’ll need the <strong>mysql</strong> command line client. You should install 
+it for your specific operating system.</p>
+
+<p>Connect to the instance:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mysql -h &lt;Cloud SQL IP&gt; -u root -p
+</code></pre>
+</div>
+
+<p>Create the app user and database:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">mysql&gt; </span>create database yawp;
+Query OK, 1 row affected <span class="o">(</span>0.00 sec<span class="o">)</span>
+
+<span class="gp">mysql&gt; </span>create user yawp;
+Query OK, 0 rows affected <span class="o">(</span>0.01 sec<span class="o">)</span>
+
+<span class="gp">mysql&gt; </span>grant all on yawp.<span class="k">*</span> to <span class="s1">'yawp'</span>@<span class="s1">'localhost'</span> identified by <span class="s1">'yawp'</span>;
+Query OK, 0 rows affected, 1 warning <span class="o">(</span>0.00 sec<span class="o">)</span>
+</code></pre>
+</div>
+
+<h3 id="application-setup">Application Setup</h3>
+
+<p>Open the <strong>pom.xml</strong> file and add the following dependency:</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.google.cloud.sql<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>mysql-socket-factory<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.0.2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre>
+</div>
+
+<p>Finally, open the <strong>appengine-web.xml</strong> file and add the following properties:</p>
+
+<div class="language-xml highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"Cloud SQL.url"</span>
+          <span class="na">value=</span><span class="s">"jdbc:google:mysql://${INSTANCE_CONNECTION_NAME}/${database}?user=${user}&amp;amp;password=${password}"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"Cloud SQL.url.local"</span>
+          <span class="na">value=</span><span class="s">"jdbc:mysql://google/${database}?Cloud SQLInstance=${INSTANCE_CONNECTION_NAME}&amp;amp;socketFactory=com.google.cloud.sql.mysql.SocketFactory&amp;amp;user=${user}&amp;amp;password=${password}&amp;amp;useSSL=false"</span><span class="nt">/&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="creating-the-synchronization-hook">Creating the synchronization Hook</h3>
+
+<p>Now that we have all set up, we can create our synchronization hook. For that, we will 
+use the yawp’s hierarchy model and create an abstraction to make it 
+possible to easily synchronize any model by just marking it with a regular java interface.</p>
+
+<p>Inside the <strong>models.syncable</strong> package, create the following interface:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Syncable</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>Now we create the Hook that will be triggered for of any model that implements this interface.
+Let’s use the scaffolder to do this:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn yawp:hook -Dmodel<span class="o">=</span>Syncable -Dname<span class="o">=</span>CloudSQL
+</code></pre>
+</div>
+
+<p>Change the code to be:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SyncableCloudSQLHook</span> <span class="kd">extends</span> <span class="n">Hook</span><span class="o">&lt;</span><span class="n">Syncable</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">beforeSave</span><span class="o">(</span><span class="n">Syncable</span> <span class="n">entity</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(!</span><span class="n">yawp</span><span class="o">.</span><span class="na">isTransationInProgress</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">yawp</span><span class="o">.</span><span class="na">begin</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterSave</span><span class="o">(</span><span class="n">Syncable</span> <span class="n">entity</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">feature</span><span class="o">(</span><span class="n">SynchronizationHelper</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">enqueueTaskFor</span><span class="o">(</span><span class="n">entity</span><span class="o">);</span>
+        <span class="n">yawp</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>Note that we are creating a deferred task that will handle the Cloud SQL update asynchronously and
+it is important that this task is added to the queue within the same datastore transaction that
+saves the entity to the datastore.</p>
+
+<p><strong>Versions</strong></p>
+
+<p>If we take a look inside the <strong>enqueueTaskFor</strong> method, one important thing to note is that
+we are saving <a href="https://github.com/feroult/yawp-tutorials/blob/master/cloudsqlsync/src/main/java/cloudsqlsync/models/syncable/Version.java"><strong>Version</strong></a> markers for each model before we actually enqueue the tasks.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueueTaskFor</span><span class="o">(</span><span class="n">Object</span> <span class="n">entity</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">Queue</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">QueueHelper</span><span class="o">.</span><span class="na">getDefaultQueue</span><span class="o">();</span>
+    <span class="n">Version</span> <span class="n">taskVersion</span> <span class="o">=</span> <span class="n">saveVersionMarker</span><span class="o">(</span><span class="n">entity</span><span class="o">);</span>
+    <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">TaskOptions</span><span class="o">.</span><span class="na">Builder</span><span class="o">.</span><span class="na">withPayload</span><span class="o">(</span><span class="k">new</span> <span class="n">SynchronizationDeferredTask</span><span class="o">(</span><span class="n">entity</span><span class="o">,</span> <span class="n">taskVersion</span><span class="o">)));</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>As we will see in the next session, this is done to avoid possible problems caused by parallel updates
+to the same entity.</p>
+
+<h3 id="saving-entities-to-cloud-sql">Saving entities to Cloud SQL</h3>
+
+<p>The code responsible for updating the Cloud SQL is in the deferred task <a href="https://github.com/feroult/yawp-tutorials/blob/master/cloudsqlsync/src/main/java/cloudsqlsync/models/syncable/SynchronizationDeferredTask.java"><strong>SynchronizationDeferredTask</strong></a>.</p>
+
+<p>The most important part of this class is:</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">isRightVersion</span><span class="o">())</span> <span class="o">{</span>
+        <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="n">SynchronizationHelper</span> <span class="n">helper</span> <span class="o">=</span> <span class="n">feature</span><span class="o">(</span><span class="n">SynchronizationHelper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="n">SqlConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">SqlConnection</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+    <span class="k">try</span> <span class="o">{</span>
+
+        <span class="n">helper</span><span class="o">.</span><span class="na">createTableIfNotExists</span><span class="o">(</span><span class="n">conn</span><span class="o">,</span> <span class="n">entityKind</span><span class="o">);</span>
+        <span class="n">helper</span><span class="o">.</span><span class="na">updateEntity</span><span class="o">(</span><span class="n">conn</span><span class="o">,</span> <span class="n">entityKind</span><span class="o">,</span> <span class="n">entityUri</span><span class="o">,</span> <span class="n">entityJson</span><span class="o">,</span> <span class="n">taskVersion</span><span class="o">);</span>
+        <span class="n">conn</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+
+    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+        <span class="n">conn</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>This method will run asynchronously by means of the appengine task queue. Note that we first check
+if the task is running for the right version marker (saved before the tasks was created,
+within the datastore transaction).</p>
+
+<p>If the version is right, the next part is pretty straight forward. We connect to the database, create
+the table if it doesn’t exist and then update the entity.</p>
+
+<p>The code for handling the database/sql interaction can be found in the <a href="https://github.com/feroult/yawp-tutorials/blob/master/cloudsqlsync/src/main/java/cloudsqlsync/models/syncable/SynchronizationHelper.java">helper class</a>.</p>
+
+<h3 id="testing-the-synchronization">Testing the synchronization</h3>
+
+<p>Now it is time to test if everything is working.</p>
+
+<p>We go to our project folder and start the development server:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mvn yawp:devserver -DINSTANCE_CONNECTION_NAME<span class="o">=</span>&lt;Instance connection name&gt; -Duser<span class="o">=</span>root -Dpassword<span class="o">=</span>&lt;password&gt; -Ddatabase<span class="o">=</span>yawp
+</code></pre>
+</div>
+
+<p>In other shell launch the <strong>yawp console</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>yawp console
+</code></pre>
+</div>
+
+<p>And, inside the console:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">yawp</span><span class="p">(</span><span class="s1">'/orders'</span><span class="p">).</span><span class="nx">create</span><span class="p">({</span><span class="na">product</span><span class="p">:</span> <span class="s1">'now it works'</span><span class="p">,</span> <span class="na">quantity</span><span class="p">:</span> <span class="mi">100</span><span class="p">});</span>
+</code></pre>
+</div>
+
+<p>Wait a little bit, open the mysql:</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>mysql -h &lt;Cloud SQL IP&gt; -u root -p
+</code></pre>
+</div>
+
+<p>Then execute the following query:</p>
+
+<div class="language-sql highlighter-rouge"><pre class="highlight"><code><span class="n">mysql</span><span class="o">&gt;</span> <span class="n">use</span> <span class="n">yawp</span><span class="p">;</span>
+<span class="n">mysql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">orders</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>And the result should be:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>+--------------------------+-------------------------------------------------------------
+| id                       | entity                                                          
++--------------------------+-------------------------------------------------------------
+| /orders/5629499534213120 | {"id": "/orders/5629499534213120", "product": "now it works"
++--------------------------+-------------------------------------------------------------
+1 row in set (0.25 sec)
+</code></pre>
+</div>
+
+<h3 id="flushing-existing-entities">Flushing existing entities</h3>
+
+<p>There are many ways to flush previous existing entities to the Cloud SQL. One could use the
+<a href="https://github.com/murer/dsopz">dsopz</a> tool to export all entities, convert the file to CSV or SQL syntax and then
+import it to Cloud SQL.</p>
+
+<p>Within the demo repository we provide an option that uses the task queue to do the complete job of 
+flushing the existing entities.
+You can check the code in this <a href="https://github.com/feroult/yawp-tutorials/tree/master/cloudsqlsync/src/main/java/cloudsqlsync/models/syncable/init">package</a>.</p>
+
+
+
+        
+            <br />
+            <div id="disqus_thread"></div>
+<script>
+
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//yawp.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+        
+    </div>                
+</div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4 col-md-offset-4">
+                        <ul class="list-inline">
+                            <li>
+                                <a href="http://github.com/feroult/yawp" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/yawpio" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <strong>YAWP!</strong> is released under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT license</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/assets/js/jquery.js"></script>
+    <script src="https://rawgit.com/feroult/yawp/yawp-1.6.8/yawp-client/lib/web/yawp.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdn.jsdelivr.net/jquery.easing/1.3/jquery.easing.1.3.min.js"></script>
+    <script src="/assets/js/classie.js"></script>
+    <script src="/assets/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="/assets/js/jqBootstrapValidation.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/assets/js/freelancer.js"></script>
+
+    <!-- code formatter -->
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- Place this tag right after the last button or just before your close body tag. -->
+    <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+
+    
+    <script src="/assets/js/left-menu.js"></script>
+    
+
+    
+
+    <script>
+        yawp.config(function (c) {
+            c.baseUrl('http://localhost:8080/api');
+        });
+        
+        $('#yeti').addClass('animated swing');
+//        $('#github').addClass('animated swing');
+    </script>
+
+
+</body>
+
+
+</html>
