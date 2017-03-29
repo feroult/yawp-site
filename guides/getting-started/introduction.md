@@ -7,8 +7,8 @@ description: Introduction to the YAWP! Framework
 
 __YAWP!__ is a lightweight REST API framework focused on productivity and scalability. 
 
-It is first targeted to run on Google Cloud Platform, leveraging its power by seamlessly
-integrating different cloud APIs into a single and concise web framework.
+It is first targeted to run on __Google Cloud Platform__. It leverages its power by the seamless
+integration of different cloud APIs into a simple web framework.
 
 The __server side__ is written in Java and works on Google Appengine. 
 The __client side__ is written in Javascript and works on Node.js or a browser. 
