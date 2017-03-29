@@ -5,21 +5,13 @@ description: Introduction to the YAWP! Framework
 ---
 # Introduction
 
-Hi there!
-
-A while ago I started developing this new framework, called __YAWP!__
-
-Before it was extracted to a separate library, it started inside one of my
-personal projects and it was emerging from project to project with patterns 
-and practices that I used.
-
 __YAWP!__ is a lightweight REST API framework focused on productivity and scalability. 
+
+It is first targeted to run on Google Cloud Platform, levaraging its power by seamlessly
+integrating different cloud APIs into a single and concise web framework.
 
 The __server side__ is written in Java and works on Google Appengine. 
 The __client side__ is written in Javascript and works on Node.js or a browser. 
-
-Nowadays we already have teams using it in their projects as backend for
-their mobile or web apps. The project continues to evolve.
 
 Contributors are always welcome, the source code is at [github.com/feroult/yawp](http://github.com/feroult/yawp)
 
