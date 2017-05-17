@@ -30,7 +30,7 @@ Just start the development server:
 mvn yawp:devserver
 ~~~
 
-After the development server starts, you can play with the __Person__ endpoint APIs with cURL. To create a person,
+After the development server starts, you can play with the __Person__ endpoint's APIs using cURL. To create a person,
 execute in a shell:
 
 ~~~ bash
@@ -44,7 +44,7 @@ To list the created person:
 curl http://localhost:8080/api/people
 ~~~
 
-To access it from your Web or NodeJS apps, you can use the [YAWP! javascript](/guides/tutorials/the-javascript-client) 
+To access it from your web or Node.js apps, you can use the [YAWP! JavaScript](/guides/tutorials/the-javascript-client) 
 client library.
 
 Install it:
@@ -53,7 +53,7 @@ Install it:
 npm install yawp --save
 ~~~
 
-And crate a person:
+And create a person:
 
 ~~~ javascript
 var yawp = require('yawp');
