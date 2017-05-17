@@ -1,14 +1,14 @@
 ---
 layout: guides
-title: "Google Appengine Deploy"
-description: A guide on how to deploy YAWP! to Google Appengine
+title: "Google App Engine Deploy"
+description: A guide on how to deploy YAWP! to Google App Engine
 ---
-# Google Appengine Deploy
+# Google App Engine Deploy
 
-After you've bootstrapped your API with the ad of the YAWP!'s maven archetype, it is
-really straight forward to deploy it to Google Appengine, just follow these steps:
+After you've bootstrapped your API with the aid of YAWP!'s Maven archetype, it is
+really straightforward to deploy it to Google App Engine. Just follow these steps:
 
-1) Create your Appengine Project ID using the [Google Clound Console](https://console.cloud.google.com).
+1) Create your App Engine Project ID using [Google Cloud Console](https://console.cloud.google.com).
 
 2) Change the file __src/main/webapp/WEB-IF/appengine-web.xml__ and insert your Project ID:
 
@@ -16,13 +16,13 @@ really straight forward to deploy it to Google Appengine, just follow these step
 <application>YOUR_APPENGINE_PROJECT_ID</application>
 ~~~
 
-3) From the project's root folder, deploy your APP using the Appengine Maven Plugin:
+3) From the project's root folder, deploy your app using the App Engine Maven plugin:
 
 ~~~ bash
 mvn appengine:update
 ~~~
 
-4) Try it with cURL:
+4) Test it with cURL:
 
 ~~~ bash
 $ curl http://YOUR_APPENGINE_PROJECT_ID.appspot.com/api
