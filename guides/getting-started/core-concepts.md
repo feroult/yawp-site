@@ -18,8 +18,8 @@ In the center of everything are the [__Endpoint Models__](/guides/api/models). M
 
  * __Documents__: Because they are backed by schemaless datastore repositories.
 
-Endpoint models are really easy to create. The simplest example, used almost everywhere in this
-documentation, is the Person endpoint:
+Endpoint Models are really easy to create. The simplest example, used almost everywhere in this
+documentation, is the __Person__ Endpoint Model:
 
 ~~~ java
 @Endpoint(path = "/people")
@@ -30,8 +30,8 @@ public class Person {
 }
 ~~~
 
-This is the only configuration needed to create the __Person__ endpoint model, which by default gives
-you the repository actions with a complete set of Web APIs to access it:
+This is the only configuration needed to create the __Person__ Endpoint Model, which by default gives
+you repository actions with a complete set of Web APIs to access them:
 
 | Verb        | Path           | Action                |
 | ----------- |--------------- | --------------------- |
@@ -50,7 +50,7 @@ to organize specific responsibilities together:
  * __Repository Actions__: Out of the box you get actions to create, query, update and destroy your models'
     entities. It is also possible to disable anything you want with the help of shields;
 
- * __Custom Actions__: This is the place put custom business logic that are responsible to change the internal
+ * __Custom Actions__: This is the place to put custom business logic that is responsible for changing the internal
     state of your models;
 
  * __Transformers__: Used to customize different views of the same model entity;
