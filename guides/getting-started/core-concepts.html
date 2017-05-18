@@ -295,8 +295,8 @@ powerful web APIs.</p>
   </li>
 </ul>
 
-<p>Endpoint models are really easy to create. The simplest example, used almost everywhere in this
-documentation, is the Person endpoint:</p>
+<p>Endpoint Models are really easy to create. The simplest example, used almost everywhere in this
+documentation, is the <strong>Person</strong> Endpoint Model:</p>
 
 <div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Endpoint</span><span class="o">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">"/people"</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
@@ -307,8 +307,8 @@ documentation, is the Person endpoint:</p>
 </code></pre>
 </div>
 
-<p>This is the only configuration needed to create the <strong>Person</strong> endpoint model, which by default gives
-you the repository actions with a complete set of Web APIs to access it:</p>
+<p>This is the only configuration needed to create the <strong>Person</strong> Endpoint Model, which by default gives
+you repository actions with a complete set of Web APIs to access them:</p>
 
 <table>
   <thead>
@@ -359,7 +359,7 @@ to organize specific responsibilities together:</p>
  entities. It is also possible to disable anything you want with the help of shields;</p>
   </li>
   <li>
-    <p><strong>Custom Actions</strong>: This is the place put custom business logic that are responsible to change the internal
+    <p><strong>Custom Actions</strong>: This is the place to put custom business logic that is responsible for changing the internal
  state of your models;</p>
   </li>
   <li>
