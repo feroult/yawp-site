@@ -127,7 +127,7 @@ class App extends Component {
 
     render() {
         return (
-            <div style={{margin: 40}}>
+            <div>
                 <form>
                     <input type="text"
                            placeholder="name"
